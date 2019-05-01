@@ -1,0 +1,27 @@
+version: 2.1
+
+jobs:
+  test:
+    docker:
+      # the Docker image with Cypress dependencies
+      - image: circleci/node:8.16
+        environment:
+          ## this enables colors in the output
+          TERM: xterm
+    working_directory: ~/app
+    steps:
+      - checkout
+      - run:
+          name: yarn install
+          command: yarn install
+      - run:
+          name: yarn build
+          command: yarn run build
+      - run:
+          name: yarn test
+          command: yarn run test
+
+workflows:
+  build-test:
+    jobs:
+      - test
