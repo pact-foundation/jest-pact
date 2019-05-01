@@ -18,12 +18,12 @@
   },
   "homepage": "https://github.com/you54f/jestpact#readme",
   "devDependencies": {
-    "@pact-foundation/pact": "^8.2.2",
-    "jest-junit": "^6.3.0",
-    "supertest": "^4.0.2",
-    "ts-jest": "^24.0.2",
-    "ts-node": "^8.1.0",
-    "typescript": "^3.4.5"
+    "@pact-foundation/pact": "8.2.2",
+    "jest-junit": "6.3.0",
+    "supertest": "4.0.2",
+    "ts-jest": "24.0.2",
+    "ts-node": "8.1.0",
+    "typescript": "3.4.5"
   },
   "dependencies": {
     "@types/jest": "^24.0.12",
