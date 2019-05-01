@@ -5,13 +5,13 @@
 Features
 
 - [x] Jest Adaptor For Pact
-  - [ ] Package for npm
-  - [ ] Publish to npm
+  - [X] Package for npm
+  - [X] Publish to npm
   - [ ] Assign random ports but pass port back to user for thier http agent
 - [x] Jest Adaptor For Pact with SuperTest
-  - [ ] Package for npm
-  - [ ] Publish to npm
-  - [ ] Add Supertest typings
+  - [X] Package for npm
+  - [X] Publish to npm
+  - [X] Add Supertest typings
   - [ ] Assign random ports
 - [ ] user configurable paths
 - [ ] use postman-pact to generate postman collections for pact contracts
@@ -19,7 +19,7 @@ Features
 - [ ] example verification
 - [ ] example can-i-deploy
 - [ ] example pact stub service docker templates
-- [ ] circleci config
+- [X] circleci config
 - [ ] npm publish automation inc versioning
 - [ ] tslint / husky / lint-staged
   
