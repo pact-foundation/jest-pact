@@ -1,4 +1,4 @@
-import { pactWithSuperTest } from "../lib/index";
+import { pactWithSuperTest } from "../index";
 import { InteractionObject, Pact } from "@pact-foundation/pact";
 import supertest = require("supertest");
 
