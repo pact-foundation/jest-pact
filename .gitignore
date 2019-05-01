@@ -4,3 +4,4 @@ pact
 *.xml
 *.log
 .DS_Store
+coverage
