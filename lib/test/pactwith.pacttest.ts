@@ -2,7 +2,7 @@ import { pactWith } from "../index";
 import { InteractionObject } from "@pact-foundation/pact";
 import * as supertest from "supertest";
 
-const pactPort: number = 5000;
+const pactPort: number = 5001;
 
 const getClient = (port: number) => {
   const url = `http://localhost:${port}`;

@@ -19,8 +19,9 @@ export declare type LogLevel =
 
 export const pactWith = (options: PactOptions, tests: any) =>
   describe(`Pact between ${options.consumer} and ${options.provider}`, () => {
+    const port:number = options.port || 8282
     const pactMock: pact.Pact = new pact.Pact({
-      port: options.port || 8282,
+      port: port,
       log: path.resolve(
         process.cwd(),
         "pact/logs",
@@ -42,8 +43,9 @@ export const pactWith = (options: PactOptions, tests: any) =>
 
 export const pactWithSuperTest = (options: PactOptions, tests: any) =>
   describe(`Pact between ${options.consumer} and ${options.provider}`, () => {
+    const port = options.port || 8989
     const pactMock: pact.Pact = new pact.Pact({
-      port: options.port || 8989,
+      port: port,
       log: path.resolve(
         process.cwd(),
         "pact/logs",
@@ -60,12 +62,13 @@ export const pactWithSuperTest = (options: PactOptions, tests: any) =>
     afterAll(() => pactMock.finalize());
     afterEach(() => pactMock.verify());
 
-    const client: supertest.SuperTest<supertest.Test> = getClient(8989);
+    const client: supertest.SuperTest<supertest.Test> = getClient(port);
 
     tests(pactMock, client);
   });
 
 const getClient = (port: number) => {
   const url = `http://localhost:${port}`;
+  console.log(url)
   return supertest(url);
 };

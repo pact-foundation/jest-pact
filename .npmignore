@@ -1,0 +1,15 @@
+.circleci
+coverage
+lib
+dist/test
+dist/lib
+node_modules
+pact
+.gitignore
+.npmignore
+jest.config.jest
+*.xml
+renovate.json
+tsconfig.json
+yarn-error.log
+yarn.lock

@@ -8,7 +8,7 @@ module.exports = {
   transform: {
     "^.+\\.(ts|tsx)$": "ts-jest"
   },
-  testMatch: ["**/*.pacttest.(ts|js)"],
+  testMatch: ["**/*.pacttest.(ts)"],
   testEnvironment: "node",
   reporters: ["default", "jest-junit"]
 };

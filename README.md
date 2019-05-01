@@ -26,7 +26,11 @@ Features
 ## Installation
 
 ```sh
-npm i jestpact --dev
+npm i jest-pact --save-dev
+
+OR
+
+yarn add jest-pact --dev
 ```
 
 ## Usage

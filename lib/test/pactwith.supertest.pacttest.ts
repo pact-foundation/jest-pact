@@ -2,6 +2,8 @@ import { pactWithSuperTest } from "../index";
 import { InteractionObject, Pact } from "@pact-foundation/pact";
 import supertest = require("supertest");
 
+const pactPort: number = 8283;
+
 const postValidRequest: InteractionObject = {
   state: "A pet 1 exists",
   uponReceiving: "A get request to get a pet",
@@ -16,7 +18,7 @@ const postValidRequest: InteractionObject = {
 };
 
 pactWithSuperTest(
-  { consumer: "MyConsumer", provider: "pactWithSuperTest" },
+  { consumer: "MyConsumer", provider: "pactWithSuperTest", port: pactPort},
   async (pactMock: Pact, client: supertest.SuperTest<supertest.Test>) => {
     test("should accept a valid get request to get a pet", async () => {
       await pactMock.addInteraction(postValidRequest);
