@@ -1,6 +1,7 @@
 # JestPact 
 
 [![npm version](https://badge.fury.io/js/jest-pact.svg)](https://badge.fury.io/js/jest-pact)
+[![CircleCI](https://circleci.com/gh/YOU54F/jest-pact.svg?style=svg)](https://circleci.com/gh/YOU54F/jest-pact)
 
 ## Jest Adaptor to help write Pact files with ease
 
