@@ -1,13 +1,13 @@
 .circleci
 coverage
-lib
+src
 dist/test
-dist/lib
+dist/src
 node_modules
 pact
 .gitignore
 .npmignore
-jest.config.jest
+jest.config.js
 *.xml
 renovate.json
 tsconfig.json

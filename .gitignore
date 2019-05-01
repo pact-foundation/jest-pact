@@ -5,3 +5,6 @@ pact
 *.log
 .DS_Store
 coverage
+test
+index.js
+index.d.ts

@@ -5,6 +5,9 @@
     "declaration": true,
     "outDir": "./dist",
     "strict": true,
-    "rootDir": "lib",
-  }
+    "rootDir": "./src",
+  },
+  "exclude": [
+    "./node_modules/*"
+    ]
 }
