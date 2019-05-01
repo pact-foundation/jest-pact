@@ -1,0 +1,6 @@
+dist
+node_modules
+pact
+*.xml
+*.log
+.DS_Store
