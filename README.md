@@ -1,4 +1,6 @@
-# JestPact
+# JestPact 
+
+[![npm version](https://badge.fury.io/js/jest-pact.svg)](https://badge.fury.io/js/jest-pact)
 
 ## Jest Adaptor to help write Pact files with ease
 
