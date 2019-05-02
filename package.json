@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/you54f/jest-pact.git"
+    "url": "git+https://github.com/YOU54F/jest-pact.git"
   },
   "author": "YOU54F",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/you54f/jest-pact/issues"
+    "url": "https://github.com/YOU54F/jest-pact/issues"
   },
-  "homepage": "https://github.com/you54f/jest-pact#readme",
+  "homepage": "https://github.com/YOU54F/jest-pact/#readme",
   "devDependencies": {
     "@pact-foundation/pact": "8.2.2",
     "@types/jest": "24.0.12",
