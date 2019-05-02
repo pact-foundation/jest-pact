@@ -1,6 +1,6 @@
 {
   "name": "jest-pact",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "a pact adaptor for jest",
   "main": "dist/lib/index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/you54f/jest-pact.git"
+    "url": "git+https://github.com/YOU54F/jest-pact.git"
   },
   "author": "YOU54F",
   "license": "MIT",

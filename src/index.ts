@@ -69,6 +69,5 @@ export const pactWithSuperTest = (options: PactOptions, tests: any) =>
 
 const getClient = (port: number) => {
   const url = `http://localhost:${port}`;
-  console.log(url)
   return supertest(url);
 };

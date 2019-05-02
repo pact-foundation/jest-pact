@@ -1,4 +1,4 @@
-# JestPact 
+# Jest-Pact 
 
 [![npm version](https://badge.fury.io/js/jest-pact.svg)](https://badge.fury.io/js/jest-pact)
 [![CircleCI](https://circleci.com/gh/YOU54F/jest-pact.svg?style=svg)](https://circleci.com/gh/YOU54F/jest-pact)
@@ -38,7 +38,7 @@ yarn add jest-pact --dev
 
 ## Usage
 
-``` json
+``` ts
 pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
     // regular pact tests go here
 }
@@ -46,7 +46,7 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
 
 with supertest
 
-``` json
+``` ts
 pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, (provider, client) => {
     // regular pact tests go here
 }
