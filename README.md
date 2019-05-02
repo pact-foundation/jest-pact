@@ -145,6 +145,10 @@ pactWithSuperTest(
 );
 
 ```
+## Example Repository using this adaptor, and showing other jest pact examples
+
+[jest-pact-typescript](https://github.com/YOU54F/jest-pact-typescript)
+
 ## Credits
 
 - [Pact Foundation](https://github.com/pact-foundation)
