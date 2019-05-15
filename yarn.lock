@@ -315,13 +315,16 @@
     unixify "1.0.0"
     url-join "^4.0.0"
 
-"@pact-foundation/pact@8.2.2":
-  version "8.2.2"
-  resolved "https://registry.yarnpkg.com/@pact-foundation/pact/-/pact-8.2.2.tgz#af71f16fe9fce8a34d4ff59dbc5764255891f482"
-  integrity sha512-3+lYb2lJwaENzoTrmwHsKd0T9oblqzOGeUDcO+eeBv2TY2ZCZ3RNIvVegekIG4pQcZuxFzJczKP1rOoDJ6dW7w==
+"@pact-foundation/pact@8.2.4":
+  version "8.2.4"
+  resolved "https://registry.yarnpkg.com/@pact-foundation/pact/-/pact-8.2.4.tgz#42a814224c5ef179e5e2345a2cf856dcdc937757"
+  integrity sha512-rV0tPe/TMzGzpNqu68sPkCB3Z5Aq+TEMEPvlL8puWFH2LSZ1pmRg5x5yuxNCnXAT5QVrcJOsAJ6+YsH1zixVMQ==
   dependencies:
     "@pact-foundation/pact-node" "^8.2.0"
+    "@types/bluebird" "^3.5.20"
+    "@types/bunyan" "^1.8.3"
     "@types/express" "^4.11.1"
+    bluebird "~3.5.1"
     body-parser "^1.18.2"
     bunyan "^1.8.12"
     cli-color "^1.1.0"
@@ -374,12 +377,24 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
+"@types/bluebird@^3.5.20":
+  version "3.5.26"
+  resolved "https://registry.yarnpkg.com/@types/bluebird/-/bluebird-3.5.26.tgz#a38c438ae84fa02431d6892edf86e46edcbca291"
+  integrity sha512-aj2mrBLn5ky0GmAg6IPXrQjnN0iB/ulozuJ+oZdrHRAzRbXjGmu4UXsNCjFvPbSaaPZmniocdOzsM392qLOlmQ==
+
 "@types/body-parser@*":
   version "1.17.0"
   resolved "https://registry.yarnpkg.com/@types/body-parser/-/body-parser-1.17.0.tgz#9f5c9d9bd04bb54be32d5eb9fc0d8c974e6cf58c"
   integrity sha512-a2+YeUjPkztKJu5aIF2yArYFQQp8d51wZ7DavSHjFuY1mqVgidGyzEQ41JIVNy82fXj8yPgy2vJmfIywgESW6w==
   dependencies:
     "@types/connect" "*"
+    "@types/node" "*"
+
+"@types/bunyan@^1.8.3":
+  version "1.8.6"
+  resolved "https://registry.yarnpkg.com/@types/bunyan/-/bunyan-1.8.6.tgz#6527641cca30bedec5feb9ab527b7803b8000582"
+  integrity sha512-YiozPOOsS6bIuz31ilYqR5SlLif4TBWsousN2aCWLi5233nZSX19tFbcQUPdR7xJ8ypPyxkCGNxg0CIV5n9qxQ==
+  dependencies:
     "@types/node" "*"
 
 "@types/connect@*":
@@ -782,7 +797,7 @@ bl@^1.0.0:
     readable-stream "^2.3.5"
     safe-buffer "^5.1.1"
 
-bluebird@^3.4.7:
+bluebird@^3.4.7, bluebird@~3.5.1:
   version "3.5.4"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.4.tgz#d6cc661595de30d5b3af5fcedd3c0b3ef6ec5714"
   integrity sha512-FG+nFEZChJrbQ9tIccIfZJBz3J7mLrAhxakAbnrJWn8d7aKOC+LWifa0G+p4ZqKp4y13T7juYvdhq9NzKdsrjw==
