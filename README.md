@@ -16,17 +16,28 @@ Features
   - [X] Publish to npm
   - [X] Add Supertest typings
   - [ ] Assign random ports
-- [ ] user configurable paths
+  - [ ] user configurable paths
+- [X] circleci config
 - [X] use postman-pact to generate postman collections for pact contracts
 - [X] example publish / tagging to pact-broker
 - [X] example verification
-- [ ] example can-i-deploy
 - [X] example pact stub service docker templates
-- [X] circleci config
-- [ ] npm publish automation inc versioning
-- [X] tslint / husky / lint-staged
 - [X] Now ships with pact and jest as dependencies
-  
+- [X] Example pact tests
+   - [X] AWS v4 Signed API Gateway Provider
+   - [X] Soap API provider
+   - [X] File upload API provider
+   - [X] JSON API provider
+- [X] Pact mock service docker base
+- [X] Pact mock service docker base examples
+- [X] Postman integration
+  - [X] Generate postman collections from pact contracts
+  - [X] Inject URL into postman collection from `PACT_PROVIDER_URL`
+  - [X] Run postman scripts with newman
+  - [X] Run postman scripts with jest
+- [ ] example can-i-deploy
+- [ ] npm publish automation inc versioning
+
 ## Adapter Installation
 
 ```sh
