@@ -1,27 +1,132 @@
 version: 2.1
 
+defaults: &defaults
+  docker:
+    - image: circleci/node:8.15
+      environment:
+        ## this enables colors in the output
+        TERM: xterm
 jobs:
-  test:
-    docker:
-      # the Docker image with Cypress dependencies
-      - image: circleci/node:8.16
-        environment:
-          ## this enables colors in the output
-          TERM: xterm
-    working_directory: ~/app
+  build:
+    <<: *defaults
     steps:
-      - checkout
-      - run:
-          name: yarn install
-          command: yarn install
-      - run:
-          name: yarn build
-          command: yarn run build
-      - run:
-          name: yarn test
-          command: yarn run test
+        - checkout
+        - restore_cache:
+            keys:
+            - v4-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - v4-deps-{{ .Branch }}-
+            - v4-deps-
+        - run:
+            name: Install project dependencies
+            command: | 
+                yarn install
+        - save_cache:
+            key: v4-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            paths:
+            - ~/.cache/yarn
+        - persist_to_workspace:
+            root: ~/
+            paths:
+            - .cache
+            - project
+            
+  compile:
+    <<: *defaults  
+    steps:
+        - attach_workspace:
+            at: ~/      
+        - run:
+            name: Lint Source Files
+            command: |
+                yarn run lint
+        - run:
+            name: Build Source Files
+            command: |
+                yarn run build
+        - run:
+            name: yarn test
+            command: yarn run test
 
+  pact-consumer-workflow:
+    <<: *defaults  
+    steps:
+        - attach_workspace:
+            at: ~/      
+        - run:
+            name: Validate Swagger spec
+            command: |
+                yarn run swagger-validate-spec 
+        - run:
+            name: Run Pact Test & Generate Report
+            command: |
+                yarn run pact-test   
+        - run:
+            name: Validate Pact contract against Swagger spec
+            command: |
+                yarn run swagger-validate-pact     
+        - run:
+            name: Validate Pact contract against Swagger spec
+            command: |
+                yarn run swagger-pact     
+        - run:
+            name: Publish pacts
+            command: |
+                yarn run pact-publish 
+
+  aws-provider-verify:
+    <<: *defaults  
+    steps:
+        - attach_workspace:
+            at: ~/ 
+        - run:
+            name: set env vars for aws-provider
+            command: |
+                echo 'export PACT_PROVIDER_NAME="aws-provider"' >> $BASH_ENV
+                echo 'export PACT_PROVIDER_URL="https://3efkw1ju81.execute-api.us-east-2.amazonaws.com/default"' >> $BASH_ENV
+        - run:
+            name: install aws cli
+            command: |
+                sudo apt-get -y -qq install awscli
+        - run:
+            name: Provider verification with pact
+            command: |
+                yarn run pact-verify-aws
+
+  swagger-provider-verify:
+    <<: *defaults  
+    steps:
+        - attach_workspace:
+            at: ~/ 
+        - run:
+            name: set env vars for aws-provider
+            command: |
+                echo 'export PACT_PROVIDER_NAME="test-provider"' >> $BASH_ENV
+                echo 'export PACT_PROVIDER_URL="https://petstore.swagger.io"' >> $BASH_ENV
+        - run:
+            name: Provider verification with pact
+            command: |
+                yarn run pact-verify
 workflows:
-  build-test:
+  version: 2
+  build-compile-test-publish:
     jobs:
-      - test
+      - build
+      - compile:
+          requires:
+            - build
+      - compile:
+          requires:
+            - build
+      - pact-consumer-workflow:
+          context: pact-consumer-example-typescript
+          requires:
+            - compile
+      - aws-provider-verify:
+          context: pact-consumer-example-typescript
+          requires:
+            - verify-test-publish
+      - swagger-provider-verify:
+          context: pact-consumer-example-typescript
+          requires:
+            - verify-test-publish
+        

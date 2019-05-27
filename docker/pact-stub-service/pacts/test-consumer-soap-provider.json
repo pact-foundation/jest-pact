@@ -1,0 +1,34 @@
+{
+  "consumer": {
+    "name": "test-consumer"
+  },
+  "provider": {
+    "name": "soap-provider"
+  },
+  "interactions": [
+    {
+      "description": "a simple soap request",
+      "providerState": "Any",
+      "request": {
+        "method": "POST",
+        "path": "/xml/soapresponder.wsdl",
+        "headers": {
+          "Content-Type": "text/xml;charset=UTF-8"
+        },
+        "body": "<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns=\"http://www.SoapClient.com/xml/SoapResponder.wsdl\" xmlns:xsd1=\"http://www.SoapClient.com/xml/SoapResponder.xsd\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/wsdl/soap/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:SOAP-ENC=\"http://schemas.xmlsoap.org/soap/encoding/\">\r\n<SOAP-ENV:Body>\r\n<mns:Method1 xmlns:mns=\"http://www.SoapClient.com/xml/SoapResponder.xsd\" SOAP-ENV:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">\r\n<bstrParam1 xsi:type=\"xsd:string\">4</bstrParam1>\r\n<bstrParam2 xsi:type=\"xsd:string\">2</bstrParam2>\r\n</mns:Method1>\r\n</SOAP-ENV:Body>\r\n</SOAP-ENV:Envelope>\r\n"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "text/xml;charset=UTF-8"
+        },
+        "body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\r\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns=\"http://www.SoapClient.com/xml/SoapResponder.wsdl\" xmlns:xsd1=\"http://www.SoapClient.com/xml/SoapResponder.xsd\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/wsdl/soap/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:SOAP-ENC=\"http://schemas.xmlsoap.org/soap/encoding/\">\r\n    <SOAP-ENV:Body>\r\n        <mns:Method1Response xmlns:mns=\"http://www.SoapClient.com/xml/SoapResponder.xsd\" SOAP-ENV:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">\r\n            <bstrReturn xsi:type=\"xsd:string\">Your input parameters are 4 and 2</bstrReturn>\r\n        </mns:Method1Response>\r\n    </SOAP-ENV:Body>\r\n</SOAP-ENV:Envelope>"
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}

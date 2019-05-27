@@ -1,6 +1,6 @@
-import { pactWith } from "../index";
 import { InteractionObject } from "@pact-foundation/pact";
 import * as supertest from "supertest";
+import { pactWith } from "../index";
 
 const pactPort: number = 5001;
 

@@ -19,9 +19,9 @@ export declare type LogLevel =
 
 export const pactWith = (options: PactOptions, tests: any) =>
   describe(`Pact between ${options.consumer} and ${options.provider}`, () => {
-    const port:number = options.port || 8282
+    const port: number = options.port || 8282;
     const pactMock: pact.Pact = new pact.Pact({
-      port: port,
+      port,
       log: path.resolve(
         process.cwd(),
         "pact/logs",
@@ -43,9 +43,9 @@ export const pactWith = (options: PactOptions, tests: any) =>
 
 export const pactWithSuperTest = (options: PactOptions, tests: any) =>
   describe(`Pact between ${options.consumer} and ${options.provider}`, () => {
-    const port = options.port || 8989
+    const port = options.port || 8989;
     const pactMock: pact.Pact = new pact.Pact({
-      port: port,
+      port,
       log: path.resolve(
         process.cwd(),
         "pact/logs",

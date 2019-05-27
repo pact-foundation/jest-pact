@@ -7,3 +7,12 @@ pact
 coverage
 index.js
 index.d.ts
+build
+node_modules
+logs
+pact/logs
+pact/pacts
+pact/postman
+.env
+*.DS_Store
+junit*.xml
