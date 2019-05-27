@@ -365,7 +365,7 @@
   dependencies:
     any-observable "^0.3.0"
 
-"@types/aws4@^1.5.1":
+"@types/aws4@1.5.1":
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/@types/aws4/-/aws4-1.5.1.tgz#361fadab198a030ab398269183ae3fa86e958ed9"
   integrity sha1-Nh+tqxmKAwqzmCaRg64/qG6Vjtk=
@@ -554,7 +554,7 @@
   resolved "https://registry.yarnpkg.com/@types/yargs/-/yargs-12.0.12.tgz#45dd1d0638e8c8f153e87d296907659296873916"
   integrity sha512-SOhuU4wNBxhhTHxYaiG5NY4HBhDIDnJF60GU+2LqHAdKKer86//e4yg69aENCtQ04n0ovz+tq2YPME5t5yp4pw==
 
-"@you54f/newman-wrapper@^1.0.11":
+"@you54f/newman-wrapper@1.0.11":
   version "1.0.11"
   resolved "https://registry.yarnpkg.com/@you54f/newman-wrapper/-/newman-wrapper-1.0.11.tgz#01c8c25f56d5f09e81fcef59d5d85b99f3313fcd"
   integrity sha512-OO6N5AXljujt6oTZgckrJf5x4ws+dZwQGmqtw7R9oewI3som4t5Em3MU8FqeFha7R5a500+0TbZwFB0FKWjDzQ==
@@ -3304,7 +3304,7 @@ jest-resolve@^24.8.0:
     jest-pnp-resolver "^1.2.1"
     realpath-native "^1.1.0"
 
-jest-runner-newman@^1.0.5:
+jest-runner-newman@1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/jest-runner-newman/-/jest-runner-newman-1.0.5.tgz#e890e2b196eacddafd27b33e66e20f545f83b779"
   integrity sha512-Guhy9lCIqpvioMzsl+tcKC9dOzNEdgKIBwlG95d00bXCfNBI1faB9lwSmakphuJS7iIp0XorhwI60wf78qgfsw==
@@ -4200,7 +4200,7 @@ neo-async@^2.6.0:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.0.tgz#b9d15e4d71c6762908654b5183ed38b753340835"
   integrity sha512-MFh0d/Wa7vkKO3Y3LlacqAEeHK0mckVqzDieUKTT+KGxi+zIpeVsFxymkIiRpbpDziHc290Xr9A1O4Om7otoRA==
 
-newman@^4.5.0:
+newman@4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/newman/-/newman-4.5.0.tgz#b238fe4c5e81dc2da18be2351a882b6e43c3001e"
   integrity sha512-JXuxK9zHXFyufnI/BjA8uvI6/hkMbg6QnoSVo7J7lNcEsrJg74n/9ropV2lse+Tg2vYxwqEYUfkkEhdxkcrqgQ==
@@ -4783,7 +4783,7 @@ postman-collection@3.4.8:
     semver "6.0.0"
     uuid "3.3.2"
 
-postman-pact@^0.2.1:
+postman-pact@0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/postman-pact/-/postman-pact-0.2.1.tgz#6341e57f02590021a28f946220264bc7618d2769"
   integrity sha512-kI9HbpaXKxPmjxAQVmU8sN44Hasp0VIqxeI0SMAUGiIt12AyAa7z1p0RrX71TU6PgwiyfCX0yroztCvbG2kM/g==
@@ -5249,7 +5249,7 @@ rimraf@2.6.2:
   dependencies:
     glob "^7.0.5"
 
-rimraf@^2.2.8, rimraf@^2.5.4, rimraf@^2.6.1, rimraf@^2.6.2, rimraf@^2.6.3:
+rimraf@2.6.3, rimraf@^2.2.8, rimraf@^2.5.4, rimraf@^2.6.1, rimraf@^2.6.2:
   version "2.6.3"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.6.3.tgz#b2d104fe0d8fb27cf9e0a1cda8262dd3833c6cab"
   integrity sha512-mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA==
