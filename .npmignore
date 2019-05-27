@@ -7,9 +7,14 @@ node_modules
 pact
 .gitignore
 .npmignore
-jest.config.js
+jest.*.js
 *.xml
 renovate.json
 tsconfig.json
 yarn-error.log
 yarn.lock
+postman
+docker
+docs
+*.pdf
+.env*

@@ -1,0 +1,18 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "INSERT YOUR SLACK WEBHOOK HERE",
+    "body": {
+      "channel": "#pact-alerts", 
+      "text": "A new pact contract has been created for \n Consumer: ${pactbroker.consumerName}/${pactbroker.consumerVersionNumber} on branch ${pactbroker.consumerVersionTags} \n Provider: ${pactbroker.providerName} \n Pact content can be viewed <${pactbroker.pactUrl}|here>"
+    }
+  },
+      "events": [
+        {
+            "name": "contract_content_changed"
+        }
+    ],
+    "provider": {
+      "name": "REPLACE_ME_WITH_NAME_OF_SERVICE"
+    }
+}

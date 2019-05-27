@@ -6,6 +6,9 @@
     "outDir": "./dist",
     "strict": true,
     "rootDir": "./src",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "noUnusedLocals": true
   },
   "exclude": [
     "./node_modules/*"

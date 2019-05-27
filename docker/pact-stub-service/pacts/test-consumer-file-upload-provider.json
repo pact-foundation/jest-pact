@@ -1,0 +1,81 @@
+{
+  "consumer": {
+    "name": "test-consumer"
+  },
+  "provider": {
+    "name": "file-upload-provider"
+  },
+  "interactions": [
+    {
+      "description": "a well formed request with a base 64 encoded pdf to upload",
+      "providerState": "Service is up and healthy",
+      "request": {
+        "method": "POST",
+        "path": "/upload",
+        "headers": {
+          "Content-Type": "multipart/form-data; boundary=--------------------------560782525175769486914756",
+          "Authorization": "Bearer eyJhbGciOiJIUzI1NiIXVCJ9",
+          "Content-Length": "299"
+        },
+        "body": "----------------------------713166514119664968500586\r\nContent-Disposition: form-data; name=\"test\"\r\n\r\ntest\r\n----------------------------713166514119664968500586\r\nContent-Disposition: form-data; name=\"document\"; filename=\"test-base64.pdf\"\r\nContent-Type: application/pdf\r\n\r\nJVBERi0xLjIgCjkgMCBvYmoKPDwKPj4Kc3RyZWFtCkJULyA5IFRmKFRlc3QpJyBFVAplbmRzdHJlYW0KZW5kb2JqCjQgMCBvYmoKPDwKL1R5cGUgL1BhZ2UKL1BhcmVudCA1IDAgUgovQ29udGVudHMgOSAwIFIKPj4KZW5kb2JqCjUgMCBvYmoKPDwKL0tpZHMgWzQgMCBSIF0KL0NvdW50IDEKL1R5cGUgL1BhZ2VzCi9NZWRpYUJveCBbIDAgMCA5OSA5IF0KPj4KZW5kb2JqCjMgMCBvYmoKPDwKL1BhZ2VzIDUgMCBSCi9UeXBlIC9DYXRhbG9nCj4+CmVuZG9iagp0cmFpbGVyCjw8Ci9Sb290IDMgMCBSCj4+CiUlRU9G\r\n----------------------------713166514119664968500586--\r\n",
+        "matchingRules": {
+          "$.headers.Content-Type": {
+            "match": "regex",
+            "regex": "multipart\\/form-data; boundary=--------------------------[0-9]{24}"
+          },
+          "$.headers.Authorization": {
+            "match": "regex",
+            "regex": "Bearer [0-9A-z]{24}"
+          },
+          "$.headers.Content-Length": {
+            "match": "type"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "description": "a well formed request with a binary encoded pdf to upload",
+      "providerState": "Service is up and healthy",
+      "request": {
+        "method": "POST",
+        "path": "/upload",
+        "headers": {
+          "Content-Type": "multipart/form-data; boundary=--------------------------560782525175769486914756",
+          "Authorization": "Bearer eyJhbGciOiJIUzI1NiIXVCJ9",
+          "Content-Length": "299"
+        },
+        "body": "----------------------------713166514119664968500586\r\nContent-Disposition: form-data; name=\"test\"\r\n\r\ntest\r\n----------------------------713166514119664968500586\r\nContent-Disposition: form-data; name=\"document\"; filename=\"test.pdf\"\r\nContent-Type: application/pdf\r\n\r\n%PDF-1.0\n1 0 obj<</Type/Catalog/Pages 2 0 R>>endobj 2 0 obj<</Type/Pages/Kids[3 0 R]/Count 1>>endobj 3 0 obj<</Type/Page/MediaBox[0 0 3 3]>>endobj\nxref\n0 4\n0000000000 65535 f\n0000000010 00000 n\n0000000053 00000 n\n0000000102 00000 n\ntrailer<</Size 4/Root 1 0 R>>\nstartxref\n149\n%EOF\r\n----------------------------713166514119664968500586--\r\n",
+        "matchingRules": {
+          "$.headers.Content-Type": {
+            "match": "regex",
+            "regex": "multipart\\/form-data; boundary=--------------------------[0-9]{24}"
+          },
+          "$.headers.Authorization": {
+            "match": "regex",
+            "regex": "Bearer [0-9A-z]{24}"
+          },
+          "$.headers.Content-Length": {
+            "match": "type"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}

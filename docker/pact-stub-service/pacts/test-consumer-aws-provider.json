@@ -1,0 +1,49 @@
+{
+  "consumer": {
+    "name": "test-consumer"
+  },
+  "provider": {
+    "name": "aws-provider"
+  },
+  "interactions": [
+    {
+      "description": "a validated request to an api protected gateway",
+      "providerState": "Is authenticated",
+      "request": {
+        "method": "GET",
+        "path": "/helloworld"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "message": "Hello from Lambda!"
+        }
+      }
+    },
+    {
+      "description": "a non-validated request to an api protected gateway",
+      "providerState": "Is not authenticated",
+      "request": {
+        "method": "GET",
+        "path": "/helloworld"
+      },
+      "response": {
+        "status": 403,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "message": "Missing Authentication Token"
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}

@@ -6,7 +6,16 @@
   "scripts": {
     "build": "rimraf dist && tsc",
     "test": "jest --coverage",
-    "release": "npm run build && mv dist/index.* . && npm publish"
+    "release": "npm run build && mv dist/index.* . && npm publish",
+    "swagger-validate-spec": "swagger-cli validate ./docs/pet-store.json",
+    "swagger-validate-pact": "swagger-mock-validator ./docs/pet-store.json ./pact/pacts/test-consumer-json-provider.json",
+    "swagger-pact": "swagger-pact ./docs/pet-store.json ./pact/pacts/test-consumer-json-provider.json",
+    "pact-test": "rimraf pact && jest --detectOpenHandles --config jest.pact.js",
+    "pact-publish": "./src/examples/publisher/publish.sh",
+    "delete-pacts-local": "rm ./pact/pacts/*.json",
+    "pact-verify-aws": "./src/examples/verifier/verify.sh",
+    "pact-verify": "npx ts-node ./src/examples/verifier/verify.ts",
+    "lint": "tslint --project . --fix"
   },
   "repository": {
     "type": "git",
@@ -19,16 +28,50 @@
   },
   "homepage": "https://github.com/YOU54F/jest-pact/#readme",
   "devDependencies": {
-    "@pact-foundation/pact": "8.2.4",
-    "@types/jest": "24.0.13",
+    "@types/aws4": "^1.5.1",
+    "@types/chai": "4.1.7",
+    "@types/dotenv": "6.1.1",
     "@types/supertest": "2.0.7",
+    "@you54f/newman-wrapper": "^1.0.11",
+    "aws4": "^1.8.0",
+    "chai": "4.2.0",
+    "cross-env": "5.2.0",
+    "dotenv": "8.0.0",
+    "husky": "2.2.0",
     "jest": "24.8.0",
     "jest-junit": "6.4.0",
-    "rimraf": "2.6.3",
+    "jest-pact": "0.0.10",
+    "jest-runner-newman": "^1.0.5",
+    "lint-staged": "8.1.6",
+    "newman": "^4.5.0",
+    "postman-pact": "^0.2.1",
+    "prettier": "1.17.0",
+    "rimraf": "^2.6.3",
     "supertest": "4.0.2",
+    "swagger-cli": "2.2.1",
+    "swagger-pact": "6.0.1-edge",
     "ts-jest": "24.0.2",
     "ts-node": "8.1.0",
+    "tslint": "5.16.0",
+    "tslint-config-prettier": "1.18.0",
+    "tslint-no-focused-test": "0.5.0",
     "typescript": "3.4.5"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@pact-foundation/pact": "8.2.4",
+    "jest": "24.8.0",
+    "@types/jest": "24.0.13"
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "prettier --write",
+      "tslint --fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
 }
