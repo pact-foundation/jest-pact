@@ -51,7 +51,7 @@
     "swagger-cli": "2.2.1",
     "swagger-pact": "6.0.1-edge",
     "ts-jest": "24.0.2",
-    "ts-node": "8.1.0",
+    "ts-node": "8.2.0",
     "tslint": "5.16.0",
     "tslint-config-prettier": "1.18.0",
     "tslint-no-focused-test": "0.5.0",
