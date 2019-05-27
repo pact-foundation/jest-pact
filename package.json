@@ -42,7 +42,7 @@
     "jest-junit": "6.4.0",
     "jest-pact": "0.0.10",
     "jest-runner-newman": "1.0.5",
-    "lint-staged": "8.1.6",
+    "lint-staged": "8.1.7",
     "newman": "4.5.0",
     "postman-pact": "0.2.1",
     "prettier": "1.17.1",
