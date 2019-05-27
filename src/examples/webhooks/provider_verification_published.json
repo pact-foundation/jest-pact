@@ -1,0 +1,18 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "INSERT YOUR SLACK WEBHOOK HERE",
+    "body": {
+      "channel": "#pact-alerts", 
+      "text": "Pact Provider verification has been run for ${pactbroker.providerName}/${pactbroker.providerVersionTags}. \n Status: <${pactbroker.verificationResultUrl}|${pactbroker.githubVerificationStatus}> \n Pact Contract is available <${pactbroker.pactUrl}|here>"
+    }
+  },
+      "events": [
+        {
+            "name": "provider_verification_published"
+        }
+    ],
+    "provider": {
+      "name": "REPLACE_ME_WITH_NAME_OF_SERVICE"
+    }
+}
