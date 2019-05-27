@@ -600,7 +600,7 @@ acorn@^6.0.1:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.1.1.tgz#7d25ae05bb8ad1f9b699108e1094ecd7884adc1f"
   integrity sha512-jPTiwtOxaHNaAPg/dmrJ/beuzLRnXtB0kQPQ8JpotKJgTB6rX6c8mlf315941pyjBSaPg8NHXS9fhP4u17DpGA==
 
-ajv@^5.1.0, ajv@^5.2.3:
+ajv@^5.1.0:
   version "5.5.2"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-5.5.2.tgz#73b5eeca3fab653e3d3f9422b341ad42205dc965"
   integrity sha1-c7Xuyj+rZT49P5Qis0GtQiBdyWU=
@@ -610,7 +610,7 @@ ajv@^5.1.0, ajv@^5.2.3:
     fast-json-stable-stringify "^2.0.0"
     json-schema-traverse "^0.3.0"
 
-ajv@^6.5.5:
+ajv@^6.10.0, ajv@^6.5.5:
   version "6.10.0"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.10.0.tgz#90d0d54439da587cd7e843bfb7045f50bd22bdf1"
   integrity sha512-nffhOpkymDECQyR0mnsUtoCE8RlX38G0rYP+wgLWFyZuUyuuojSSvi/+euOiQBIn63whYwYVIIH1TvE3tu4OEg==
@@ -5844,12 +5844,12 @@ swagger-methods@^1.0.8:
   resolved "https://registry.yarnpkg.com/swagger-methods/-/swagger-methods-1.0.8.tgz#8baf37ee861d3c72ff7b2faad6d74c60b336e2ed"
   integrity sha512-G6baCwuHA+C5jf4FNOrosE4XlmGsdjbOjdBK4yuiDDj/ro9uR4Srj3OR84oQMT8F3qKp00tYNv0YN730oTHPZA==
 
-swagger-pact@6.0.1-edge:
-  version "6.0.1-edge"
-  resolved "https://registry.yarnpkg.com/swagger-pact/-/swagger-pact-6.0.1-edge.tgz#2c65806ca767233c9aa676dafd4f754c40285079"
-  integrity sha512-bNkxcXGtDoxIz8nMlHCaXc8VxJMxYd7c7XXEHqwoO9c2vxOc3zQKLJkxkH3+K+pplox+ASQ9hnwPPB4/VYz4qQ==
+swagger-pact@6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/swagger-pact/-/swagger-pact-6.0.1.tgz#1b332cd2be8825bbe721dd49d3a87291ddd05252"
+  integrity sha512-5deA33aPfyHqbdhvdOytwHVmDJcEAn3DaQUb+ge2PRJ/Z08udbBzJaqMzM1jOCXLOR7V1B8ZjYv0GcjwvGg6JA==
   dependencies:
-    ajv "^5.2.3"
+    ajv "^6.10.0"
     commander "^2.20.0"
     decimal.js "^10.1.1"
     js-yaml "^3.13.1"
