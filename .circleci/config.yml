@@ -59,15 +59,11 @@ jobs:
         - run:
             name: Run Pact Test & Generate Report
             command: |
-                yarn run pact-test   
+                yarn run pact-test
         - run:
             name: Validate Pact contract against Swagger spec
             command: |
-                yarn run swagger-validate-pact     
-        - run:
-            name: Validate Pact contract against Swagger spec
-            command: |
-                yarn run swagger-pact     
+                yarn run swagger-pact
         - run:
             name: Publish pacts
             command: |
