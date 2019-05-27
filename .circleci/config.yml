@@ -114,9 +114,6 @@ workflows:
       - compile:
           requires:
             - build
-      - compile:
-          requires:
-            - build
       - pact-consumer-workflow:
           requires:
             - compile
