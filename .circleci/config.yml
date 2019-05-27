@@ -2,7 +2,7 @@ version: 2.1
 
 defaults: &defaults
   docker:
-    - image: circleci/node:8.15
+    - image: circleci/node:8.16
       environment:
         ## this enables colors in the output
         TERM: xterm
