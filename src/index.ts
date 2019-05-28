@@ -44,23 +44,17 @@ const setupProvider = (options: PactOptions) => {
   return pactMock;
 };
 
+const getProviderBaseUrl = (provider: pact.Pact) =>
+  provider.mockService
+    ? provider.mockService.baseUrl
+    : `http://${provider.opts.host}:${provider.opts.port}`;
+
 export const pactWith = (options: PactOptions, tests: any) =>
   describe(`Pact between ${options.consumer} and ${options.provider}`, () => {
     tests(setupProvider(applyDefaults(options)));
   });
 
 export const pactWithSuperTest = (options: PactOptions, tests: any) =>
-  describe(`Pact between ${options.consumer} and ${options.provider}`, () => {
-    const pactOptions = applyDefaults(options);
-    const pactMock: pact.Pact = setupProvider(pactOptions);
-
-    const client: supertest.SuperTest<supertest.Test> = getClient(
-      pactOptions.port
-    );
-    tests(pactMock, client);
+  pactWith(options, (provider: pact.Pact) => {
+    tests(provider, supertest(getProviderBaseUrl(provider)));
   });
-
-const getClient = (port: number) => {
-  const url = `http://localhost:${port}`;
-  return supertest(url);
-};
