@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/YOU54F/jest-pact/#readme",
   "devDependencies": {
+    "@pact-foundation/pact": "~8.2.4",
     "@types/aws4": "1.5.1",
     "@types/chai": "4.1.7",
     "@types/dotenv": "6.1.1",
@@ -57,9 +58,11 @@
     "tslint-no-focused-test": "0.5.0",
     "typescript": "3.4.5"
   },
+  "peerDependencies": {
+    "jest": "~24.8.0",
+    "@pact-foundation/pact": "~8.2.4"
+  },
   "dependencies": {
-    "@pact-foundation/pact": "8.2.4",
-    "jest": "24.8.0",
     "@types/jest": "24.0.13"
   },
   "lint-staged": {
