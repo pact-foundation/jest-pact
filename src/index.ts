@@ -7,6 +7,7 @@ export interface PactOptions {
   consumer: string;
   port?: number;
   logLevel?: LogLevel;
+  pactfileWriteMode?: PactFileWriteMode;
 }
 
 export declare type LogLevel =
@@ -16,6 +17,8 @@ export declare type LogLevel =
   | "warn"
   | "error"
   | "fatal";
+
+export declare type PactFileWriteMode = "overwrite" | "update" | "merge";
 
 export const pactWith = (options: PactOptions, tests: any) =>
   describe(`Pact between ${options.consumer} and ${options.provider}`, () => {
@@ -30,7 +33,7 @@ export const pactWith = (options: PactOptions, tests: any) =>
       dir: path.resolve(process.cwd(), "pact/pacts"),
       spec: 2,
       logLevel: options.logLevel || "error",
-      pactfileWriteMode: "update",
+      pactfileWriteMode: options.pactfileWriteMode || "update",
       ...options
     });
 
@@ -54,7 +57,7 @@ export const pactWithSuperTest = (options: PactOptions, tests: any) =>
       dir: path.resolve(process.cwd(), "pact/pacts"),
       spec: 2,
       logLevel: options.logLevel || "error",
-      pactfileWriteMode: "update",
+      pactfileWriteMode: options.pactfileWriteMode || "update",
       ...options
     });
 

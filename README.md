@@ -1,4 +1,4 @@
-# Jest-Pact 
+# Jest-Pact
 
 [![npm version](https://badge.fury.io/js/jest-pact.svg)](https://badge.fury.io/js/jest-pact)
 [![CircleCI](https://circleci.com/gh/YOU54F/jest-pact.svg?style=svg)](https://circleci.com/gh/YOU54F/jest-pact)
@@ -8,33 +8,33 @@
 Features
 
 - [x] Jest Adaptor For Pact
-  - [X] Package for npm
-  - [X] Publish to npm
+  - [x] Package for npm
+  - [x] Publish to npm
   - [ ] Assign random ports but pass port back to user for thier http agent
 - [x] Jest Adaptor For Pact with SuperTest
-  - [X] Package for npm
-  - [X] Publish to npm
-  - [X] Add Supertest typings
+  - [x] Package for npm
+  - [x] Publish to npm
+  - [x] Add Supertest typings
   - [ ] Assign random ports
   - [ ] user configurable paths
-- [X] circleci config
-- [X] use postman-pact to generate postman collections for pact contracts
-- [X] example publish / tagging to pact-broker
-- [X] example verification
-- [X] example pact stub service docker templates
-- [X] Now ships with pact and jest as dependencies
-- [X] Example pact tests
-   - [X] AWS v4 Signed API Gateway Provider
-   - [X] Soap API provider
-   - [X] File upload API provider
-   - [X] JSON API provider
-- [X] Pact mock service docker base
-- [X] Pact mock service docker base examples
-- [X] Postman integration
-  - [X] Generate postman collections from pact contracts
-  - [X] Inject URL into postman collection from `PACT_PROVIDER_URL`
-  - [X] Run postman scripts with newman
-  - [X] Run postman scripts with jest
+- [x] circleci config
+- [x] use postman-pact to generate postman collections for pact contracts
+- [x] example publish / tagging to pact-broker
+- [x] example verification
+- [x] example pact stub service docker templates
+- [x] Now ships with pact and jest as dependencies
+- [x] Example pact tests
+  - [x] AWS v4 Signed API Gateway Provider
+  - [x] Soap API provider
+  - [x] File upload API provider
+  - [x] JSON API provider
+- [x] Pact mock service docker base
+- [x] Pact mock service docker base examples
+- [x] Postman integration
+  - [x] Generate postman collections from pact contracts
+  - [x] Inject URL into postman collection from `PACT_PROVIDER_URL`
+  - [x] Run postman scripts with newman
+  - [x] Run postman scripts with jest
 - [ ] example can-i-deploy
 - [ ] npm publish automation inc versioning
 
@@ -50,7 +50,7 @@ yarn add jest-pact --dev
 
 ## Usage
 
-``` ts
+```ts
 pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
     // regular pact tests go here
 }
@@ -58,7 +58,7 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
 
 with supertest
 
-``` ts
+```ts
 pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, (provider, client) => {
     // regular pact tests go here
 }
@@ -66,7 +66,7 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, (provider, client) 
 
 ## Configuration
 
-``` ts
+```ts
 
 pactWith({PactOptions}, provider => {
     // regular pact tests go here
@@ -76,10 +76,11 @@ export interface PactOptions {
   provider: string;
   consumer: string;
   port?: number; // defaults to 8989 if not set
-  logLevel?: LogLevel;
+  pactfileWriteMode?: PactFileWriteMode;
 }
 
 export declare type LogLevel = "trace" | "debug" | "info" | "warn" | "error" | "fatal";
+export declare type PactFileWriteMode = "overwrite" | "update" | "merge";
 
 ```
 
@@ -92,7 +93,7 @@ export declare type LogLevel = "trace" | "debug" | "info" | "warn" | "error" | "
 
 You can use this with any http agent for sending your requests.
 
-``` ts
+```ts
 pactWith(
   { consumer: "MyConsumer", provider: "pactWith", port: pactPort },
   async (provider: any) => {
@@ -127,7 +128,7 @@ pactWith(
 
 You can use superagent as your http agent, it has a great assertion engine and as we instantiate the pact mock and http agent at the same time, we can assign random ports and take advantage of jests parallel execution.
 
-``` ts
+```ts
 pactWithSuperTest(
   { consumer: "MyConsumer", provider: "pactWithSuperTest" },
   async (provider: any, client: any) => {
@@ -155,7 +156,6 @@ pactWithSuperTest(
     });
   }
 );
-
 ```
 
 ## Examples using this adaptor, and showing other jest pact examples
@@ -188,19 +188,19 @@ pactWithSuperTest(
 ### Run pact tests
 
 - Run `yarn run pact-test`
-  
+
 ### Validate Swagger spec
 
 - Run `yarn run swagger-validate-spec`
-  
+
 ### Validate Pact contract against Swagger spec
 
 - Run `yarn run swagger-validate-pact`
-  
+
 ### Publish pacts
 
 - Run `pact-publish`
-  
+
 ### Tag pacts
 
 - Run `pact-tag`
@@ -237,16 +237,16 @@ Build the base pact image, change the name `you54f` to your own dockerhub userna
 The Base image resides at `base.Dockerfile` which will load the pact ruby standalone, plus a healthcheck endpoint `/healthcheck` on the containers for use in AWS and other Cloud providers.
 
 `make pact_build`
-  docker build -t pact-base -f base.Dockerfile .
+docker build -t pact-base -f base.Dockerfile .
 `make pact_tag`
-  docker tag pact-base you54f/pact-base
+docker tag pact-base you54f/pact-base
 `make pact_push`
-  docker push you54f/pact-base
+docker push you54f/pact-base
 
 You can then copy your pact files generated with `yarn run test` into the `docker/pact-stub-service/pacts` folder that the `Dockerfile` will use.
 
 `copy_pacts`
-  rm -rf pacts && cp -r ../../pact/pacts .
+rm -rf pacts && cp -r ../../pact/pacts .
 
 Look at the `Dockerfile`
 
