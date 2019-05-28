@@ -2,12 +2,7 @@ import { InteractionObject } from "@pact-foundation/pact";
 import * as supertest from "supertest";
 import { pactWith } from "../index";
 
-const pactPort: number = 5001;
-
-const getClient = (port: number) => {
-  const url = `http://localhost:${port}`;
-  return supertest(url);
-};
+const getClient = (provider: any) => supertest(provider.mockService.baseUrl);
 
 const postValidRequest: InteractionObject = {
   state: "A pet 1845563262948980200 exists",
@@ -23,12 +18,12 @@ const postValidRequest: InteractionObject = {
 };
 
 pactWith(
-  { consumer: "MyConsumer", provider: "pactWith", port: pactPort },
+  { consumer: "MyConsumer", provider: "pactWith", port: 5001 },
   (provider: any) => {
     beforeEach(() => provider.addInteraction(postValidRequest));
 
     test("should be be able to hide the pact stuff behind the scenes with a port of the users choosing", () =>
-      getClient(pactPort)
+      getClient(provider)
         .get("/v2/pet/1845563262948980200")
         .set("api_key", "[]")
         .expect(200));
@@ -39,7 +34,7 @@ pactWith({ consumer: "MyConsumer", provider: "pactWith2" }, (provider: any) => {
   beforeEach(() => provider.addInteraction(postValidRequest));
 
   test("should be ok if i dont provide a port", () =>
-    getClient(8282)
+    getClient(provider)
       .get("/v2/pet/1845563262948980200")
       .set("api_key", "[]")
       .expect(200));
