@@ -20,53 +20,43 @@ export declare type LogLevel =
 
 export declare type PactFileWriteMode = "overwrite" | "update" | "merge";
 
+const applyDefaults = (options: PactOptions) => ({
+  port: options.port || 8282,
+  log: path.resolve(
+    process.cwd(),
+    "pact/logs",
+    `${options.consumer}-${options.provider}-mockserver-integration.log`
+  ),
+  dir: path.resolve(process.cwd(), "pact/pacts"),
+  spec: 2,
+  logLevel: options.logLevel || "error",
+  pactfileWriteMode: options.pactfileWriteMode || "update",
+  ...options
+});
+
+const setupProvider = (options: PactOptions) => {
+  const pactMock: pact.Pact = new pact.Pact(options);
+
+  beforeAll(() => pactMock.setup());
+  afterAll(() => pactMock.finalize());
+  afterEach(() => pactMock.verify());
+
+  return pactMock;
+};
+
 export const pactWith = (options: PactOptions, tests: any) =>
   describe(`Pact between ${options.consumer} and ${options.provider}`, () => {
-    const port: number = options.port || 8282;
-    const pactMock: pact.Pact = new pact.Pact({
-      port,
-      log: path.resolve(
-        process.cwd(),
-        "pact/logs",
-        `${options.consumer}-${options.provider}-mockserver-integration.log`
-      ),
-      dir: path.resolve(process.cwd(), "pact/pacts"),
-      spec: 2,
-      logLevel: options.logLevel || "error",
-      pactfileWriteMode: options.pactfileWriteMode || "update",
-      ...options
-    });
-
-    beforeAll(() => pactMock.setup());
-    afterAll(() => pactMock.finalize());
-    afterEach(() => pactMock.verify());
-
-    tests(pactMock);
+    tests(setupProvider(applyDefaults(options)));
   });
 
 export const pactWithSuperTest = (options: PactOptions, tests: any) =>
   describe(`Pact between ${options.consumer} and ${options.provider}`, () => {
-    const port = options.port || 8989;
-    const pactMock: pact.Pact = new pact.Pact({
-      port,
-      log: path.resolve(
-        process.cwd(),
-        "pact/logs",
-        `${options.consumer}-${options.provider}-mockserver-integration.log`
-      ),
-      dir: path.resolve(process.cwd(), "pact/pacts"),
-      spec: 2,
-      logLevel: options.logLevel || "error",
-      pactfileWriteMode: options.pactfileWriteMode || "update",
-      ...options
-    });
+    const pactOptions = applyDefaults(options);
+    const pactMock: pact.Pact = setupProvider(pactOptions);
 
-    beforeAll(() => pactMock.setup());
-    afterAll(() => pactMock.finalize());
-    afterEach(() => pactMock.verify());
-
-    const client: supertest.SuperTest<supertest.Test> = getClient(port);
-
+    const client: supertest.SuperTest<supertest.Test> = getClient(
+      pactOptions.port
+    );
     tests(pactMock, client);
   });
 
