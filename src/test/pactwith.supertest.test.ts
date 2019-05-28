@@ -19,16 +19,13 @@ const postValidRequest: InteractionObject = {
 
 pactWithSuperTest(
   { consumer: "MyConsumer", provider: "pactWithSuperTest", port: pactPort },
-  async (pactMock: Pact, client: supertest.SuperTest<supertest.Test>) => {
-    test("should accept a valid get request to get a pet", async () => {
-      await pactMock.addInteraction(postValidRequest);
+  (pactMock: Pact, client: supertest.SuperTest<supertest.Test>) => {
+    beforeEach(() => pactMock.addInteraction(postValidRequest));
 
-      await client
+    test("should accept a valid get request to get a pet", () =>
+      client
         .get("/v2/pet/1")
         .set("api_key", "[]")
-        .expect(200);
-
-      await pactMock.verify();
-    });
+        .expect(200));
   }
 );

@@ -24,34 +24,23 @@ const postValidRequest: InteractionObject = {
 
 pactWith(
   { consumer: "MyConsumer", provider: "pactWith", port: pactPort },
-  async (provider: any) => {
-    test("should be be able to hide the pact stuff behind the scenes with a port of the users choosing", async () => {
-      await provider.addInteraction(postValidRequest);
-      const client = getClient(pactPort);
+  (provider: any) => {
+    beforeEach(() => provider.addInteraction(postValidRequest));
 
-      await client
+    test("should be be able to hide the pact stuff behind the scenes with a port of the users choosing", () =>
+      getClient(pactPort)
         .get("/v2/pet/1845563262948980200")
         .set("api_key", "[]")
-        .expect(200);
-
-      await provider.verify();
-    });
+        .expect(200));
   }
 );
 
-pactWith(
-  { consumer: "MyConsumer", provider: "pactWith2" },
-  async (provider: any) => {
-    test("should be ok if i dont provide a port", async () => {
-      await provider.addInteraction(postValidRequest);
-      const client = getClient(8282);
+pactWith({ consumer: "MyConsumer", provider: "pactWith2" }, (provider: any) => {
+  beforeEach(() => provider.addInteraction(postValidRequest));
 
-      await client
-        .get("/v2/pet/1845563262948980200")
-        .set("api_key", "[]")
-        .expect(200);
-
-      await provider.verify();
-    });
-  }
-);
+  test("should be ok if i dont provide a port", () =>
+    getClient(8282)
+      .get("/v2/pet/1845563262948980200")
+      .set("api_key", "[]")
+      .expect(200));
+});
