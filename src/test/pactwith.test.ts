@@ -2,12 +2,8 @@ import { InteractionObject } from "@pact-foundation/pact";
 import * as supertest from "supertest";
 import { pactWith } from "../index";
 
+const getClient = (provider: any) => supertest(provider.mockService.baseUrl);
 const pactPort: number = 5001;
-
-const getClient = (port: number) => {
-  const url = `http://localhost:${port}`;
-  return supertest(url);
-};
 
 const postValidRequest: InteractionObject = {
   state: "A pet 1845563262948980200 exists",
@@ -24,34 +20,41 @@ const postValidRequest: InteractionObject = {
 
 pactWith(
   { consumer: "MyConsumer", provider: "pactWith", port: pactPort },
-  async (provider: any) => {
-    test("should be be able to hide the pact stuff behind the scenes with a port of the users choosing", async () => {
-      await provider.addInteraction(postValidRequest);
-      const client = getClient(pactPort);
+  (provider: any) => {
+    describe("pact integration", () => {
+      beforeEach(() => provider.addInteraction(postValidRequest));
 
-      await client
-        .get("/v2/pet/1845563262948980200")
-        .set("api_key", "[]")
-        .expect(200);
+      test("should be be able to hide the pact stuff behind the scenes with a port of the users choosing", () =>
+        getClient(provider)
+          .get("/v2/pet/1845563262948980200")
+          .set("api_key", "[]")
+          .expect(200));
+    });
 
-      await provider.verify();
+    describe("provider object", () => {
+      test("should show the specified port in the URL", () => {
+        expect(provider.mockService.baseUrl).toMatch(
+          new RegExp(`${pactPort}$`)
+        );
+      });
     });
   }
 );
 
-pactWith(
-  { consumer: "MyConsumer", provider: "pactWith2" },
-  async (provider: any) => {
-    test("should be ok if i dont provide a port", async () => {
-      await provider.addInteraction(postValidRequest);
-      const client = getClient(8282);
+pactWith({ consumer: "MyConsumer", provider: "pactWith2" }, (provider: any) => {
+  describe("pact integration", () => {
+    beforeEach(() => provider.addInteraction(postValidRequest));
 
-      await client
+    test("should be ok if i dont provide a port", () =>
+      getClient(provider)
         .get("/v2/pet/1845563262948980200")
         .set("api_key", "[]")
-        .expect(200);
+        .expect(200));
+  });
 
-      await provider.verify();
+  describe("provider object", () => {
+    test("should show the default port in the URL", () => {
+      expect(provider.mockService.baseUrl).toMatch(new RegExp(`8282$`));
     });
-  }
-);
+  });
+});
