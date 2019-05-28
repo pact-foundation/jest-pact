@@ -44,7 +44,8 @@ const setupProvider = (options: PactOptions) => {
   return pactMock;
 };
 
-const getProviderBaseUrl = (provider: pact.Pact) =>
+// This should be moved to pact-js, probably
+export const getProviderBaseUrl = (provider: pact.Pact) =>
   provider.mockService
     ? provider.mockService.baseUrl
     : `http://${provider.opts.host}:${provider.opts.port}`;
