@@ -30,7 +30,7 @@ jobs:
             - .cache
             - project
             
-  compile:
+  compile-test:
     <<: *defaults  
     steps:
         - attach_workspace:
@@ -51,78 +51,11 @@ jobs:
         - store_artifacts:
             path: coverage
 
-  pact-consumer-workflow:
-    <<: *defaults  
-    steps:
-        - attach_workspace:
-            at: ~/      
-        - run:
-            name: Validate Swagger spec
-            command: |
-                yarn run swagger-validate-spec 
-        - run:
-            name: Run Pact Test & Generate Report
-            command: |
-                yarn run pact-test
-        - run:
-            name: Validate Pact contract against Swagger spec
-            command: |
-                yarn run swagger-validate-pact
-        - run:
-            name: Publish pacts
-            command: |
-                yarn run pact-publish 
-        - store_test_results:
-            path: ./coverage/junit/pact
-
-  aws-provider-verify:
-    <<: *defaults  
-    steps:
-        - attach_workspace:
-            at: ~/ 
-        - run:
-            name: set env vars for aws-provider
-            command: |
-                echo 'export PACT_PROVIDER_NAME="aws-provider"' >> $BASH_ENV
-                echo 'export PACT_PROVIDER_URL="https://3efkw1ju81.execute-api.us-east-2.amazonaws.com/default"' >> $BASH_ENV
-        - run:
-            name: install aws cli
-            command: |
-                sudo apt-get -y -qq install awscli
-        - run:
-            name: Provider verification with pact
-            command: |
-                yarn run pact-verify-aws
-
-  swagger-provider-verify:
-    <<: *defaults  
-    steps:
-        - attach_workspace:
-            at: ~/ 
-        - run:
-            name: set env vars for aws-provider
-            command: |
-                echo 'export PACT_PROVIDER_NAME="test-provider"' >> $BASH_ENV
-                echo 'export PACT_PROVIDER_URL="https://petstore.swagger.io"' >> $BASH_ENV
-        - run:
-            name: Provider verification with pact
-            command: |
-                yarn run pact-verify
 workflows:
   version: 2
   build-compile-test-publish:
     jobs:
       - build
-      - compile:
+      - compile-test:
           requires:
             - build
-      - pact-consumer-workflow:
-          requires:
-            - compile
-      - aws-provider-verify:
-          requires:
-            - pact-consumer-workflow
-      - swagger-provider-verify:
-          requires:
-            - pact-consumer-workflow
-        

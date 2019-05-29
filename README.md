@@ -148,9 +148,9 @@ pactWithSuperTest(
 );
 ```
 
-### Examples of usage of `jest-pact` in this repository
+### Examples of usage of `jest-pact`
 
-See `src/examples`
+See [Jest-Pact-Typescript](https://github.com/YOU54F/jest-pact-typescript) which showcases a full consumer workflow written in Typescript with Jest, using this adaptor
 
 - [x] Example pact tests
   - [x] AWS v4 Signed API Gateway Provider
@@ -158,137 +158,14 @@ See `src/examples`
   - [x] File upload API provider
   - [x] JSON API provider
 
-Run them by cloning the repostory and `yarn run install && yarn run pact-test`
+#### Examples Installation
+
+- clone repository `git@github.com:YOU54F/jest-pact-typescript.git`
+- Run `yarn install`
+- Run `yarn run pact-test`
 
 Generated pacts will be output in `pact/pacts`
 Log files will be output in `pact/logs`
-
-
-### Other Pact related items in this repository, but otherwise unrelated to jest-pact directly
-
-A Full Consumer side Pact development workflow example
-
-- Written in Typescript
-- Utilises Pact in a Jest Wrapper [jest-pact](https://github.com/YOU54F/jest-pact)
-- Uses Swagger to define API
-- Uses Swagger-cli to validate Swagger specification
-- Uses Pact.io to perform consumer driven contract tests
-- Uses Swagger-mock-validator to validate generated pact contracts
-- Publishes validated pact contracts to pact-broker (hosted on AWS Lambda)
-- Tags validated contracts with branch name
-- Pact mock services with Docker
-- Wiremock services with Docker
-- Verification against AWS v4 signed API Gateway endpoints
-- Create postman collections from pacts
-
-- [x] Pact mock service docker base
-- [x] Pact mock service docker base examples
-- [x] Postman integration
-  - [x] Generate postman collections from pact contracts
-  - [x] Inject URL into postman collection from `PACT_PROVIDER_URL`
-  - [x] Run postman scripts with newman
-  - [x] Run postman scripts with jest
-- [ ] example can-i-deploy
-  
-## Where can I see it
-
-- CircleCI builds here - <https://circleci.com/gh/YOU54F/jest-pact>
-- Pact Broker here - <https://you54f.co.uk> - running on AWS Lambda (see https://github.com/YOU54F/pact_broker-serverless for details of setup)
-
-## Examples Installation
-
-- clone repository
-- Run `yarn install`
-
-### Run pact tests
-
-- Run `yarn run pact-test`
-
-### Validate Swagger spec
-
-- Run `yarn run swagger-validate-spec`
-
-### Validate Pact contract against Swagger spec
-
-- Run `yarn run swagger-validate-pact`
-
-### Publish pacts
-
-- Run `pact-publish`
-
-### Tag pacts
-
-- Run `pact-tag`
-
-### Start the mock server
-
-- Run `docker-compose up`
-
-### Set the following env vars for pact publishing
-
-- PACT_BROKER_URL
-- PACT_BROKER_BASIC_AUTH_USERNAME
-- PACT_BROKER_BASIC_AUTH_PASSWORD
-
-### Create postman collections from pacts
-
-- run `./postman/postman-pact.sh` to generate postman collections in `pact/postman/collections`
-- run `./postman/postman-replace-urls.sh` to generate env configs for postman in `pact/postman/env` where the urls are replaced with `$PACT_PROVIDER_URL`
-- run `./postman//postman-newman.sj` to run the postman collection against your `$PACT_PROVIDER_URL`
-- run newman tests with jest, via `npx jest -c jest.newman.js`
-
-Note:- There are no tests in the saved postman collections, so it will run the requests, but will not validate the responses are as per the pacts.
-
-TODO
-
-- [ ] Currently this will use `$PACT_PROVIDER_URL` for all generated postman collections, add the ability to specify a provider name, and update the url accordingly.
-
-## Build your own Pact Stub Service for your pacts in Docker
-
-`cd docker/pact-stub-service`
-
-Build the base pact image, change the name `you54f` to your own dockerhub username
-
-The Base image resides at `base.Dockerfile` which will load the pact ruby standalone, plus a healthcheck endpoint `/healthcheck` on the containers for use in AWS and other Cloud providers.
-
-`make pact_build`
-docker build -t pact-base -f base.Dockerfile .
-`make pact_tag`
-docker tag pact-base you54f/pact-base
-`make pact_push`
-docker push you54f/pact-base
-
-You can then copy your pact files generated with `yarn run test` into the `docker/pact-stub-service/pacts` folder that the `Dockerfile` will use.
-
-`copy_pacts`
-rm -rf pacts && cp -r ../../pact/pacts .
-
-Look at the `Dockerfile`
-
-```Dockerfile
-FROM you54f/pact-base
-
-ARG PACT_FILE
-
-COPY ${PACT_FILE} /pact.json
-```
-
-See the `docker/docker-compose.yml` file for how to load your pacts into the docker container.
-
-```yaml
-version: "3.1"
-
-services:
-  pact-stub-server-json:
-    build:
-      context: pact-stub-service
-      args:
-        PACT_FILE: pacts/test-consumer-json-provider.json
-    ports:
-      - "8080:8080"
-```
-
-You can run it with `cd docker && docker-compose up`
 
 ## Credits
 

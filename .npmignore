@@ -1,5 +1,3 @@
-.env
-.env.*
 .circleci
 coverage
 src
@@ -7,13 +5,9 @@ dist
 pact/logs
 pact/pacts
 .gitignore
-jest.*.js
-junit.xml
+jest.config.js
 renovate.json
 tsconfig.json
 yarn-error.log
 yarn.lock
-postman
-docker
 tslint.json
-docs
