@@ -11,7 +11,7 @@ jestpact.pactWithSuperTest(
   async (provider: any, client: any) => {
     describe("file upload service", () => {
       test("should successfully allow upload of a base 64 encoded pdf", async () => {
-        const pdflocation: string = "/src/examples/sampledata/";
+        const pdflocation: string = "/src/examples/sampleData/";
         const pdfname: string = "test-base64.pdf";
         const pdfpath: string = `${pwd}${pdflocation}${pdfname}`;
         const pdf = readFileSync(pdfpath);
@@ -56,7 +56,7 @@ jestpact.pactWithSuperTest(
           .expect(201);
       });
       test("should successfully allow upload of binary encoded pdf", async () => {
-        const pdflocation: string = "/src/examples/sampledata/";
+        const pdflocation: string = "/src/examples/sampleData/";
         const pdfname: string = "test.pdf";
         const pdfpath: string = `${pwd}${pdflocation}${pdfname}`;
         const pdf = readFileSync(pdfpath);
