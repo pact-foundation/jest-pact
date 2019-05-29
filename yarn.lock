@@ -3274,10 +3274,12 @@ jest-mock@^24.8.0:
   dependencies:
     "@jest/types" "^24.8.0"
 
-jest-pact@0.0.10:
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/jest-pact/-/jest-pact-0.0.10.tgz#aa4590eeca6f2aadfad56d41482d9baff338f2d8"
-  integrity sha512-snb8pwVu18lvJBANkO6Hzqbmo383HFlzQKxcB9utcI/9YgyioQJSsgPKSRnvxJPzOsCdtG0vgeO3uRKHfHqRSQ==
+jest-pact@0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/jest-pact/-/jest-pact-0.1.0.tgz#bd58e0e74e9d8077f4f93c3e850820dc983639b9"
+  integrity sha512-aC+ftwLZsckQLSTxiqBluhX8waqa2QHj+7F2xmvEqnCy1b0eGKIL4dhtig5j+MjBSEXaye0U1SDvdZVOvI+IAw==
+  dependencies:
+    "@types/jest" "24.0.13"
 
 jest-pnp-resolver@^1.2.1:
   version "1.2.1"

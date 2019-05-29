@@ -46,6 +46,10 @@ jobs:
         - run:
             name: yarn test
             command: yarn run test
+        - store_test_results:
+            path: ./coverage/junit/unit
+        - store_artifacts:
+            path: coverage
 
   pact-consumer-workflow:
     <<: *defaults  
@@ -68,6 +72,8 @@ jobs:
             name: Publish pacts
             command: |
                 yarn run pact-publish 
+        - store_test_results:
+            path: ./coverage/junit/pact
 
   aws-provider-verify:
     <<: *defaults  
