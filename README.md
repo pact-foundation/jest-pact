@@ -5,38 +5,27 @@
 
 ## Jest Adaptor to help write Pact files with ease
 
-Features
+### Features
 
 - [x] Jest Adaptor For Pact
-  - [x] Package for npm
-  - [x] Publish to npm
   - [ ] Assign random ports but pass port back to user for thier http agent
 - [x] Jest Adaptor For Pact with SuperTest
-  - [x] Package for npm
-  - [x] Publish to npm
-  - [x] Add Supertest typings
+  - [x] With added Supertest types
   - [ ] Assign random ports
-  - [ ] user configurable paths
-- [x] circleci config
 - [x] use postman-pact to generate postman collections for pact contracts
 - [x] example publish / tagging to pact-broker
 - [x] example verification
 - [x] example pact stub service docker templates
 - [x] Now ships with pact and jest as dependencies
-- [x] Example pact tests
-  - [x] AWS v4 Signed API Gateway Provider
-  - [x] Soap API provider
-  - [x] File upload API provider
-  - [x] JSON API provider
-- [x] Pact mock service docker base
-- [x] Pact mock service docker base examples
-- [x] Postman integration
-  - [x] Generate postman collections from pact contracts
-  - [x] Inject URL into postman collection from `PACT_PROVIDER_URL`
-  - [x] Run postman scripts with newman
-  - [x] Run postman scripts with jest
-- [ ] example can-i-deploy
+
+## `Jest-Pact` Roadmap
+
+- [ ] user configurable paths for log/pact output dirs
+- [ ] code coverage to coveralls
 - [ ] npm publish automation inc versioning
+• integration with Jest's API to make setup and teardown of pact tests very simple
+• Ensure that jest-pact plays well with jest's default of watch-mode
+• Ensure that pact failures print nice diffs (at the moment you have to go digging in the log files)
 
 ## Adapter Installation
 
@@ -158,9 +147,25 @@ pactWithSuperTest(
 );
 ```
 
-## Examples using this adaptor, and showing other jest pact examples
+### Examples of usage of `jest-pact` in this repository
 
-## Showcases the following
+See `src/examples`
+
+- [x] Example pact tests
+  - [x] AWS v4 Signed API Gateway Provider
+  - [x] Soap API provider
+  - [x] File upload API provider
+  - [x] JSON API provider
+
+Run them by cloning the repostory and `yarn run install && yarn run pact-test`
+
+Generated pacts will be output in `pact/pacts`
+Log files will be output in `pact/logs`
+
+
+### Other Pact related items in this repository, but otherwise unrelated to jest-pact directly
+
+A Full Consumer side Pact development workflow example
 
 - Written in Typescript
 - Utilises Pact in a Jest Wrapper [jest-pact](https://github.com/YOU54F/jest-pact)
@@ -175,6 +180,15 @@ pactWithSuperTest(
 - Verification against AWS v4 signed API Gateway endpoints
 - Create postman collections from pacts
 
+- [x] Pact mock service docker base
+- [x] Pact mock service docker base examples
+- [x] Postman integration
+  - [x] Generate postman collections from pact contracts
+  - [x] Inject URL into postman collection from `PACT_PROVIDER_URL`
+  - [x] Run postman scripts with newman
+  - [x] Run postman scripts with jest
+- [ ] example can-i-deploy
+  
 ## Where can I see it
 
 - CircleCI builds here - <https://circleci.com/gh/YOU54F/jest-pact>
@@ -226,7 +240,7 @@ Note:- There are no tests in the saved postman collections, so it will run the r
 
 TODO
 
-- [ ] Currently this will user `$PACT_PROVIDER_URL` for all generated postman collections, add the ability to specify a provider name, and update the url accordingly.
+- [ ] Currently this will use `$PACT_PROVIDER_URL` for all generated postman collections, add the ability to specify a provider name, and update the url accordingly.
 
 ## Build your own Pact Stub Service for your pacts in Docker
 
