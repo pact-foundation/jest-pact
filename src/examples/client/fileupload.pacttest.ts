@@ -5,14 +5,15 @@ import * as jestpact from "jest-pact";
 
 const port = 9880;
 
+const pwd = process.env.PWD;
 jestpact.pactWithSuperTest(
   { consumer: "test-consumer", provider: "file-upload-provider", port },
   async (provider: any, client: any) => {
     describe("file upload service", () => {
       test("should successfully allow upload of a base 64 encoded pdf", async () => {
-        const pdflocation: string = "./src/examples/sampledata/";
+        const pdflocation: string = "/src/examples/sampledata/";
         const pdfname: string = "test-base64.pdf";
-        const pdfpath: string = `${pdflocation}${pdfname}`;
+        const pdfpath: string = `${pwd}${pdflocation}${pdfname}`;
         const pdf = readFileSync(pdfpath);
         const body = `----------------------------713166514119664968500586\r\nContent-Disposition: form-data; name=\"test\"\r\n\r\ntest\r\n----------------------------713166514119664968500586\r\nContent-Disposition: form-data; name=\"document\"; filename=\"${pdfname}\"\r\nContent-Type: application/pdf\r\n\r\n${pdf}\r\n----------------------------713166514119664968500586--\r\n`;
         const interaction: InteractionObject = {
@@ -55,9 +56,9 @@ jestpact.pactWithSuperTest(
           .expect(201);
       });
       test("should successfully allow upload of binary encoded pdf", async () => {
-        const pdflocation: string = "./src/examples/sampledata/";
+        const pdflocation: string = "/src/examples/sampledata/";
         const pdfname: string = "test.pdf";
-        const pdfpath: string = `${pdflocation}${pdfname}`;
+        const pdfpath: string = `${pwd}${pdflocation}${pdfname}`;
         const pdf = readFileSync(pdfpath);
         const body = `----------------------------713166514119664968500586\r\nContent-Disposition: form-data; name=\"test\"\r\n\r\ntest\r\n----------------------------713166514119664968500586\r\nContent-Disposition: form-data; name=\"document\"; filename=\"${pdfname}\"\r\nContent-Type: application/pdf\r\n\r\n${pdf}\r\n----------------------------713166514119664968500586--\r\n`;
         const interaction: InteractionObject = {
