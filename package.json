@@ -1,15 +1,14 @@
 {
   "name": "jest-pact",
-  "version": "0.0.10",
+  "version": "0.1.0",
   "description": "a pact adaptor for jest",
-  "main": "dist/lib/index.js",
+  "main": "index.js",
   "scripts": {
     "build": "rimraf dist && tsc",
     "test": "jest --coverage",
-    "release": "npm run build && mv dist/index.* . && npm publish",
-    "swagger-validate-spec": "swagger-cli validate ./docs/pet-store.json",
-    "swagger-validate-pact": "swagger-mock-validator ./docs/pet-store.json ./pact/pacts/test-consumer-json-provider.json",
-    "swagger-pact": "swagger-pact ./docs/pet-store.json ./pact/pacts/test-consumer-json-provider.json",
+    "release": "npm run test && npm run build && mv dist/index.* . && npm publish",
+    "swagger-validate-spec": "swagger-cli validate ./src/examples/sampleData/swagger/pet-store.json",
+    "swagger-validate-pact": "swagger-pact ./src/examples/sampleData/swagger/pet-store.json ./pact/pacts/test-consumer-json-provider.json",
     "pact-test": "rimraf pact && jest --detectOpenHandles --config jest.pact.js",
     "pact-publish": "./src/examples/publisher/publish.sh",
     "delete-pacts-local": "rm ./pact/pacts/*.json",
@@ -22,6 +21,16 @@
     "url": "git+https://github.com/YOU54F/jest-pact.git"
   },
   "author": "YOU54F",
+  "contributors": [
+    {
+      "name": "Yousaf Nabi",
+      "url": "https://github.com/YOU54F"
+    },
+    {
+      "name": "Timothy Jones",
+      "url": "https://github.com/TimothyJones"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/YOU54F/jest-pact/issues"
@@ -41,7 +50,7 @@
     "husky": "2.3.0",
     "jest": "24.8.0",
     "jest-junit": "6.4.0",
-    "jest-pact": "0.0.10",
+    "jest-pact": "0.1.0",
     "jest-runner-newman": "1.0.5",
     "lint-staged": "8.1.7",
     "newman": "4.5.0",
