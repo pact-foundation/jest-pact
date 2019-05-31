@@ -1,6 +1,5 @@
 import * as pact from "@pact-foundation/pact";
 import * as path from "path";
-import * as supertest from "supertest";
 
 export interface PactOptions {
   provider: string;
@@ -53,9 +52,4 @@ export const getProviderBaseUrl = (provider: pact.Pact) =>
 export const pactWith = (options: PactOptions, tests: any) =>
   describe(`Pact between ${options.consumer} and ${options.provider}`, () => {
     tests(setupProvider(applyDefaults(options)));
-  });
-
-export const pactWithSuperTest = (options: PactOptions, tests: any) =>
-  pactWith(options, (provider: pact.Pact) => {
-    tests(provider, supertest(getProviderBaseUrl(provider)));
   });
