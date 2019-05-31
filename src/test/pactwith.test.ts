@@ -53,8 +53,8 @@ pactWith({ consumer: "MyConsumer", provider: "pactWith2" }, (provider: any) => {
   });
 
   describe("provider object", () => {
-    test("should show the randomly assigned port in the URL", () => {
-      expect(provider.mockService.baseUrl).toMatch(new RegExp(`\\d{4,5}$`));
+    test("should show the default port in the URL", () => {
+      expect(provider.mockService.baseUrl).toMatch(new RegExp(`8282$`));
     });
   });
 });

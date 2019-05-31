@@ -11,13 +11,7 @@
 ### Features
 
 - [x] Jest Adaptor For Pact
-  - [X] Assign random ports and pass port back to user for thier http agent
-- [x] use postman-pact to generate postman collections for pact contracts
-- [x] example publish / tagging to pact-broker
-- [x] example verification
-- [x] example pact stub service docker templates
-- [x] Now ships with pact and jest as dependencies
-- [X] BREAKING CHANGE - Removed supertest and types in v1.0.0
+  - [ ] Assign random ports and pass port back to user for thier http agent
 
 ## `Jest-Pact` Roadmap
 

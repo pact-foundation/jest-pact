@@ -20,7 +20,7 @@ export declare type LogLevel =
 export declare type PactFileWriteMode = "overwrite" | "update" | "merge";
 
 const applyDefaults = (options: PactOptions) => ({
-  port: options.port,
+  port: options.port || 8282,
   log: path.resolve(
     process.cwd(),
     "pact/logs",
