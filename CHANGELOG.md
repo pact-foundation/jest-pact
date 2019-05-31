@@ -2,26 +2,6 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [0.3.0](https://github.com/YOU54F/jest-pact/compare/v0.2.0...v0.3.0) (2019-05-31)
-
-
-### Features
-
-* remove supertest ([#50](https://github.com/YOU54F/jest-pact/issues/50)) ([cc9c606](https://github.com/YOU54F/jest-pact/commit/cc9c606))
-* use random ports for provider, if not provided ([#51](https://github.com/YOU54F/jest-pact/issues/51)) ([aeb75e6](https://github.com/YOU54F/jest-pact/commit/aeb75e6))
-
-
-
-## [0.3.0](https://github.com/YOU54F/jest-pact/compare/v0.2.0...v0.3.0) (2019-05-31)
-
-
-### Features
-
-* remove supertest ([#50](https://github.com/YOU54F/jest-pact/issues/50)) ([cc9c606](https://github.com/YOU54F/jest-pact/commit/cc9c606))
-* use random ports for provider, if not provided ([#51](https://github.com/YOU54F/jest-pact/issues/51)) ([aeb75e6](https://github.com/YOU54F/jest-pact/commit/aeb75e6))
-
-
-
 ## 0.2.0 (2019-05-31)
 
 
