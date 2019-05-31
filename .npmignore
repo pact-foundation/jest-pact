@@ -1,9 +1,13 @@
+#Folders
 .circleci
 coverage
 src
 dist
 pact/logs
 pact/pacts
+scripts
+
+#Files
 .gitignore
 jest.config.js
 renovate.json
@@ -11,3 +15,8 @@ tsconfig.json
 yarn-error.log
 yarn.lock
 tslint.json
+.travis.yml
+.codeclimate.yml
+RELEASING.md
+CONTRIBUTING.md
+commitlint.config.js
