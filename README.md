@@ -25,8 +25,6 @@
 
 - [ ] Remove supertest and types
 - [ ] user configurable paths for log/pact output dirs
-- [ ] code coverage to coveralls
-- [ ] npm publish automation inc versioning
 - [ ] integration with Jest's API to make setup and teardown of pact tests very simple
 - [ ] Ensure that jest-pact plays well with jest's default of watch-mode
 - [ ] Ensure that pact failures print nice diffs (at the moment you have to go digging in the log files)
