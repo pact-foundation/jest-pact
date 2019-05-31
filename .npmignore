@@ -20,3 +20,4 @@ tslint.json
 RELEASING.md
 CONTRIBUTING.md
 commitlint.config.js
+jestpact.tar.gz
