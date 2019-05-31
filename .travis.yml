@@ -30,12 +30,12 @@ deploy:
     skip_cleanup: true
     on:
       tags: true
-      branch: automatedReleases
+      branch: master
       node: "8"
   - provider: script
     skip_cleanup: true
     script: ./scripts/publish.sh
     on:
       tags: true
-      branch: automatedReleases
+      branch: master
       node: "8"
