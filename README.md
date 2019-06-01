@@ -69,13 +69,21 @@ export declare type PactFileWriteMode = "overwrite" | "update" | "merge";
 
 ## Example
 
-You can use this with any http agent for sending your requests.
+A contrived example using supertest as a client
 
 ```ts
-pactWith(
-  { consumer: "MyConsumer", provider: "pactWith", port: pactPort },
+import {InteractionObject} from "@pact-foundation/pact"
+import * as jestpact from "jest-pact";
+import * as supertest from "supertest";
+
+jestpact.pactWith(
+  { consumer: "test-consumer", provider: "json-provider" },
   async (provider: any) => {
-    test("should accept a valid get request to get a pet 1", async () => {
+    const client = () => {
+      const url = `${provider.mockService.baseUrl}`;
+      return supertest(url);
+    };
+    test("should accept a valid get request to get a pet", async () => {
       const postValidRequest: InteractionObject = {
         state: "A pet 1845563262948980200 exists",
         uponReceiving: "A get request to get a pet",
@@ -88,19 +96,125 @@ pactWith(
           headers: { api_key: "[]" }
         }
       };
-
       await provider.addInteraction(postValidRequest);
-      const client = getClient(); // getClient calls your own http agent, the function is not shown here
-      await client // supertest options shown, other agents may differ
+
+      await client()
         .get("/v2/pet/1845563262948980200")
         .set("api_key", "[]")
         .expect(200);
-
       await provider.verify();
     });
   }
 );
+
 ```
+
+To use Pact to it's full effect, you should replace the client above with your API call in your code and instantiate with pact mock service base url `provider.mockService.baseUrl`
+
+So if your calling method is
+
+```
+export const api = (baseURl) => ({ 
+     getUser: () => axios(opts).then(processResponse) 
+})
+```
+
+Then your test may look like
+
+```ts
+import {InteractionObject} from "@pact-foundation/pact"
+import * as jestpact from "jest-pact";
+import {api} from "yourCode";
+
+jestpact.pactWith(
+  { consumer: "test-consumer", provider: "json-provider" },
+  async (provider: any) => {
+    const client = () => {
+      const url = `${provider.mockService.baseUrl}`;
+      return api(url);
+    };
+    test("should accept a valid get request to get a pet", async () => {
+      const postValidRequest: InteractionObject = {
+        state: "A pet 1845563262948980200 exists",
+        uponReceiving: "A get request to get a pet",
+        willRespondWith: {
+          status: 200
+        },
+        withRequest: {
+          method: "GET",
+          path: "/v2/pet/1845563262948980200",
+          headers: { api_key: "[]" }
+        }
+      };
+      await provider.addInteraction(postValidRequest);
+
+      await client()
+        .get("/v2/pet/1845563262948980200")
+        .set("api_key", "[]")
+        .expect(200);
+      await provider.verify();
+    });
+  }
+);
+
+```
+
+You can make your test shorter, by moving your interaction object into another file
+
+```
+import * as jestpact from "jest-pact";
+import * as supertest from "supertest";
+import * as interaction from "./expectation/json.expectation";
+import * as json from "./requestResponse/json.reqRes";
+
+jestpact.pactWith(
+  { consumer: "test-consumer", provider: "json-provider" },
+  async (provider: any) => {
+    const client = () => {
+      const url = `${provider.mockService.baseUrl}`;
+      return supertest(url);
+    };
+    test("should accept a valid get request to get a pet", async () => {
+      await provider.addInteraction(interaction.postValidRequest);
+
+      await client()
+        .get("/v2/pet/1845563262948980200")
+        .set("api_key", "[]")
+        .expect(200, json.getPetValidResponse);
+      await provider.verify();
+    });
+  }
+);
+
+```
+
+### Jest Watch Mode
+
+By default Jest will watch all your files for changes, which means it will run in an infinite loop as your pact tests will generate json pact files and log files.
+
+You can get round this by using the following `watchPathIgnorePatterns: ["pact/logs/*","pact/pacts/*"]` in your `jest.config.js` 
+
+Example
+
+```
+module.exports = {
+  globals: {
+    "ts-jest": {
+      tsConfig: "tsconfig.json"
+    }
+  },
+  moduleFileExtensions: ["ts", "js", "json"],
+  transform: {
+    "^.+\\.(ts|tsx)$": "ts-jest"
+  },
+  testMatch: ["**/*.test.(ts|js)", "**/*.it.(ts|js)", "**/*.pacttest.(ts|js)"],
+  testEnvironment: "node",
+  reporters: ["default", "jest-junit"],
+  watchPathIgnorePatterns: ["pact/logs/*","pact/pacts/*"]
+};
+```
+
+You can now run your tests with `jest --watch` and when you change a pact file, or your source code, your pact tests will run
 
 ### Examples of usage of `jest-pact`
 
