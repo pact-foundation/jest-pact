@@ -14,8 +14,9 @@
 
 ### Features
 
-- [x] Jest Adaptor For Pact
-  - [ ] Assign random ports and pass port back to user for thier http agent
+- [x] instantiates the PactOptions for you
+- [x] Setups Pact mock service before and after hooks so you don’t have to
+- [x] Assign random ports and pass port back to user so we can run in parallel without port clashes
 
 ## `Jest-Pact` Roadmap
 
@@ -53,7 +54,7 @@ pactWith({PactOptions}, provider => {
 export interface PactOptions {
   provider: string;
   consumer: string;
-  port?: number; // defaults to 8989 if not set
+  port?: number; // defaults to a random port if not provided
   pactfileWriteMode?: PactFileWriteMode;
 }
 
@@ -113,7 +114,7 @@ To use Pact to it's full effect, you should replace the client above with your A
 
 So if your calling method is
 
-```
+```ts
 export const api = (baseURl) => ({ 
      getUser: () => axios(opts).then(processResponse) 
 })
@@ -161,7 +162,7 @@ jestpact.pactWith(
 
 You can make your test shorter, by moving your interaction object into another file
 
-```
+```ts
 import * as jestpact from "jest-pact";
 import * as supertest from "supertest";
 import * as interaction from "./expectation/json.expectation";
@@ -196,7 +197,7 @@ You can get round this by using the following `watchPathIgnorePatterns: ["pact/l
 
 Example
 
-```
+```js
 module.exports = {
   globals: {
     "ts-jest": {
