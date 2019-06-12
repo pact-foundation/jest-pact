@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/YOU54F/jest-pact/compare/v0.3.0...v0.4.0) (2019-06-12)
+
+
+### Features
+
+* allow configuration of pacts and log dirs ([c4c3b24](https://github.com/YOU54F/jest-pact/commit/c4c3b24))
+
+
+
 ## [0.3.0](https://github.com/YOU54F/jest-pact/compare/v0.2.0...v0.3.0) (2019-05-31)
 
 
