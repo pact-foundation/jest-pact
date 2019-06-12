@@ -56,6 +56,8 @@ export interface PactOptions {
   consumer: string;
   port?: number; // defaults to a random port if not provided
   pactfileWriteMode?: PactFileWriteMode;
+  log? string // defaults to pact/logs if not provided
+  dir? string // defaults to pact/pacts if not provided
 }
 
 export declare type LogLevel = "trace" | "debug" | "info" | "warn" | "error" | "fatal";
@@ -116,7 +118,7 @@ So if your calling method is
 
 ```ts
 export const api = (baseURl) => ({ 
-     getUser: () => axios(opts).then(processResponse) 
+     getUser: () => axios(opts).then(processResponse)
 })
 ```
 

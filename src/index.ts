@@ -7,6 +7,8 @@ export interface PactOptions {
   port?: number;
   logLevel?: LogLevel;
   pactfileWriteMode?: PactFileWriteMode;
+  log?: string;
+  dir?: string;
 }
 
 export declare type LogLevel =
@@ -23,10 +25,10 @@ const applyDefaults = (options: PactOptions) => ({
   port: options.port,
   log: path.resolve(
     process.cwd(),
-    "pact/logs",
+    `${options.log}`,
     `${options.consumer}-${options.provider}-mockserver-integration.log`
   ),
-  dir: path.resolve(process.cwd(), "pact/pacts"),
+  dir: path.resolve(process.cwd(), `${options.dir}`),
   spec: 2,
   logLevel: options.logLevel || "error",
   pactfileWriteMode: options.pactfileWriteMode || "update",
@@ -51,5 +53,11 @@ export const getProviderBaseUrl = (provider: pact.Pact) =>
 
 export const pactWith = (options: PactOptions, tests: any) =>
   describe(`Pact between ${options.consumer} and ${options.provider}`, () => {
+    if (!options.dir) {
+      options.dir = "pact/pacts";
+    }
+    if (!options.log) {
+      options.log = "pact/logs";
+    }
     tests(setupProvider(applyDefaults(options)));
   });
