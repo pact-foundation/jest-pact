@@ -38,6 +38,8 @@ yarn add jest-pact --dev
 ## Usage
 
 ```ts
+import { pactWith } from 'jest-pact';
+
 pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
     // regular pact tests go here
 }
