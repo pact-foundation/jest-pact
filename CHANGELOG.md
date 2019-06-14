@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.2](https://github.com/YOU54F/jest-pact/compare/v0.3.0...v0.4.2) (2019-06-14)
+
+
+### Bug Fixes
+
+* drop peer dep on Jest to 24.7.1 to match current create-react-app ([e8cc52b](https://github.com/YOU54F/jest-pact/commit/e8cc52b))
+
+
+
 ### [0.4.1](https://github.com/YOU54F/jest-pact/compare/v0.4.0...v0.4.1) (2019-06-12)
 
 
