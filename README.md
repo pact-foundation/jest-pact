@@ -65,7 +65,7 @@ import { pactWith } from 'jest-pact';
 import { Matchers } from '@pact-foundation/pact';
 import api from 'yourCode';
 
-pactWith({ consumer: 'toolkit-ui', provider: 'toolkit-api' }, provider => {
+pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
   let client;
   
   beforeEach(() => {
@@ -143,7 +143,7 @@ import { healthRequest, healthyResponse } from "./pact.fixtures";
 
 import api from 'yourCode';
 
-pactWith({ consumer: 'toolkit-ui', provider: 'toolkit-api' }, provider => {
+pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
   let client;
   
   beforeEach(() => {
