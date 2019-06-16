@@ -9,7 +9,6 @@
 [![devDependency Status](https://img.shields.io/david/dev/you54f/jest-pact.svg?style=flat-square)](https://david-dm.org/you54f/jest-pact#info=devDependencies)
 [![CircleCI](https://circleci.com/gh/YOU54F/jest-pact.svg?style=svg)](https://circleci.com/gh/YOU54F/jest-pact)
 
-
 ## Jest Adaptor to help write Pact files with ease
 
 ### Features
@@ -37,23 +36,147 @@ yarn add jest-pact --dev
 
 ## Usage
 
-```ts
-import { pactWith } from 'jest-pact';
-
+```js
 pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
     // regular pact tests go here
 }
 ```
 
+## Example
+
+Say that your API layer looks something like this:
+
+```js
+import axios from 'axios';
+
+const defaultBaseUrl = "http://your-api.example.com"
+
+export const api = (baseUrl = defaultBaseUrl) => ({
+     getHealth: () => axios.get(`${baseUrl}/health`)
+                    .then(response => response.data.status)
+    /* other endpoints here */
+})
+```
+
+Then your test might look like:
+
+```js
+import { pactWith } from 'jest-pact';
+import { Matchers } from '@pact-foundation/pact';
+import api from 'yourCode';
+
+pactWith({ consumer: 'toolkit-ui', provider: 'toolkit-api' }, provider => {
+  let client;
+  
+  beforeEach(() => {
+    client = api(provider.mockService.baseUrl)
+  });
+
+  describe('health endpoint', () => {
+    // Here we set up the interaction that the Pact
+    // mock provider will expect.
+    //
+    // jest-pact takes care of validating and tearing 
+    // down the provider for you. 
+    beforeEach(() =>
+      provider.addInteraction({
+        state: "Server is healthy",
+        uponReceiving: 'A request for API health',
+        willRespondWith: {
+          status: 200,
+          body: {
+            status: Matchers.like('up'),
+          },
+        },
+        withRequest: {
+          method: 'GET',
+          path: '/health',
+        },
+      })
+    );
+    
+    // You also test that the API returns the correct 
+    // response to the data layer. 
+    //
+    // Although Pact will ensure that the provider
+    // returned the expected object, you need to test that
+    // your code recieves the right object.
+    //
+    // This is often the same as the object that was 
+    // in the network response, but (as illustrated 
+    // here) not always.
+    it('returns server health', () =>
+      client.health().then(health => {
+        expect(health).toEqual('up');
+      }));
+  });
+
+```
+
+You can make your tests easier to read by extracting your request and responses:
+
+
+```js
+/* pact.fixtures.js */
+import { Matchers } from '@pact-foundation/pact';
+
+export const healthRequest = {
+  uponReceiving: 'A request for API health',
+  withRequest: {
+    method: 'GET',
+    path: '/health',
+  },
+};
+
+export const healthyResponse = {
+  status: 200,
+  body: {
+    status: Matchers.like('up'),
+  },
+} 
+```
+
+
+```js
+import { pactWith } from 'jest-pact';
+import { healthRequest, healthyResponse } from "./pact.fixtures";
+
+import api from 'yourCode';
+
+pactWith({ consumer: 'toolkit-ui', provider: 'toolkit-api' }, provider => {
+  let client;
+  
+  beforeEach(() => {
+    client = api(provider.mockService.baseUrl)
+  });
+
+  describe('health endpoint', () => {
+
+    beforeEach(() =>
+      provider.addInteraction({
+        state: "Server is healthy",
+        ...healthRequest,
+        willRespondWith: healthyResponse
+      })
+    );
+    
+    it('returns server health', () =>
+      client.health().then(health => {
+        expect(health).toEqual('up');
+      }));
+  });
+```
+
+
 ## Configuration
 
 ```ts
 
-pactWith({PactOptions}, provider => {
+pactWith(PactOptions, provider => {
     // regular pact tests go here
 }
 
-export interface PactOptions {
+interface PactOptions {
   provider: string;
   consumer: string;
   port?: number; // defaults to a random port if not provided
@@ -61,142 +184,22 @@ export interface PactOptions {
   dir? string // defaults to pact/pacts if not provided
 }
 
-export declare type LogLevel = "trace" | "debug" | "info" | "warn" | "error" | "fatal";
-export declare type PactFileWriteMode = "overwrite" | "update" | "merge";
+type LogLevel = "trace" | "debug" | "info" | "warn" | "error" | "fatal";
+type PactFileWriteMode = "overwrite" | "update" | "merge";
 
 ```
 
-## Output
+## Defaults
 
 - Log files are written to /pact/logs
 - Pact files are written to /pact/pacts
 
-## Example
-
-A contrived example using supertest as a client
-
-```ts
-import {InteractionObject} from "@pact-foundation/pact"
-import * as jestpact from "jest-pact";
-import * as supertest from "supertest";
-
-jestpact.pactWith(
-  { consumer: "test-consumer", provider: "json-provider" },
-  async (provider: any) => {
-    const client = () => {
-      const url = `${provider.mockService.baseUrl}`;
-      return supertest(url);
-    };
-    test("should accept a valid get request to get a pet", async () => {
-      const postValidRequest: InteractionObject = {
-        state: "A pet 1845563262948980200 exists",
-        uponReceiving: "A get request to get a pet",
-        willRespondWith: {
-          status: 200
-        },
-        withRequest: {
-          method: "GET",
-          path: "/v2/pet/1845563262948980200",
-          headers: { api_key: "[]" }
-        }
-      };
-      await provider.addInteraction(postValidRequest);
-
-      await client()
-        .get("/v2/pet/1845563262948980200")
-        .set("api_key", "[]")
-        .expect(200);
-      await provider.verify();
-    });
-  }
-);
-
-```
-
-To use Pact to it's full effect, you should replace the client above with your API call in your code and instantiate with pact mock service base url `provider.mockService.baseUrl`
-
-So if your calling method is
-
-```ts
-export const api = (baseURl) => ({ 
-     getUser: () => axios(opts).then(processResponse)
-})
-```
-
-Then your test may look like
-
-```ts
-import {InteractionObject} from "@pact-foundation/pact"
-import * as jestpact from "jest-pact";
-import {api} from "yourCode";
-
-jestpact.pactWith(
-  { consumer: "test-consumer", provider: "json-provider" },
-  async (provider: any) => {
-    const client = () => {
-      const url = `${provider.mockService.baseUrl}`;
-      return api(url);
-    };
-    test("should accept a valid get request to get a pet", async () => {
-      const postValidRequest: InteractionObject = {
-        state: "A pet 1845563262948980200 exists",
-        uponReceiving: "A get request to get a pet",
-        willRespondWith: {
-          status: 200
-        },
-        withRequest: {
-          method: "GET",
-          path: "/v2/pet/1845563262948980200",
-          headers: { api_key: "[]" }
-        }
-      };
-      await provider.addInteraction(postValidRequest);
-
-      await client()
-        .get("/v2/pet/1845563262948980200")
-        .set("api_key", "[]")
-        .expect(200);
-      await provider.verify();
-    });
-  }
-);
-
-```
-
-You can make your test shorter, by moving your interaction object into another file
-
-```ts
-import * as jestpact from "jest-pact";
-import * as supertest from "supertest";
-import * as interaction from "./expectation/json.expectation";
-import * as json from "./requestResponse/json.reqRes";
-
-jestpact.pactWith(
-  { consumer: "test-consumer", provider: "json-provider" },
-  async (provider: any) => {
-    const client = () => {
-      const url = `${provider.mockService.baseUrl}`;
-      return supertest(url);
-    };
-    test("should accept a valid get request to get a pet", async () => {
-      await provider.addInteraction(interaction.postValidRequest);
-
-      await client()
-        .get("/v2/pet/1845563262948980200")
-        .set("api_key", "[]")
-        .expect(200, json.getPetValidResponse);
-      await provider.verify();
-    });
-  }
-);
-
-```
 
 ### Jest Watch Mode
 
 By default Jest will watch all your files for changes, which means it will run in an infinite loop as your pact tests will generate json pact files and log files.
 
-You can get round this by using the following `watchPathIgnorePatterns: ["pact/logs/*","pact/pacts/*"]` in your `jest.config.js` 
+You can get round this by using the following `watchPathIgnorePatterns: ["pact/logs/*","pact/pacts/*"]` in your `jest.config.js`
 
 Example
 
@@ -214,7 +217,7 @@ module.exports = {
   testMatch: ["**/*.test.(ts|js)", "**/*.it.(ts|js)", "**/*.pacttest.(ts|js)"],
   testEnvironment: "node",
   reporters: ["default", "jest-junit"],
-  watchPathIgnorePatterns: ["pact/logs/*","pact/pacts/*"]
+  watchPathIgnorePatterns: ["pact/logs/*", "pact/pacts/*"]
 };
 ```
 
