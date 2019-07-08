@@ -39,7 +39,7 @@
     "@commitlint/cli": "8.0.0",
     "@commitlint/config-conventional": "8.0.0",
     "@pact-foundation/pact": "8.2.6",
-    "@types/supertest": "2.0.7",
+    "@types/supertest": "2.0.8",
     "coveralls": "3.0.4",
     "cross-env": "5.2.0",
     "husky": "2.4.1",
