@@ -36,9 +36,9 @@
   },
   "homepage": "https://github.com/YOU54F/jest-pact/#readme",
   "devDependencies": {
-    "@commitlint/cli": "8.0.0",
+    "@commitlint/cli": "^8.1.0",
     "@commitlint/config-conventional": "8.0.0",
-    "@pact-foundation/pact": "8.2.6",
+    "@pact-foundation/pact": "^9.1.0",
     "@types/supertest": "2.0.8",
     "coveralls": "3.0.4",
     "cross-env": "5.2.0",
