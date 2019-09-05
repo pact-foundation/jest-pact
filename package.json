@@ -38,7 +38,7 @@
   "devDependencies": {
     "@commitlint/cli": "8.1.0",
     "@commitlint/config-conventional": "8.1.0",
-    "@pact-foundation/pact": "9.1.0",
+    "@pact-foundation/pact": "9.1.1",
     "@types/supertest": "2.0.8",
     "coveralls": "3.0.6",
     "cross-env": "5.2.0",
