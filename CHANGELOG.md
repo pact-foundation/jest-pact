@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.5](https://github.com/YOU54F/jest-pact/compare/v0.4.4...v0.4.5) (2019-10-17)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @types/jest to v24.0.19 ([9063d84](https://github.com/YOU54F/jest-pact/commit/9063d84))
+
+
+
 ### [0.4.4](https://github.com/YOU54F/jest-pact/compare/v0.4.3...v0.4.4) (2019-08-07)
 
 
