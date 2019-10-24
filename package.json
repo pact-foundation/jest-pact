@@ -41,7 +41,7 @@
     "@pact-foundation/pact": "9.1.1",
     "@types/supertest": "2.0.8",
     "coveralls": "3.0.7",
-    "cross-env": "5.2.1",
+    "cross-env": "6.0.3",
     "husky": "3.0.9",
     "jest": "24.9.0",
     "jest-junit": "9.0.0",
