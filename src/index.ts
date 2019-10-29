@@ -8,6 +8,7 @@ export interface PactOptions {
   logLevel?: LogLevel;
   pactfileWriteMode?: PactFileWriteMode;
   dir?: string;
+  timeout?: number;
 }
 
 export declare type LogLevel =
@@ -55,5 +56,21 @@ export const pactWith = (options: PactOptions, tests: any) =>
     if (!options.dir) {
       options.dir = "pact/pacts";
     }
-    tests(setupProvider(applyDefaults(options)));
+
+    const pactTestTimeout = options.timeout || 30000;
+
+    describe(`with ${pactTestTimeout} ms timeout for Pact`, () => {
+      let originalTimeout: number;
+
+      beforeAll(() => {
+        originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+        jasmine.DEFAULT_TIMEOUT_INTERVAL = pactTestTimeout;
+      });
+
+      afterAll(() => {
+        jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
+      });
+
+      tests(setupProvider(applyDefaults(options)));
+    });
   });

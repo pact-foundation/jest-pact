@@ -16,6 +16,7 @@
 - [x] instantiates the PactOptions for you
 - [x] Setups Pact mock service before and after hooks so you don’t have to
 - [x] Assign random ports and pass port back to user so we can run in parallel without port clashes
+- [x] Set Jasmine's timeout to 30 seconds preventing brittle tests in slow environments 
 
 ## `Jest-Pact` Roadmap
 
@@ -181,7 +182,8 @@ interface PactOptions {
   consumer: string;
   port?: number; // defaults to a random port if not provided
   pactfileWriteMode?: PactFileWriteMode;
-  dir? string // defaults to pact/pacts if not provided
+  dir?: string // defaults to pact/pacts if not provided
+  timeout?: number // Timeout for pact service start/teardown. Defaults to 30 seconds.
 }
 
 type LogLevel = "trace" | "debug" | "info" | "warn" | "error" | "fatal";
