@@ -465,10 +465,10 @@
     "@nodelib/fs.scandir" "2.1.1"
     fastq "^1.6.0"
 
-"@pact-foundation/pact-node@^10.2.1":
-  version "10.2.1"
-  resolved "https://registry.yarnpkg.com/@pact-foundation/pact-node/-/pact-node-10.2.1.tgz#e794c0c736097cd8f2838bcdd66f5370ef0b30b9"
-  integrity sha512-r/8lCGUa65lkprWQ0mc3rNJ6lRaSampi29Ck15oY0ZJu4+vsERFwFVEAvA93C7eR+LTHSoj9NERH2OXGI4ruuA==
+"@pact-foundation/pact-node@^10.2.3":
+  version "10.2.3"
+  resolved "https://registry.yarnpkg.com/@pact-foundation/pact-node/-/pact-node-10.2.3.tgz#52bbf735288ff6305db18ca8acdf343df28ced9b"
+  integrity sha512-947Jmigxjt5PkBvKpqeNPZFnDmk9jIMtSUXf72NmF/NDKvUIAKS9pjw4WNsxg1lVTtvpEE/dUsJV39H+2bVqyQ==
   dependencies:
     "@types/q" "1.0.7"
     "@types/request" "2.48.2"
@@ -476,6 +476,7 @@
     bunyan-prettystream "0.1.3"
     chalk "2.3.1"
     check-types "7.3.0"
+    cross-spawn "^7.0.1"
     decompress "4.2.0"
     mkdirp "0.5.1"
     q "1.5.1"
@@ -487,12 +488,12 @@
     unixify "1.0.0"
     url-join "^4.0.0"
 
-"@pact-foundation/pact@9.5.0":
-  version "9.5.0"
-  resolved "https://registry.yarnpkg.com/@pact-foundation/pact/-/pact-9.5.0.tgz#8732a2f010e4f7deb4188c635f90d18663f95021"
-  integrity sha512-1yeL5Pi1wDY4RcVVv+WhP8QE3lAa3JBatXQwtazFYNxraRgSV+upZqP798WBBhdCPppgBIRnSK8UYTVzU49nZw==
+"@pact-foundation/pact@9.5.1":
+  version "9.5.1"
+  resolved "https://registry.yarnpkg.com/@pact-foundation/pact/-/pact-9.5.1.tgz#a43f99ed2ae56045de6aedaf82155793036dd5bc"
+  integrity sha512-av/bKSLZ7Q87+8W6n7QXZnsQYA++0R3eb1Y5o07RyLcClrJ6WV+Bz5w71fJTxg6prtGyLg+hC3MlKRcPKNu1Eg==
   dependencies:
-    "@pact-foundation/pact-node" "^10.2.1"
+    "@pact-foundation/pact-node" "^10.2.3"
     "@types/bluebird" "^3.5.20"
     "@types/bunyan" "^1.8.3"
     "@types/express" "^4.11.1"
@@ -1751,7 +1752,7 @@ cross-spawn@^6.0.0, cross-spawn@^6.0.5:
     shebang-command "^1.2.0"
     which "^1.2.9"
 
-cross-spawn@^7.0.0:
+cross-spawn@^7.0.0, cross-spawn@^7.0.1:
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.1.tgz#0ab56286e0f7c24e153d04cc2aa027e43a9a5d14"
   integrity sha512-u7v4o84SwFpD32Z8IIcPZ6z1/ie24O6RU3RbtL5Y316l3KuHVPx9ItBgWQ6VlfAFnRnTtMUrsQ9MUUTuEZjogg==
