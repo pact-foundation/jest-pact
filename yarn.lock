@@ -488,10 +488,10 @@
     unixify "1.0.0"
     url-join "^4.0.0"
 
-"@pact-foundation/pact@9.5.1":
-  version "9.5.1"
-  resolved "https://registry.yarnpkg.com/@pact-foundation/pact/-/pact-9.5.1.tgz#a43f99ed2ae56045de6aedaf82155793036dd5bc"
-  integrity sha512-av/bKSLZ7Q87+8W6n7QXZnsQYA++0R3eb1Y5o07RyLcClrJ6WV+Bz5w71fJTxg6prtGyLg+hC3MlKRcPKNu1Eg==
+"@pact-foundation/pact@9.6.0":
+  version "9.6.0"
+  resolved "https://registry.yarnpkg.com/@pact-foundation/pact/-/pact-9.6.0.tgz#590ccc93aa3608b18ecc2309b1d7cb4433431a43"
+  integrity sha512-jmo5KvXMiJn3BlQoNnN8JtCZfLuGQiF76yJShPTlmjl+NT3PezhQ46BpYoeL9IJF8cVxpbJ79Zs4P3qaT9tEqw==
   dependencies:
     "@pact-foundation/pact-node" "^10.2.3"
     "@types/bluebird" "^3.5.20"
