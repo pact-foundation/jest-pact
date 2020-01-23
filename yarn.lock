@@ -488,10 +488,10 @@
     unixify "1.0.0"
     url-join "^4.0.0"
 
-"@pact-foundation/pact@9.6.0":
-  version "9.6.0"
-  resolved "https://registry.yarnpkg.com/@pact-foundation/pact/-/pact-9.6.0.tgz#590ccc93aa3608b18ecc2309b1d7cb4433431a43"
-  integrity sha512-jmo5KvXMiJn3BlQoNnN8JtCZfLuGQiF76yJShPTlmjl+NT3PezhQ46BpYoeL9IJF8cVxpbJ79Zs4P3qaT9tEqw==
+"@pact-foundation/pact@9.6.1":
+  version "9.6.1"
+  resolved "https://registry.yarnpkg.com/@pact-foundation/pact/-/pact-9.6.1.tgz#b2af7a28cc430a6c74ee6e9e1e7e7c1aef764037"
+  integrity sha512-6MVT9GPlOBiTWc9u5GZmjPoUV2w1HzyThLcXaQyHAv4KjDePLIpwXWqIFI1KOqbY60mKatY9TKdXzRrLr0lXWg==
   dependencies:
     "@pact-foundation/pact-node" "^10.2.3"
     "@types/bluebird" "^3.5.20"
@@ -500,6 +500,7 @@
     bluebird "~3.5.1"
     body-parser "^1.18.2"
     bunyan "^1.8.12"
+    bunyan-prettystream "^0.1.3"
     cli-color "^1.1.0"
     es6-object-assign "^1.1.0"
     es6-promise "^4.1.1"
@@ -1207,7 +1208,7 @@ builtin-modules@^1.1.1:
   resolved "https://registry.yarnpkg.com/builtin-modules/-/builtin-modules-1.1.1.tgz#270f076c5a72c02f5b65a47df94c5fe3a278892f"
   integrity sha1-Jw8HbFpywC9bZaR9+Uxf46J4iS8=
 
-bunyan-prettystream@0.1.3:
+bunyan-prettystream@0.1.3, bunyan-prettystream@^0.1.3:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/bunyan-prettystream/-/bunyan-prettystream-0.1.3.tgz#6c3b713266f6ad32007c7b6ab1e998a245349d98"
   integrity sha1-bDtxMmb2rTIAfHtqsemYokU0nZg=
