@@ -43,7 +43,7 @@
     "coveralls": "3.0.9",
     "cross-env": "6.0.3",
     "husky": "4.2.1",
-    "jest": "24.9.0",
+    "jest": "25.1.0",
     "jest-junit": "10.0.0",
     "lint-staged": "10.0.7",
     "prettier": "1.19.1",
@@ -58,7 +58,7 @@
   },
   "peerDependencies": {
     "@pact-foundation/pact": "^8.2.4 || ^9.0.1",
-    "jest": "~24.7.1 || ~24.8.0 || ~24.9.0"
+    "jest": "~24.7.1 || ~24.8.0 || ~24.9.0 || ~25.1.0"
   },
   "dependencies": {
     "@types/jest": "25.1.2"
