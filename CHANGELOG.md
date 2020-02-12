@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.6](https://github.com/YOU54F/jest-pact/compare/v0.4.5...v0.4.6) (2020-02-12)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @types/jest to v24.0.20 ([4c3ef1e](https://github.com/YOU54F/jest-pact/commit/4c3ef1e))
+* **deps:** update dependency @types/jest to v24.0.22 ([e56dca1](https://github.com/YOU54F/jest-pact/commit/e56dca1))
+* **deps:** update dependency @types/jest to v24.0.23 ([#130](https://github.com/YOU54F/jest-pact/issues/130)) ([d1b54a7](https://github.com/YOU54F/jest-pact/commit/d1b54a7))
+* **deps:** update dependency @types/jest to v24.0.24 ([53935dc](https://github.com/YOU54F/jest-pact/commit/53935dc))
+* **deps:** update dependency @types/jest to v24.0.25 ([a7b1ec9](https://github.com/YOU54F/jest-pact/commit/a7b1ec9))
+* **deps:** update dependency @types/jest to v24.9.0 ([ac2f6da](https://github.com/YOU54F/jest-pact/commit/ac2f6da))
+* **deps:** update dependency @types/jest to v24.9.1 ([0030690](https://github.com/YOU54F/jest-pact/commit/0030690))
+* **deps:** update dependency @types/jest to v25 ([#167](https://github.com/YOU54F/jest-pact/issues/167)) ([49d5f69](https://github.com/YOU54F/jest-pact/commit/49d5f69))
+* **deps:** update dependency @types/jest to v25.1.2 ([b0862b0](https://github.com/YOU54F/jest-pact/commit/b0862b0))
+
+
+### Features
+
+* **timeout:** prevent brittle tests by increasing Jasmine timeouts ([51d23cf](https://github.com/YOU54F/jest-pact/commit/51d23cf))
+
 ### [0.4.5](https://github.com/YOU54F/jest-pact/compare/v0.4.4...v0.4.5) (2019-10-17)
 
 
