@@ -602,10 +602,10 @@
     mkdirp "^0.5.1"
     rimraf "^2.5.2"
 
-"@pact-foundation/pact-node@^10.2.3":
-  version "10.2.3"
-  resolved "https://registry.yarnpkg.com/@pact-foundation/pact-node/-/pact-node-10.2.3.tgz#52bbf735288ff6305db18ca8acdf343df28ced9b"
-  integrity sha512-947Jmigxjt5PkBvKpqeNPZFnDmk9jIMtSUXf72NmF/NDKvUIAKS9pjw4WNsxg1lVTtvpEE/dUsJV39H+2bVqyQ==
+"@pact-foundation/pact-node@^10.3.1":
+  version "10.3.1"
+  resolved "https://registry.yarnpkg.com/@pact-foundation/pact-node/-/pact-node-10.3.1.tgz#0136a142bb8f94e4a248097c3a71a46dafaf164f"
+  integrity sha512-XzQCaAru1p3+vGqyqGKLL4j+xEyPMsrkuVuHpRNorDtLNbnY8XLKA6ItYjXxQpwBE7KRebg0wPm412ooVQ6Caw==
   dependencies:
     "@types/q" "1.0.7"
     "@types/request" "2.48.2"
@@ -625,12 +625,12 @@
     unixify "1.0.0"
     url-join "^4.0.0"
 
-"@pact-foundation/pact@9.6.1":
-  version "9.6.1"
-  resolved "https://registry.yarnpkg.com/@pact-foundation/pact/-/pact-9.6.1.tgz#b2af7a28cc430a6c74ee6e9e1e7e7c1aef764037"
-  integrity sha512-6MVT9GPlOBiTWc9u5GZmjPoUV2w1HzyThLcXaQyHAv4KjDePLIpwXWqIFI1KOqbY60mKatY9TKdXzRrLr0lXWg==
+"@pact-foundation/pact@9.7.0":
+  version "9.7.0"
+  resolved "https://registry.yarnpkg.com/@pact-foundation/pact/-/pact-9.7.0.tgz#44a9e47b20f606e6b3f4a50c5785458e9afd36bf"
+  integrity sha512-lmP6r6KfrBMPwv+7nHaMxi0KS0QINLoKaeRz/vsAlqoN2v4E4CYRqMNEcJFhp0FLPpN6jcooXoP8jZ5hWqYhXw==
   dependencies:
-    "@pact-foundation/pact-node" "^10.2.3"
+    "@pact-foundation/pact-node" "^10.3.1"
     "@types/bluebird" "^3.5.20"
     "@types/bunyan" "^1.8.3"
     "@types/express" "^4.11.1"
