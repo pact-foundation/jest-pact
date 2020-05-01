@@ -28,7 +28,7 @@ const applyDefaults = (options: PactOptions) => ({
     'pact/logs',
     `${options.consumer}-${options.provider}-mockserver-integration.log`,
   ),
-  dir: path.resolve(process.cwd(), `${options.dir}`),
+  dir: path.resolve(process.cwd(), 'pact/pacts'),
   spec: 2,
   logLevel: options.logLevel || 'error',
   pactfileWriteMode: options.pactfileWriteMode || 'update',
@@ -53,10 +53,6 @@ export const getProviderBaseUrl = (provider: pact.Pact) =>
 
 export const pactWith = (options: PactOptions, tests: any) =>
   describe(`Pact between ${options.consumer} and ${options.provider}`, () => {
-    if (!options.dir) {
-      options.dir = 'pact/pacts';
-    }
-
     const pactTestTimeout = options.timeout || 30000;
 
     describe(`with ${pactTestTimeout} ms timeout for Pact`, () => {
