@@ -1,5 +1,5 @@
-import * as pact from "@pact-foundation/pact";
-import * as path from "path";
+import * as pact from '@pact-foundation/pact';
+import * as path from 'path';
 
 export interface PactOptions {
   provider: string;
@@ -12,27 +12,27 @@ export interface PactOptions {
 }
 
 export declare type LogLevel =
-  | "trace"
-  | "debug"
-  | "info"
-  | "warn"
-  | "error"
-  | "fatal";
+  | 'trace'
+  | 'debug'
+  | 'info'
+  | 'warn'
+  | 'error'
+  | 'fatal';
 
-export declare type PactFileWriteMode = "overwrite" | "update" | "merge";
+export declare type PactFileWriteMode = 'overwrite' | 'update' | 'merge';
 
 const applyDefaults = (options: PactOptions) => ({
   port: options.port,
   log: path.resolve(
     process.cwd(),
-    "pact/logs",
-    `${options.consumer}-${options.provider}-mockserver-integration.log`
+    'pact/logs',
+    `${options.consumer}-${options.provider}-mockserver-integration.log`,
   ),
   dir: path.resolve(process.cwd(), `${options.dir}`),
   spec: 2,
-  logLevel: options.logLevel || "error",
-  pactfileWriteMode: options.pactfileWriteMode || "update",
-  ...options
+  logLevel: options.logLevel || 'error',
+  pactfileWriteMode: options.pactfileWriteMode || 'update',
+  ...options,
 });
 
 const setupProvider = (options: PactOptions) => {
@@ -54,7 +54,7 @@ export const getProviderBaseUrl = (provider: pact.Pact) =>
 export const pactWith = (options: PactOptions, tests: any) =>
   describe(`Pact between ${options.consumer} and ${options.provider}`, () => {
     if (!options.dir) {
-      options.dir = "pact/pacts";
+      options.dir = 'pact/pacts';
     }
 
     const pactTestTimeout = options.timeout || 30000;
