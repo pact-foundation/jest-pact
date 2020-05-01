@@ -15,7 +15,7 @@
 - [x] instantiates the PactOptions for you
 - [x] Setups Pact mock service before and after hooks so you don’t have to
 - [x] Assign random ports and pass port back to user so we can run in parallel without port clashes
-- [x] Set Jasmine's timeout to 30 seconds preventing brittle tests in slow environments 
+- [x] Set Jasmine's timeout to 30 seconds preventing brittle tests in slow environments
 
 ## `Jest-Pact` Roadmap
 
@@ -67,7 +67,7 @@ import api from 'yourCode';
 
 pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
   let client;
-  
+
   beforeEach(() => {
     client = api(provider.mockService.baseUrl)
   });
@@ -76,8 +76,8 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
     // Here we set up the interaction that the Pact
     // mock provider will expect.
     //
-    // jest-pact takes care of validating and tearing 
-    // down the provider for you. 
+    // jest-pact takes care of validating and tearing
+    // down the provider for you.
     beforeEach(() =>
       provider.addInteraction({
         state: "Server is healthy",
@@ -94,16 +94,16 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
         },
       })
     );
-    
-    // You also test that the API returns the correct 
-    // response to the data layer. 
+
+    // You also test that the API returns the correct
+    // response to the data layer.
     //
     // Although Pact will ensure that the provider
     // returned the expected object, you need to test that
     // your code recieves the right object.
     //
-    // This is often the same as the object that was 
-    // in the network response, but (as illustrated 
+    // This is often the same as the object that was
+    // in the network response, but (as illustrated
     // here) not always.
     it('returns server health', () =>
       client.health().then(health => {
@@ -133,7 +133,7 @@ export const healthyResponse = {
   body: {
     status: Matchers.like('up'),
   },
-} 
+}
 ```
 
 
@@ -145,7 +145,7 @@ import api from 'yourCode';
 
 pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
   let client;
-  
+
   beforeEach(() => {
     client = api(provider.mockService.baseUrl)
   });
@@ -159,7 +159,7 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
         willRespondWith: healthyResponse
       })
     );
-    
+
     it('returns server health', () =>
       client.health().then(health => {
         expect(health).toEqual('up');
@@ -170,37 +170,36 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
 
 ## Configuration
 
-```ts
+You can use all the usual `PactOptions` from pact-js, plus a timeout for
+telling jest to wait a bit longer for pact to start and run.
 
-pactWith(PactOptions, provider => {
+```ts
+pactWith(JestPactOptions, provider => {
     // regular pact tests go here
 }
 
-interface PactOptions {
-  provider: string;
-  consumer: string;
-  port?: number; // defaults to a random port if not provided
-  pactfileWriteMode?: PactFileWriteMode;
-  dir?: string // defaults to pact/pacts if not provided
-  timeout?: number // Timeout for pact service start/teardown. Defaults to 30 seconds.
+interface JestPactOptions = PactOptions & {
+  timeout?: number; // Timeout for pact service start/teardown, expressed in milliseconds
+                    // Default is 30000 milliseconds (30 seconds).
 }
-
-type LogLevel = "trace" | "debug" | "info" | "warn" | "error" | "fatal";
-type PactFileWriteMode = "overwrite" | "update" | "merge";
-
 ```
+### Defaults
 
-## Defaults
+Jest-Pact sets some helpful defaults for you. You can override any of these by explicitly setting corresponding option.
 
-- Log files are written to /pact/logs
-- Pact files are written to /pact/pacts
+- `log` is set so that log files are written to /pact/logs, and named <consumer>-<provider>-mockserver-interaction.log
+- `dir` is set so that pact files are written to /pact/pacts
+- `logLevel` is set to error
+- `timeout` is 30,000 milliseconds (30 seconds)
+- `pactfileWriteMode` is set to "update"
 
+Most of the time you won't need to change these.
 
 ### Jest Watch Mode
 
 By default Jest will watch all your files for changes, which means it will run in an infinite loop as your pact tests will generate json pact files and log files.
 
-You can get round this by using the following `watchPathIgnorePatterns: ["pact/logs/*","pact/pacts/*"]` in your `jest.config.js`
+You can get around this by using the following `watchPathIgnorePatterns: ["pact/logs/*","pact/pacts/*"]` in your `jest.config.js`
 
 Example
 

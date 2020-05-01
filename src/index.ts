@@ -1,27 +1,12 @@
 import * as pact from '@pact-foundation/pact';
+import { PactOptions } from '@pact-foundation/pact/dsl/options';
 import * as path from 'path';
 
-export interface PactOptions {
-  provider: string;
-  consumer: string;
-  port?: number;
-  logLevel?: LogLevel;
-  pactfileWriteMode?: PactFileWriteMode;
-  dir?: string;
+export type JestPactOptions = PactOptions & {
   timeout?: number;
-}
+};
 
-export declare type LogLevel =
-  | 'trace'
-  | 'debug'
-  | 'info'
-  | 'warn'
-  | 'error'
-  | 'fatal';
-
-export declare type PactFileWriteMode = 'overwrite' | 'update' | 'merge';
-
-const applyDefaults = (options: PactOptions) => ({
+const applyDefaults = (options: JestPactOptions) => ({
   port: options.port,
   log: path.resolve(
     process.cwd(),
@@ -35,7 +20,7 @@ const applyDefaults = (options: PactOptions) => ({
   ...options,
 });
 
-const setupProvider = (options: PactOptions) => {
+const setupProvider = (options: JestPactOptions) => {
   const pactMock: pact.Pact = new pact.Pact(options);
 
   beforeAll(() => pactMock.setup());
@@ -51,7 +36,7 @@ export const getProviderBaseUrl = (provider: pact.Pact) =>
     ? provider.mockService.baseUrl
     : `http://${provider.opts.host}:${provider.opts.port}`;
 
-export const pactWith = (options: PactOptions, tests: any) =>
+export const pactWith = (options: JestPactOptions, tests: any) =>
   describe(`Pact between ${options.consumer} and ${options.provider}`, () => {
     const pactTestTimeout = options.timeout || 30000;
 
