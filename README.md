@@ -2,12 +2,11 @@
 
 [![npm version](https://badge.fury.io/js/jest-pact.svg)](https://badge.fury.io/js/jest-pact)
 ![npm](https://img.shields.io/npm/dm/jest-pact.svg)
-[![TravisCI](https://travis-ci.org/YOU54F/jest-pact.svg?branch=master)](https://travis-ci.org/YOU54F/jest-pact)
-[![Maintainability](https://api.codeclimate.com/v1/badges/4ad6c94892c6704253ca/maintainability)](https://codeclimate.com/github/YOU54F/jest-pact/maintainability)
-[![Coverage Status](https://coveralls.io/repos/github/YOU54F/jest-pact/badge.svg)](https://coveralls.io/github/YOU54F/jest-pact)
-[![Dependency Status](https://img.shields.io/david/you54f/jest-pact.svg?style=flat-square)](https://david-dm.org/you54f/jest-pact)
-[![devDependency Status](https://img.shields.io/david/dev/you54f/jest-pact.svg?style=flat-square)](https://david-dm.org/you54f/jest-pact#info=devDependencies)
-[![CircleCI](https://circleci.com/gh/YOU54F/jest-pact.svg?style=svg)](https://circleci.com/gh/YOU54F/jest-pact)
+[![TravisCI](https://travis-ci.org/pact-foundation/jest-pact.svg?branch=master)](https://travis-ci.org/pact-foundation/jest-pact)
+[![Maintainability](https://api.codeclimate.com/v1/badges/4ad6c94892c6704253ca/maintainability)](https://codeclimate.com/github/pact-foundation/jest-pact/maintainability)
+[![Coverage Status](https://coveralls.io/repos/github/pact-foundation/jest-pact/badge.svg)](https://coveralls.io/github/pact-foundation/jest-pact)
+[![Dependency Status](https://img.shields.io/david/pact-foundation/jest-pact.svg?style=flat-square)](https://david-dm.org/pact-foundation/jest-pact)
+[![devDependency Status](https://img.shields.io/david/dev/pact-foundation/jest-pact.svg?style=flat-square)](https://david-dm.org/pact-foundation/jest-pact#info=devDependencies)
 
 ## Jest Adaptor to help write Pact files with ease
 
