@@ -33,4 +33,4 @@ Run the following commands:
 
 
 This should have published the latest version, check to see that at npmjs.com/package/jest-pact.
-We now need to create a GitHub release, upload zipped distribution (jestpact.tar.gz) to [GitHub Releases](https://github.com/YOU54f/jest-pact/releases).
+We now need to create a GitHub release, upload zipped distribution (jestpact.tar.gz) to [GitHub Releases](https://github.com/pact-foundation/jest-pact/releases).
