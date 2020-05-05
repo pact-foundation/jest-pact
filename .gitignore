@@ -15,3 +15,8 @@ pact/postman
 .env
 *.DS_Store
 junit*.xml
+
+# Following this advice, we no longer track these files
+# https://medium.com/@gajus/stop-using-package-lock-json-or-yarn-lock-909035e94328
+package-lock.json
+yarn.lock
