@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.3](https://github.com/pact-foundation/jest-pact/compare/v0.5.2...v0.5.3) (2020-05-05)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @types/jest to v25.1.3 ([27731ae](https://github.com/pact-foundation/jest-pact/commit/27731aea77ad2a76c290f2d7a9a35730d6f537bc))
+* **deps:** update dependency @types/jest to v25.1.4 ([e601980](https://github.com/pact-foundation/jest-pact/commit/e601980b0b61cb0f6d33cb5cd4deccaaefe22eec))
+* **options:** fix a bug where 'dir' wouldn't take absolute paths ([1cec75d](https://github.com/pact-foundation/jest-pact/commit/1cec75d4673a250a3c96ba0385262ebfecaf7e11))
+* **options:** remove PactOptions redefinition, introduce JestPactOptions ([b622f01](https://github.com/pact-foundation/jest-pact/commit/b622f0171799745d6aeaf4a3924367f413b3b334))
+
 ### [0.5.2](https://github.com/YOU54F/jest-pact/compare/v0.5.1...v0.5.2) (2020-02-18)
 
 ### [0.5.1](https://github.com/YOU54F/jest-pact/compare/v0.4.6...v0.5.1) (2020-02-12)
