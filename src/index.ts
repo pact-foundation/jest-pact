@@ -1,5 +1,5 @@
 import * as pact from '@pact-foundation/pact';
-import { PactOptions } from '@pact-foundation/pact/dsl/options';
+import { LogLevel, PactOptions } from '@pact-foundation/pact/dsl/options';
 import * as path from 'path';
 
 export type JestPactOptions = PactOptions & {
@@ -7,7 +7,6 @@ export type JestPactOptions = PactOptions & {
 };
 
 const applyDefaults = (options: JestPactOptions) => ({
-  port: options.port,
   log: path.resolve(
     process.cwd(),
     'pact/logs',
@@ -15,8 +14,8 @@ const applyDefaults = (options: JestPactOptions) => ({
   ),
   dir: path.resolve(process.cwd(), 'pact/pacts'),
   spec: 2,
-  logLevel: options.logLevel || 'error',
-  pactfileWriteMode: options.pactfileWriteMode || 'update',
+  logLevel: 'error' as LogLevel,
+  pactfileWriteMode: 'update' as pact.PactfileWriteMode,
   ...options,
 });
 
