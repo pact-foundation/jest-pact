@@ -46,7 +46,7 @@
     "jest": "25.1.0",
     "jest-junit": "10.0.0",
     "lint-staged": "10.0.8",
-    "prettier": "1.19.1",
+    "prettier": "2.0.5",
     "rimraf": "3.0.2",
     "standard-version": "7.1.0",
     "supertest": "4.0.2",
@@ -80,10 +80,5 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "prettier": {
-    "semi": true,
-    "trailingComma": "all",
-    "singleQuote": true
   }
 }
