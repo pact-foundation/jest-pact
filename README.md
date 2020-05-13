@@ -39,7 +39,7 @@ yarn add jest-pact --dev
 ```js
 pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
     // regular pact tests go here
-}
+});
 ```
 
 ## Example
