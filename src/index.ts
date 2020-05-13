@@ -14,7 +14,7 @@ const applyDefaults = (options: JestPactOptions) => ({
   ),
   dir: path.resolve(process.cwd(), 'pact/pacts'),
   spec: 2,
-  logLevel: 'error' as LogLevel,
+  logLevel: 'warn' as LogLevel,
   pactfileWriteMode: 'update' as pact.PactfileWriteMode,
   ...options,
 });
