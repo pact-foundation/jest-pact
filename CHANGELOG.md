@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.6.0](https://github.com/pact-foundation/jest-pact/compare/v0.5.4...v0.6.0) (2020-06-28)
+
+
+### Features
+
+* **logs:** Add port number to log file names (mitigates [#193](https://github.com/pact-foundation/jest-pact/issues/193)) ([e8af055](https://github.com/pact-foundation/jest-pact/commit/e8af0551c08c13d09fc96a5fc6360cc45235b483))
+
 ### [0.5.4](https://github.com/pact-foundation/jest-pact/compare/v0.5.3...v0.5.4) (2020-05-13)
 
 
