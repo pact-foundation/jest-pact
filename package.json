@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "tslint --project . --fix",
     "build": "rimraf dist && tsc",
-    "test": "jest --coverage",
+    "test": "jest --coverage --runInBand",
     "test:ci": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "dist:ci": "npm run lint && npm run test:ci && npm run build && mv dist/index.* .",
     "dist:local:": "npm run lint && npm run test && npm run build && mv dist/index.* .",

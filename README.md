@@ -34,6 +34,12 @@ OR
 yarn add jest-pact --dev
 ```
 
+If you have more than one file with pact tests for the same consumer/provider
+pair, you will also need to add `--runInBand` to your `jest` or `react-scripts
+test` command in your package.json. This avoids race conditions with the mock
+server writing to the pact file.
+
+
 ## Usage
 
 ```js
