@@ -193,7 +193,7 @@ interface JestPactOptions = PactOptions & {
 
 Jest-Pact sets some helpful defaults for you. You can override any of these by explicitly setting corresponding option.
 
-- `log` is set so that log files are written to /pact/logs, and named <consumer>-<provider>-mockserver-interaction.log
+- `log` is set so that log files are written to /pact/logs, and named `<consumer>-<provider>-mockserver-interaction.log`
 - `dir` is set so that pact files are written to /pact/pacts
 - `logLevel` is set to warn
 - `timeout` is 30,000 milliseconds (30 seconds)
