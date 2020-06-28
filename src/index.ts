@@ -6,11 +6,16 @@ export type JestPactOptions = PactOptions & {
   timeout?: number;
 };
 
+const logHint = (options: JestPactOptions) =>
+  options.port ? `-port-${options.port}` : '';
+
 const applyDefaults = (options: JestPactOptions) => ({
   log: path.resolve(
     process.cwd(),
     'pact/logs',
-    `${options.consumer}-${options.provider}-mockserver-integration.log`,
+    `${options.consumer}-${options.provider}-mockserver-interaction${logHint(
+      options,
+    )}.log`,
   ),
   dir: path.resolve(process.cwd(), 'pact/pacts'),
   spec: 2,
