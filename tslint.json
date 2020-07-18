@@ -9,6 +9,7 @@
     "jsx-no-lambda": false,
     "object-literal-sort-keys": false,
     "no-switch-case-fall-through": true,
-    "switch-default": true
+    "switch-default": true,
+    "no-empty": false
   }
 }

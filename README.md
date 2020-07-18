@@ -39,16 +39,7 @@ pair, you will also need to add `--runInBand` to your `jest` or `react-scripts
 test` command in your package.json. This avoids race conditions with the mock
 server writing to the pact file.
 
-
 ## Usage
-
-```js
-pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
-    // regular pact tests go here
-});
-```
-
-## Example
 
 Say that your API layer looks something like this:
 
@@ -116,8 +107,9 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
         expect(health).toEqual('up');
       }));
   });
-
 ```
+
+# Best practices
 
 You can make your tests easier to read by extracting your request and responses:
 
@@ -172,6 +164,14 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
       }));
   });
 ```
+
+# API Documentation
+
+Jest-Pact has three functions:
+
+* `pactWith(JestPactOptions, (providerMock) => { /* tests go here  */ })`: a wrapper that sets up a pact mock provider
+* `xpactWith(JestPactOptions, (providerMock) => {  /* tests go here  */ })`: Like `xdescribe` in Jest, this skips the pact tests described within.
+* `fpactWith(JestPactOptions, (providerMock) => { /* tests go here  */ })`: Like `fdescribe` in Jest, this sets this test suite to only run this test.
 
 
 ## Configuration

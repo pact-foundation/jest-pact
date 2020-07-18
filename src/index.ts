@@ -40,22 +40,33 @@ export const getProviderBaseUrl = (provider: pact.Pact) =>
     ? provider.mockService.baseUrl
     : `http://${provider.opts.host}:${provider.opts.port}`;
 
-export const pactWith = (options: JestPactOptions, tests: any) =>
-  describe(`Pact between ${options.consumer} and ${options.provider}`, () => {
-    const pactTestTimeout = options.timeout || 30000;
+const jestPactWrapper = (options: JestPactOptions, tests: any) => () => {
+  const pactTestTimeout = options.timeout || 30000;
 
-    describe(`with ${pactTestTimeout} ms timeout for Pact`, () => {
-      let originalTimeout: number;
+  describe(`with ${pactTestTimeout} ms timeout for Pact`, () => {
+    let originalTimeout: number;
 
-      beforeAll(() => {
-        originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
-        jasmine.DEFAULT_TIMEOUT_INTERVAL = pactTestTimeout;
-      });
-
-      afterAll(() => {
-        jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
-      });
-
-      tests(setupProvider(applyDefaults(options)));
+    beforeAll(() => {
+      originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+      jasmine.DEFAULT_TIMEOUT_INTERVAL = pactTestTimeout;
     });
+
+    afterAll(() => {
+      jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
+    });
+
+    tests(setupProvider(applyDefaults(options)));
   });
+};
+
+const describeString = (options: JestPactOptions) =>
+  `Pact between ${options.consumer} and ${options.provider}`;
+
+export const pactWith = (options: JestPactOptions, tests: any) =>
+  describe(describeString(options), jestPactWrapper(options, tests));
+
+export const xpactWith = (options: JestPactOptions, tests: any) =>
+  xdescribe(describeString(options), jestPactWrapper(options, tests));
+
+export const fpactWith = (options: JestPactOptions, tests: any) =>
+  fdescribe(describeString(options), jestPactWrapper(options, tests));
