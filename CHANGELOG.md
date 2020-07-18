@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.7.0](https://github.com/pact-foundation/jest-pact/compare/v0.6.0...v0.7.0) (2020-07-18)
+
+
+### Features
+
+* **dsl:** Add xpactWith and fpactWith to improve the experience when skipping tests ([da82056](https://github.com/pact-foundation/jest-pact/commit/da82056a1c56e77e27f4fa52964f943959519310))
+
 ## [0.6.0](https://github.com/pact-foundation/jest-pact/compare/v0.5.4...v0.6.0) (2020-06-28)
 
 
