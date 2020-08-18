@@ -1,8 +1,8 @@
-import { InteractionObject } from '@pact-foundation/pact';
+import { InteractionObject, Pact } from '@pact-foundation/pact';
 import * as supertest from 'supertest';
 import { getProviderBaseUrl, pactWith } from '../index';
 
-const getClient = (provider: any) => supertest(provider.mockService.baseUrl);
+const getClient = (provider: Pact) => supertest(provider.mockService.baseUrl);
 const pactPort: number = 5001;
 
 const postValidRequest: InteractionObject = {
@@ -20,7 +20,7 @@ const postValidRequest: InteractionObject = {
 
 pactWith(
   { consumer: 'MyConsumer', provider: 'pactWith', port: pactPort },
-  (provider: any) => {
+  (provider: Pact) => {
     describe('pact integration', () => {
       beforeEach(() => provider.addInteraction(postValidRequest));
 
@@ -46,32 +46,35 @@ pactWith(
   },
 );
 
-pactWith({ consumer: 'MyConsumer', provider: 'pactWith2' }, (provider: any) => {
-  describe('pact integration', () => {
-    beforeEach(() => provider.addInteraction(postValidRequest));
+pactWith(
+  { consumer: 'MyConsumer', provider: 'pactWith2' },
+  (provider: Pact) => {
+    describe('pact integration', () => {
+      beforeEach(() => provider.addInteraction(postValidRequest));
 
-    test('should be ok if i dont provide a port', () =>
-      getClient(provider)
-        .get('/v2/pet/1845563262948980200')
-        .set('api_key', '[]')
-        .expect(200));
-  });
-
-  describe('provider object', () => {
-    test('should show the randomly assigned port in the URL', () => {
-      expect(provider.mockService.baseUrl).toMatch(new RegExp(`\\d{4,5}$`));
+      test('should be ok if i dont provide a port', () =>
+        getClient(provider)
+          .get('/v2/pet/1845563262948980200')
+          .set('api_key', '[]')
+          .expect(200));
     });
 
-    test('should return the host on getProviderBaseUrl', () => {
-      expect(getProviderBaseUrl(provider)).toMatch(
-        new RegExp('^http://127.0.0.1:\\d{4,5}$'),
-      );
+    describe('provider object', () => {
+      test('should show the randomly assigned port in the URL', () => {
+        expect(provider.mockService.baseUrl).toMatch(new RegExp(`\\d{4,5}$`));
+      });
+
+      test('should return the host on getProviderBaseUrl', () => {
+        expect(getProviderBaseUrl(provider)).toMatch(
+          new RegExp('^http://127.0.0.1:\\d{4,5}$'),
+        );
+      });
     });
-  });
-});
+  },
+);
 
 describe('custom log locations', () => {
-  const arbitraryPact = (provider: any) => {
+  const arbitraryPact = (provider: Pact) => {
     describe('pact test', () => {
       beforeEach(() => provider.addInteraction(postValidRequest));
 
@@ -91,7 +94,7 @@ describe('custom log locations', () => {
           provider: 'pactWith2',
           logDir: 'pact/log/custom',
         },
-        (provider: any) => {
+        (provider: Pact) => {
           arbitraryPact(provider);
         },
       );
@@ -104,7 +107,7 @@ describe('custom log locations', () => {
           logDir: 'pact/log/custom',
           logFileName: 'someLog.txt',
         },
-        (provider: any) => {
+        (provider: Pact) => {
           arbitraryPact(provider);
         },
       );
@@ -117,7 +120,7 @@ describe('custom log locations', () => {
         provider: 'pactWith2',
         logFileName: 'someOtherLog.txt',
       },
-      (provider: any) => {
+      (provider: Pact) => {
         arbitraryPact(provider);
       },
     );

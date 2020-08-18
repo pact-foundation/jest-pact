@@ -8,6 +8,8 @@ export type JestPactOptions = PactOptions & {
   logFileName?: string;
 };
 
+export type JestProvidedPactFn = (provider: pact.Pact) => void;
+
 const logHint = (options: JestPactOptions) =>
   options.port ? `-port-${options.port}` : '';
 
@@ -43,7 +45,10 @@ export const getProviderBaseUrl = (provider: pact.Pact) =>
     ? provider.mockService.baseUrl
     : `http://${provider.opts.host}:${provider.opts.port}`;
 
-const jestPactWrapper = (options: JestPactOptions, tests: any) => () => {
+const jestPactWrapper = (
+  options: JestPactOptions,
+  tests: JestProvidedPactFn,
+): void => {
   const pactTestTimeout = options.timeout || 30000;
 
   describe(`with ${pactTestTimeout} ms timeout for Pact`, () => {
@@ -74,11 +79,15 @@ const jestPactWrapper = (options: JestPactOptions, tests: any) => () => {
 const describeString = (options: JestPactOptions) =>
   `Pact between ${options.consumer} and ${options.provider}`;
 
-export const pactWith = (options: JestPactOptions, tests: any) =>
-  describe(describeString(options), jestPactWrapper(options, tests));
+export const pactWith = (options: JestPactOptions, tests: JestProvidedPactFn) =>
+  describe(describeString(options), () => jestPactWrapper(options, tests));
 
-export const xpactWith = (options: JestPactOptions, tests: any) =>
-  xdescribe(describeString(options), jestPactWrapper(options, tests));
+export const xpactWith = (
+  options: JestPactOptions,
+  tests: JestProvidedPactFn,
+) => xdescribe(describeString(options), () => jestPactWrapper(options, tests));
 
-export const fpactWith = (options: JestPactOptions, tests: any) =>
-  fdescribe(describeString(options), jestPactWrapper(options, tests));
+export const fpactWith = (
+  options: JestPactOptions,
+  tests: JestProvidedPactFn,
+) => fdescribe(describeString(options), () => jestPactWrapper(options, tests));
