@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.1](https://github.com/pact-foundation/jest-pact/compare/v0.8.0...v0.8.1) (2020-08-18)
+
+
+### Bug Fixes
+
+* **jest-26:** Use global object to avoid 'jasmine is undefined' error ([9e46c9b](https://github.com/pact-foundation/jest-pact/commit/9e46c9b0c150396b176fd1d6905a0d63e9d03db1))
+
 ## [0.8.0](https://github.com/pact-foundation/jest-pact/compare/v0.7.0...v0.8.0) (2020-08-18)
 
 

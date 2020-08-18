@@ -1,6 +1,6 @@
 {
   "name": "jest-pact",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "a pact adaptor for jest",
   "main": "index.js",
   "scripts": {
