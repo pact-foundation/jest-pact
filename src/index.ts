@@ -64,7 +64,9 @@ const jestPactWrapper = (
       // For now, we just assume that 5000 was the original timeout.
       // The impact is likely to be small, as `jest.setTimeout()` only works for the
       // current test file
-      originalTimeout = jasmine ? jasmine.DEFAULT_TIMEOUT_INTERVAL : 5000;
+      originalTimeout = global.jasmine
+        ? global.jasmine.DEFAULT_TIMEOUT_INTERVAL
+        : 5000;
       jest.setTimeout(pactTestTimeout);
     });
 
