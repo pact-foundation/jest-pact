@@ -4,6 +4,8 @@ import * as path from 'path';
 
 export type JestPactOptions = PactOptions & {
   timeout?: number;
+  logDir?: string;
+  logFileName?: string;
 };
 
 const logHint = (options: JestPactOptions) =>
@@ -11,11 +13,12 @@ const logHint = (options: JestPactOptions) =>
 
 const applyDefaults = (options: JestPactOptions) => ({
   log: path.resolve(
-    process.cwd(),
-    'pact/logs',
-    `${options.consumer}-${options.provider}-mockserver-interaction${logHint(
-      options,
-    )}.log`,
+    options.logDir ? options.logDir : path.join(process.cwd(), 'pact', 'logs'),
+    options.logFileName
+      ? options.logFileName
+      : `${options.consumer}-${
+          options.provider
+        }-mockserver-interaction${logHint(options)}.log`,
   ),
   dir: path.resolve(process.cwd(), 'pact/pacts'),
   spec: 2,

@@ -35,8 +35,7 @@ yarn add jest-pact --dev
 ```
 
 If you have more than one file with pact tests for the same consumer/provider
-pair, you will also need to add `--runInBand` to your `jest` or `react-scripts
-test` command in your package.json. This avoids race conditions with the mock
+pair, you will also need to add `--runInBand` to your `jest` or `react-scripts test` command in your package.json. This avoids race conditions with the mock
 server writing to the pact file.
 
 ## Usage
@@ -46,13 +45,13 @@ Say that your API layer looks something like this:
 ```js
 import axios from 'axios';
 
-const defaultBaseUrl = "http://your-api.example.com"
+const defaultBaseUrl = 'http://your-api.example.com';
 
 export const api = (baseUrl = defaultBaseUrl) => ({
-     getHealth: () => axios.get(`${baseUrl}/health`)
-                    .then(response => response.data.status)
-    /* other endpoints here */
-})
+  getHealth: () =>
+    axios.get(`${baseUrl}/health`).then((response) => response.data.status),
+  /* other endpoints here */
+});
 ```
 
 Then your test might look like:
@@ -113,7 +112,6 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
 
 You can make your tests easier to read by extracting your request and responses:
 
-
 ```js
 /* pact.fixtures.js */
 import { Matchers } from '@pact-foundation/pact';
@@ -131,9 +129,8 @@ export const healthyResponse = {
   body: {
     status: Matchers.like('up'),
   },
-}
+};
 ```
-
 
 ```js
 import { pactWith } from 'jest-pact';
@@ -169,10 +166,9 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
 
 Jest-Pact has three functions:
 
-* `pactWith(JestPactOptions, (providerMock) => { /* tests go here  */ })`: a wrapper that sets up a pact mock provider
-* `xpactWith(JestPactOptions, (providerMock) => {  /* tests go here  */ })`: Like `xdescribe` in Jest, this skips the pact tests described within.
-* `fpactWith(JestPactOptions, (providerMock) => { /* tests go here  */ })`: Like `fdescribe` in Jest, this sets this test suite to only run this test.
-
+- `pactWith(JestPactOptions, (providerMock) => { /* tests go here */ })`: a wrapper that sets up a pact mock provider
+- `xpactWith(JestPactOptions, (providerMock) => { /* tests go here */ })`: Like `xdescribe` in Jest, this skips the pact tests described within.
+- `fpactWith(JestPactOptions, (providerMock) => { /* tests go here */ })`: Like `fdescribe` in Jest, this sets this test suite to only run this test.
 
 ## Configuration
 
@@ -187,11 +183,14 @@ pactWith(JestPactOptions, provider => {
 interface JestPactOptions = PactOptions & {
   timeout?: number; // Timeout for pact service start/teardown, expressed in milliseconds
                     // Default is 30000 milliseconds (30 seconds).
+  logDir?: string; // path for the log file
+  logFileName?: string; // filename for the log file
 }
 ```
+
 ### Defaults
 
-Jest-Pact sets some helpful defaults for you. You can override any of these by explicitly setting corresponding option.
+Jest-Pact sets some helpful default PactOptions for you. You can override any of these by explicitly setting corresponding option. Here are the defaults:
 
 - `log` is set so that log files are written to /pact/logs, and named `<consumer>-<provider>-mockserver-interaction.log`
 - `dir` is set so that pact files are written to /pact/pacts
@@ -200,6 +199,13 @@ Jest-Pact sets some helpful defaults for you. You can override any of these by e
 - `pactfileWriteMode` is set to "update"
 
 Most of the time you won't need to change these.
+
+A common use case for `log` is to change only the filename or the path for
+logging. To help with this, Jest-Pact provides convienience options `logDir`
+and `logFileName`. These allow you to set the path or the filename
+independently. In case you're wondering, if you specify `log`, `logDir` and
+`logFileName`, the convienience options are ignored and `log` takes
+precidence.
 
 ### Jest Watch Mode
 
@@ -211,8 +217,8 @@ Example
 
 ```js
 module.exports = {
-  testMatch: ["**/*.test.(ts|js)", "**/*.it.(ts|js)", "**/*.pacttest.(ts|js)"],
-  watchPathIgnorePatterns: ["pact/logs/*", "pact/pacts/*"]
+  testMatch: ['**/*.test.(ts|js)', '**/*.it.(ts|js)', '**/*.pacttest.(ts|js)'],
+  watchPathIgnorePatterns: ['pact/logs/*', 'pact/pacts/*'],
 };
 ```
 

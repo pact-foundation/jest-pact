@@ -69,3 +69,57 @@ pactWith({ consumer: 'MyConsumer', provider: 'pactWith2' }, (provider: any) => {
     });
   });
 });
+
+describe('custom log locations', () => {
+  const arbitraryPact = (provider: any) => {
+    describe('pact test', () => {
+      beforeEach(() => provider.addInteraction(postValidRequest));
+
+      test('works', () =>
+        getClient(provider)
+          .get('/v2/pet/1845563262948980200')
+          .set('api_key', '[]')
+          .expect(200));
+    });
+  };
+
+  describe('with logDir', () => {
+    describe('without logFileName', () => {
+      pactWith(
+        {
+          consumer: 'MyConsumer',
+          provider: 'pactWith2',
+          logDir: 'pact/log/custom',
+        },
+        (provider: any) => {
+          arbitraryPact(provider);
+        },
+      );
+    });
+    describe('with logFileName', () => {
+      pactWith(
+        {
+          consumer: 'MyConsumer',
+          provider: 'pactWith2',
+          logDir: 'pact/log/custom',
+          logFileName: 'someLog.txt',
+        },
+        (provider: any) => {
+          arbitraryPact(provider);
+        },
+      );
+    });
+  });
+  describe('with only logFileName', () => {
+    pactWith(
+      {
+        consumer: 'MyConsumer',
+        provider: 'pactWith2',
+        logFileName: 'someOtherLog.txt',
+      },
+      (provider: any) => {
+        arbitraryPact(provider);
+      },
+    );
+  });
+});
