@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.8.0](https://github.com/pact-foundation/jest-pact/compare/v0.7.0...v0.8.0) (2020-08-18)
+
+
+### Features
+
+* **jest:** Add support for Jest v26.x by using jest.setTimeout() (Fixes [#197](https://github.com/pact-foundation/jest-pact/issues/197)) ([078f0d1](https://github.com/pact-foundation/jest-pact/commit/078f0d112ba5dcf0bdbca3ddc34fbd3d0fa1db2a))
+* **options:** Add convienience options logDir and logFileName ([2d61354](https://github.com/pact-foundation/jest-pact/commit/2d61354065ad1bbb4e42238953c51b745297f35f))
+* **types:** Add JestProvidedPactFn to improve type safety for callers of withPact ([f63ce87](https://github.com/pact-foundation/jest-pact/commit/f63ce871188e74d54789c6f45e97a36483d5a3ca))
+
+
+### Bug Fixes
+
+* **peerDeps:** Widen peer deps to include Jest v24.x.x and v25.x.x ([50355e2](https://github.com/pact-foundation/jest-pact/commit/50355e2751cf3b5bd39b8f44998832cdbfa178e8))
+
 ## [0.7.0](https://github.com/pact-foundation/jest-pact/compare/v0.6.0...v0.7.0) (2020-07-18)
 
 
