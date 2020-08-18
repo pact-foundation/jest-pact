@@ -58,7 +58,7 @@
   },
   "peerDependencies": {
     "@pact-foundation/pact": "^8.2.4 || ^9.0.1",
-    "jest": "~24.7.1 || ~24.8.0 || ~24.9.0 || ~25.1.0"
+    "jest": "^24.0.0 || ^25.0.0"
   },
   "dependencies": {
     "@types/jest": "25.1.4"
