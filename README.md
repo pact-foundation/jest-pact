@@ -74,7 +74,10 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
     //
     // jest-pact takes care of validating and tearing
     // down the provider for you.
-    beforeEach(() =>
+    beforeEach(() => // note the implicit return. 
+                     // addInteraction returns a promise.
+                     // If you don't want to implict return,
+                     // you will need to `await` the result
       provider.addInteraction({
         state: "Server is healthy",
         uponReceiving: 'A request for API health',
@@ -101,7 +104,7 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
     // This is often the same as the object that was
     // in the network response, but (as illustrated
     // here) not always.
-    it('returns server health', () =>
+    it('returns server health', () => // implicit return again
       client.health().then(health => {
         expect(health).toEqual('up');
       }));
@@ -161,6 +164,18 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
       }));
   });
 ```
+## Common gotchas
+
+* Forgetting to wait for the promise from `addInteraction` in `beforeEach`. 
+  You can return the promise, or use `async`/`await`. If you forget this, 
+  your interaction may not be set up before the test runs.
+* Forgetting to wait for the promise of your API call in `it`. You can 
+  return the promise, or use `async`/`await`. If you forget this, your 
+  test may pass before the `expect` assertion runs, causing a potentially 
+  false success.
+* Not running jest with `--runInBand`. If you have multiple test files that 
+  write to the same contract, you will need this to avoid intermittent failures
+  when writing the contract file.
 
 # API Documentation
 
