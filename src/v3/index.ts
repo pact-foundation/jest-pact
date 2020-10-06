@@ -96,31 +96,3 @@ export const fpactWith = (
   options: JestPactOptionsV3,
   tests: JestProvidedDescribeFnV3,
 ) => fdescribe(describeString(options), () => jestPactWrapper(options, tests));
-
-/* 
-
-example:
-
-const options = { dir: '', consumer: '', provider: '' };
-
-const api = (url: string) => ({ getWhatever: () => Promise.resolve(url) });
-
-pactWith(options, (pactDescribe) => {
-  pactDescribe('some interaction', (provider) => {
-    beforeEach(() =>
-      provider
-        .given('Some state')
-        .uponReceiving('Some request')
-        .withRequest({ path: '/whatever/path', method: 'GET' }),
-    );
-
-    it('works', () =>
-      provider
-        .executeTest((mockserver) => api(mockserver.url).getWhatever())
-        .then((response) => {
-          expect(response).toEqual({ whatever: 'it-should-be' });
-        }));
-  });
-});
-
-*/

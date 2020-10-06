@@ -74,7 +74,7 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
     //
     // jest-pact takes care of validating and tearing
     // down the provider for you.
-    beforeEach(() => // note the implicit return. 
+    beforeEach(() => // note the implicit return.
                      // addInteraction returns a promise.
                      // If you don't want to implict return,
                      // you will need to `await` the result
@@ -109,6 +109,48 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
         expect(health).toEqual('up');
       }));
   });
+```
+
+## Pact-JS V3
+
+We also include a wrapper for the beta version of Pact-JS V3.
+
+```
+npm i -D @pact-foundation/pact@10.0.0-beta.16 @pact-foundation/jest-pact@0.9.0-beta.v3
+```
+
+```js
+import { pactWith } from 'jest-pact/v3';
+import { MatchersV3 } from '@pact-foundation/pact/v3';
+import api from 'yourCode';
+
+pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, (interaction) => {
+  interaction('A request for API health', ({ provider, execute }) => {
+    beforeEach(() =>
+      provider
+        .given('Server is healthy')
+        .uponReceiving('A request for API health')
+        .withRequest({
+          method: 'GET',
+          path: '/health',
+        })
+        .willRespondWith({
+          status: 200,
+          body: {
+            status: MatchersV3.like('up'),
+          },
+        }),
+    );
+
+    execute('some api call', (mockserver) =>
+      api(mockserver.url)
+        .health()
+        .then((health) => {
+          expect(health).toEqual('up');
+        }),
+    );
+  });
+});
 ```
 
 # Best practices
@@ -164,16 +206,17 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
       }));
   });
 ```
+
 ## Common gotchas
 
-* Forgetting to wait for the promise from `addInteraction` in `beforeEach`. 
-  You can return the promise, or use `async`/`await`. If you forget this, 
+- Forgetting to wait for the promise from `addInteraction` in `beforeEach`.
+  You can return the promise, or use `async`/`await`. If you forget this,
   your interaction may not be set up before the test runs.
-* Forgetting to wait for the promise of your API call in `it`. You can 
-  return the promise, or use `async`/`await`. If you forget this, your 
-  test may pass before the `expect` assertion runs, causing a potentially 
+- Forgetting to wait for the promise of your API call in `it`. You can
+  return the promise, or use `async`/`await`. If you forget this, your
+  test may pass before the `expect` assertion runs, causing a potentially
   false success.
-* Not running jest with `--runInBand`. If you have multiple test files that 
+- Not running jest with `--runInBand`. If you have multiple test files that
   write to the same contract, you will need this to avoid intermittent failures
   when writing the contract file.
 
