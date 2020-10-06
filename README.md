@@ -113,10 +113,16 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
 
 ## Pact-JS V3
 
-We also include a wrapper for the beta version of Pact-JS V3.
+In this branch, we also include a wrapper for the beta version of Pact-JS V3.
+
+**Note: The API is NOT finalised. Feedback welcome**
+
+If you have thoughts or feedback about the DSL, please let us know via slack or open issue.
+
+Currently, only a default for the pact directory is provided by the jest-pact wrapper.
 
 ```
-npm i -D @pact-foundation/pact@10.0.0-beta.16 @pact-foundation/jest-pact@0.9.0-beta.v3
+npm i -D @pact-foundation/pact@10.0.0-beta.16 jest-pact@0.9.0-beta.v3
 ```
 
 ```js
