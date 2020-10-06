@@ -20,13 +20,11 @@ pactWith({ consumer: 'MyConsumer', provider: 'pactWith v3' }, (interaction) => {
         }),
     );
 
-    execute(
-      'should be be able to hide the pact stuff behind the scenes with a port of the users choosing',
-      (mock) =>
-        getClient(mock)
-          .get('/v2/pet/1845563262948980200')
-          .set('api_key', '[]')
-          .expect(200),
+    execute('A pact test that returns 200', (mock) =>
+      getClient(mock)
+        .get('/v2/pet/1845563262948980200')
+        .set('api_key', '[]')
+        .expect(200),
     );
   });
 
@@ -45,13 +43,11 @@ pactWith({ consumer: 'MyConsumer', provider: 'pactWith v3' }, (interaction) => {
         }),
     );
 
-    execute(
-      'should be be able to hide the pact stuff behind the scenes with a port of the users choosing',
-      (mock) =>
-        getClient(mock)
-          .get('/v2/pet/1845563262948980200')
-          .set('api_key', '[]')
-          .expect(404),
+    execute('A pact test that returns 404', (mock) =>
+      getClient(mock)
+        .get('/v2/pet/1845563262948980200')
+        .set('api_key', '[]')
+        .expect(404),
     );
   });
 });
