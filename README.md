@@ -14,15 +14,15 @@
 
 - [x] instantiates the PactOptions for you
 - [x] Setups Pact mock service before and after hooks so you don’t have to
-- [x] Assign random ports and pass port back to user so we can run in parallel without port clashes
-- [x] Set Jasmine's timeout to 30 seconds preventing brittle tests in slow environments
+- [x] Set Jest timeout to 30 seconds preventing brittle tests in slow environments like Docker
+- [x] Sensible defaults for the pact options that make sense with Jest
+- [x] Supports both the main release of pact-js (9.x.x) and the beta 10.x.x for Pact spec V3.
 
 ## `Jest-Pact` Roadmap
 
-- [ ] user configurable paths for log/pact output dirs
-- [ ] integration with Jest's API to make setup and teardown of pact tests very simple
 - [ ] Ensure that jest-pact plays well with jest's default of watch-mode
 - [ ] Ensure that pact failures print nice diffs (at the moment you have to go digging in the log files)
+- [ ] Add a setup hook for clearing out log and pact files
 
 ## Adapter Installation
 
@@ -176,6 +176,9 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
 * Not running jest with `--runInBand`. If you have multiple test files that 
   write to the same contract, you will need this to avoid intermittent failures
   when writing the contract file.
+* It's a good idea to specify a different log file for each invocation of `pactWith`, 
+  otherwise the logs will get overwritten when other specs start. If you provide an
+  explicit port, then the default mockserver log filename includes the port number.
 
 # API Documentation
 
@@ -212,8 +215,8 @@ interface JestPactOptions = PactOptions & {
 
 Jest-Pact sets some helpful default PactOptions for you. You can override any of these by explicitly setting corresponding option. Here are the defaults:
 
-- `log` is set so that log files are written to /pact/logs, and named `<consumer>-<provider>-mockserver-interaction.log`
-- `dir` is set so that pact files are written to /pact/pacts
+- `log` is set so that log files are written to `/pact/logs`, and named `<consumer>-<provider>-mockserver-interaction.log`. If you provided an explicit `port`, then the log file name is `<consumer>-<provider>-mockserver-interaction-port-<portNumber>.log`
+- `dir` is set so that pact files are written to `/pact/pacts`
 - `logLevel` is set to warn
 - `timeout` is 30,000 milliseconds (30 seconds)
 - `pactfileWriteMode` is set to "update"
