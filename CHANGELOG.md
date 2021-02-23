@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.2](https://github.com/pact-foundation/jest-pact/compare/v0.8.1...v0.8.2) (2021-02-23)
+
+
+### Features
+
+* **dsl:** Add pactWith.only and pactWith.skip, which behave like their describe counterparts ([540dc3c](https://github.com/pact-foundation/jest-pact/commit/540dc3c692bcb25d1175f73c4d5da1babb001087))
+* **messagePact:** Add messagePactWith so that the default options are available for message pact users too ([a8c1943](https://github.com/pact-foundation/jest-pact/commit/a8c19435546f374130eda3c431254911a7142e37))
+
 ### [0.8.1](https://github.com/pact-foundation/jest-pact/compare/v0.8.0...v0.8.1) (2020-08-18)
 
 
