@@ -195,6 +195,8 @@ Jest-Pact has three functions:
 - `xpactWith(JestPactOptions, (providerMock) => { /* tests go here */ })`: Like `xdescribe` in Jest, this skips the pact tests described within.
 - `fpactWith(JestPactOptions, (providerMock) => { /* tests go here */ })`: Like `fdescribe` in Jest, this sets this test suite to only run this test.
 
+Additionally, `pactWith.only` and `pactWith.skip` behave as you would expect from Jest.
+
 There are two types exported:
 
 - `JestProvidedPactFn`: This is the type of the second argument to `pactWith`, ie: `(provider: Pact) => void`

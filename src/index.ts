@@ -81,15 +81,26 @@ const jestPactWrapper = (
 const describeString = (options: JestPactOptions) =>
   `Pact between ${options.consumer} and ${options.provider}`;
 
-export const pactWith = (options: JestPactOptions, tests: JestProvidedPactFn) =>
-  describe(describeString(options), () => jestPactWrapper(options, tests));
+type PactWithFn = (options: JestPactOptions, tests: JestProvidedPactFn) => void;
+interface PactWith {
+  (options: JestPactOptions, tests: JestProvidedPactFn): void;
+  only: PactWithFn;
+  skip: PactWithFn;
+}
 
-export const xpactWith = (
+const describePactWith = (describeFn: jest.Describe): PactWithFn => (
   options: JestPactOptions,
   tests: JestProvidedPactFn,
-) => xdescribe(describeString(options), () => jestPactWrapper(options, tests));
+) => describeFn(describeString(options), () => jestPactWrapper(options, tests));
 
-export const fpactWith = (
-  options: JestPactOptions,
-  tests: JestProvidedPactFn,
-) => fdescribe(describeString(options), () => jestPactWrapper(options, tests));
+const extend = (pactWithfn: PactWithFn) => {
+  const ret = pactWithfn as PactWith;
+  ret.only = describePactWith(describe.only);
+  ret.skip = describePactWith(describe.skip);
+  return ret;
+};
+
+export const pactWith = extend(describePactWith(describe));
+
+export const xpactWith = pactWith.skip;
+export const fpactWith = pactWith.only;
