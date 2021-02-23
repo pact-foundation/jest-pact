@@ -189,13 +189,12 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
 
 # API Documentation
 
-Jest-Pact has three functions:
+Jest-Pact has two primary functions:
 
-- `pactWith(JestPactOptions, (providerMock) => { /* tests go here */ })`: a wrapper that sets up a pact mock provider
-- `xpactWith(JestPactOptions, (providerMock) => { /* tests go here */ })`: Like `xdescribe` in Jest, this skips the pact tests described within.
-- `fpactWith(JestPactOptions, (providerMock) => { /* tests go here */ })`: Like `fdescribe` in Jest, this sets this test suite to only run this test.
+- `pactWith(JestPactOptions, (providerMock) => { /* tests go here */ })`: a wrapper that sets up a pact mock provider, applies sensible default options, and applies the setup and verification hooks so you don't have to
+- `messagePactWith(JestMessageConsumerOptions, (messagePact) => { /* tests go here */ })`: a wrapper that sets up a message pact instance and applies sensible default options
 
-Additionally, `pactWith.only` and `pactWith.skip` behave as you would expect from Jest.
+Additionally, `pactWith.only / fpactWith`, `pactWith.skip / xpactWith`, `messagePactWith.only / fmessagePactWith` and `messagePactWith.skip / xmessagePactWith` behave as you would expect from Jest.
 
 There are two types exported:
 
@@ -208,16 +207,23 @@ You can use all the usual `PactOptions` from pact-js, plus a timeout for
 telling jest to wait a bit longer for pact to start and run.
 
 ```ts
-pactWith(JestPactOptions, provider => {
-    // regular pact tests go here
-}
+pactWith(JestPactOptions, (provider) => {
+  // regular http pact tests go here
+});
+messagePactWith(JestMessageConsumerOptions, (messagePact) => {
+  // regular message pact tests go here
+});
 
-interface JestPactOptions = PactOptions & {
+interface ExtraOptions {
   timeout?: number; // Timeout for pact service start/teardown, expressed in milliseconds
-                    // Default is 30000 milliseconds (30 seconds).
+  // Default is 30000 milliseconds (30 seconds).
   logDir?: string; // path for the log file
   logFileName?: string; // filename for the log file
 }
+
+type JestPactOptions = PactOptions & ExtraOptions;
+
+type JestMessageConsumerOptions = MessageConsumerOptions & ExtraOptions;
 ```
 
 ### Defaults
