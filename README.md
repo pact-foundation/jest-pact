@@ -16,7 +16,7 @@
 - [x] Setups Pact mock service before and after hooks so you don’t have to
 - [x] Set Jest timeout to 30 seconds preventing brittle tests in slow environments like Docker
 - [x] Sensible defaults for the pact options that make sense with Jest
-- [x] Supports both the main release of pact-js (9.x.x) and the beta 10.x.x for Pact spec V3.
+- [x] Supports both the main release of pact-js (9.x.x) and the beta 10.x.x for Pact spec V3
 
 ## `Jest-Pact` Roadmap
 
@@ -26,12 +26,14 @@
 
 ## Adapter Installation
 
-```sh
-npm i jest-pact --save-dev
-
-OR
-
+```
+# For pact @ 9.x
+npm install --save-dev jest-pact
 yarn add jest-pact --dev
+
+# For pact @ 10.0.0-beta.x
+npm install --save-dev jest-pact@beta
+yarn add jest-pact@beta --dev
 ```
 
 If you have more than one file with pact tests for the same consumer/provider
@@ -74,7 +76,7 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
     //
     // jest-pact takes care of validating and tearing
     // down the provider for you.
-    beforeEach(() => // note the implicit return. 
+    beforeEach(() => // note the implicit return.
                      // addInteraction returns a promise.
                      // If you don't want to implict return,
                      // you will need to `await` the result
@@ -110,6 +112,10 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
       }));
   });
 ```
+
+## V3 Pact spec with 10.0.0-beta.x
+
+See [the usage instructions here](https://github.com/pact-foundation/jest-pact/blob/pact-js-v3/README.md)
 
 # Best practices
 
@@ -164,19 +170,20 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
       }));
   });
 ```
+
 ## Common gotchas
 
-* Forgetting to wait for the promise from `addInteraction` in `beforeEach`. 
-  You can return the promise, or use `async`/`await`. If you forget this, 
+- Forgetting to wait for the promise from `addInteraction` in `beforeEach`.
+  You can return the promise, or use `async`/`await`. If you forget this,
   your interaction may not be set up before the test runs.
-* Forgetting to wait for the promise of your API call in `it`. You can 
-  return the promise, or use `async`/`await`. If you forget this, your 
-  test may pass before the `expect` assertion runs, causing a potentially 
+- Forgetting to wait for the promise of your API call in `it`. You can
+  return the promise, or use `async`/`await`. If you forget this, your
+  test may pass before the `expect` assertion runs, causing a potentially
   false success.
-* Not running jest with `--runInBand`. If you have multiple test files that 
+- Not running jest with `--runInBand`. If you have multiple test files that
   write to the same contract, you will need this to avoid intermittent failures
   when writing the contract file.
-* It's a good idea to specify a different log file for each invocation of `pactWith`, 
+- It's a good idea to specify a different log file for each invocation of `pactWith`,
   otherwise the logs will get overwritten when other specs start. If you provide an
   explicit port, then the default mockserver log filename includes the port number.
 
