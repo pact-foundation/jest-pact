@@ -18,7 +18,7 @@ export type JestMessageConsumerOptions = MessageConsumerOptions & ExtraOptions;
 export type JestProvidedPactFn = (provider: Pact) => void;
 
 export type JestProvidedMessagePactFn = (
-  messagePact: MessageConsumerPact,
+  messagePact: MessageConsumerPact
 ) => void;
 
 export type PactWith = WrapperWithOnlyAndSkip<

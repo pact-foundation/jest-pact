@@ -24,7 +24,7 @@ export const getProviderBaseUrl = (provider: Pact) =>
 
 const pactWithWrapper = (
   options: JestPactOptions,
-  tests: JestProvidedPactFn,
+  tests: JestProvidedPactFn
 ): void => {
   withTimeout(options, () => {
     tests(setupProvider(applyPactOptionDefaults(options)));

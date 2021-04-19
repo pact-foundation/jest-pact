@@ -51,7 +51,7 @@ describe('custom log locations', () => {
         },
         (provider: MessageConsumerPact) => {
           arbitraryPact(provider);
-        },
+        }
       );
     });
     describe('with logFileName', () => {
@@ -64,7 +64,7 @@ describe('custom log locations', () => {
         },
         (provider: MessageConsumerPact) => {
           arbitraryPact(provider);
-        },
+        }
       );
     });
   });
@@ -77,7 +77,7 @@ describe('custom log locations', () => {
       },
       (provider: MessageConsumerPact) => {
         arbitraryPact(provider);
-      },
+      }
     );
   });
 });

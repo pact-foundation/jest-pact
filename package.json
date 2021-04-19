@@ -11,6 +11,9 @@
     "dist:ci": "npm run lint && npm run test:ci && npm run build",
     "dist:local:": "npm run lint && npm run test && npm run build",
     "deploy:prepare": "./scripts/create_npmrc_file.sh",
+    "format:base": "prettier \"src/**/*.{ts,js}\"",
+    "format:fix": "npm run format:base -- --write",
+    "format:check": "npm run format:base -- --check",
     "release": "standard-version",
     "release:dryrun": "npm run test && npm publish --dry-run",
     "release:publish": "npm run test && npm publish"
@@ -39,6 +42,7 @@
     "@commitlint/cli": "^10.0.0",
     "@commitlint/config-conventional": "^10.0.0",
     "@pact-foundation/pact": "9.8.0",
+    "@pact-foundation/pact-js-prettier-config": "^1.0.0",
     "@types/supertest": "2.0.8",
     "coveralls": "3.0.9",
     "cross-env": "7.0.2",

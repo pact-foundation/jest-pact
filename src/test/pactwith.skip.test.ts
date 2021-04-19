@@ -8,7 +8,7 @@ describe('pactwith.skip', () => {
       test('the test that should be skipped', () => {
         throw new Error('tests inside xpactWith should not run');
       });
-    },
+    }
   );
   test('this test should run', () => {});
 });

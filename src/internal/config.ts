@@ -7,7 +7,7 @@ const logHint = (options: JestPactOptions) =>
   options.port ? `-port-${options.port}` : '';
 
 const applyCommonDefaults = (
-  options: JestPactOptions | JestMessageConsumerOptions,
+  options: JestPactOptions | JestMessageConsumerOptions
 ) => ({
   log: path.resolve(
     options.logDir ? options.logDir : path.join(process.cwd(), 'pact', 'logs'),
@@ -15,7 +15,7 @@ const applyCommonDefaults = (
       ? options.logFileName
       : `${options.consumer}-${
           options.provider
-        }-mockserver-interaction${logHint(options)}.log`,
+        }-mockserver-interaction${logHint(options)}.log`
   ),
   dir: path.resolve(process.cwd(), 'pact/pacts'),
   logLevel: 'warn' as LogLevel,
@@ -23,7 +23,7 @@ const applyCommonDefaults = (
 });
 
 export const applyPactOptionDefaults = (
-  options: JestPactOptions,
+  options: JestPactOptions
 ): JestPactOptions => ({
   ...applyCommonDefaults(options),
   spec: 2,
@@ -31,7 +31,7 @@ export const applyPactOptionDefaults = (
 });
 
 export const applyMessagePactOptionDefaults = (
-  options: JestMessageConsumerOptions,
+  options: JestMessageConsumerOptions
 ): JestMessageConsumerOptions => ({
   ...applyCommonDefaults(options),
   spec: 3,

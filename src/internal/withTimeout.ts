@@ -4,7 +4,7 @@ interface TimeoutOption {
 
 export const withTimeout = (
   options: TimeoutOption,
-  tests: () => void,
+  tests: () => void
 ): void => {
   const pactTestTimeout = options.timeout || 30000;
 

@@ -6,7 +6,7 @@ describe('fpactwith', () => {
     { consumer: 'MyConsumer', provider: 'NoProvider' },
     (provider: Pact) => {
       it('should only run this test', () => {});
-    },
+    }
   );
 
   test('the test that should be skipped', () => {

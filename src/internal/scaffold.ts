@@ -13,7 +13,7 @@ const describePactWith = <
   W extends WrapperFn<O, P>
 >(
   describeFn: jest.Describe,
-  wrapper: W,
+  wrapper: W
 ) => (options: O, tests: P) =>
   describeFn(describeString(options), () => wrapper(options, tests));
 
@@ -22,11 +22,11 @@ export const extendPactWith = <
   P,
   W extends WrapperFn<O, P>
 >(
-  wrapper: W,
+  wrapper: W
 ) => {
   const ret = describePactWith<O, P, W>(
     describe,
-    wrapper,
+    wrapper
   ) as WrapperWithOnlyAndSkip<O, P>;
   ret.only = describePactWith<O, P, W>(describe.only, wrapper);
   ret.skip = describePactWith<O, P, W>(describe.skip, wrapper);

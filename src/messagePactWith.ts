@@ -8,12 +8,12 @@ import { extendPactWith } from './internal/scaffold';
 import { JestMessageConsumerOptions, JestProvidedMessagePactFn } from './types';
 
 const setupMessageProvider = (
-  options: JestMessageConsumerOptions,
+  options: JestMessageConsumerOptions
 ): MessageConsumerPact => new MessageConsumerPact(options);
 
 const jestMessagePactWrapper = (
   options: JestMessageConsumerOptions,
-  tests: JestProvidedMessagePactFn,
+  tests: JestProvidedMessagePactFn
 ): void => {
   withTimeout(options, () => {
     tests(setupMessageProvider(applyMessagePactOptionDefaults(options)));
