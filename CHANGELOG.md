@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.9.0](https://github.com/pact-foundation/jest-pact/compare/v0.8.3...v0.9.0) (2021-05-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* Increased peerdeps for @pact-foundation/pact to 9.12.2 and above
+
+### Bug Fixes
+
+* Fix compile error when used with @pact-foundation/pact version 9.15.0 and above ([b89a114](https://github.com/pact-foundation/jest-pact/commit/b89a114921c126aa291a722d017ec4c44a834550))
+
 ### [0.8.3](https://github.com/pact-foundation/jest-pact/compare/v0.8.2...v0.8.3) (2021-02-23)
 
 ### [0.8.2](https://github.com/pact-foundation/jest-pact/compare/v0.8.1...v0.8.2) (2021-02-23)
