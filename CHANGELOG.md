@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.9.1](https://github.com/pact-foundation/jest-pact/compare/v0.9.0...v0.9.1) (2021-06-16)
+
+
+### Features
+
+* Mark jest-pact as compatible with jest 27 (and )move jest types to dev dependencies) ([df15f75](https://github.com/pact-foundation/jest-pact/commit/df15f75b3df4f201aed850feda348005d10a61ce))
+
 ## [0.9.0](https://github.com/pact-foundation/jest-pact/compare/v0.8.3...v0.9.0) (2021-05-08)
 
 
