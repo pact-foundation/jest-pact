@@ -119,10 +119,12 @@ In this branch, we also include a wrapper for the beta version of Pact-JS V3.
 
 If you have thoughts or feedback about the DSL, please let us know via slack or open issue.
 
-Currently, only a default for the pact directory is provided by the jest-pact wrapper.
+Currently, only a default for the pact directory is provided by the jest-pact wrapper in the V3 branch.
+
+Firstly, you'll need to install the latest version of @pact-foundation/pact@10.0.0-beta.XX. Then:
 
 ```
-npm i -D @pact-foundation/pact@10.0.0-beta.16 jest-pact@0.9.0-beta.v3
+npm i -D jest-pact@0.9.0-beta.v3
 ```
 
 ```js
