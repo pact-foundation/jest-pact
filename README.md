@@ -107,7 +107,7 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
     // in the network response, but (as illustrated
     // here) not always.
     it('returns server health', () => // implicit return again
-      client.health().then(health => {
+      client.getHealth().then(health => {
         expect(health).toEqual('up');
       }));
   });
@@ -165,7 +165,7 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
     );
 
     it('returns server health', () =>
-      client.health().then(health => {
+      client.getHealth().then(health => {
         expect(health).toEqual('up');
       }));
   });
