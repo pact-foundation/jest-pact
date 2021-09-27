@@ -285,4 +285,4 @@ Log files will be output in `pact/logs`
 
 - [Pact Foundation](https://github.com/pact-foundation)
 - [Pact JS](https://github.com/pact-foundation/pact-js)
-- [Initial Proposal](https://github.com/pact-foundation/pact-js/issues/215#issuecomment-437237669) by [TimothyJones](https://github.com/TimothyJones)
+- [Initial Proposal](https://github.com/pact-foundation/pact-js/issues/215#issuecomment-437237669)
