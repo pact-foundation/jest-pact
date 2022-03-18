@@ -75,15 +75,15 @@ jobs:
           flag-name: run-${{ matrix.node-version }}-windows
           parallel: true
 
- finish:
-    needs:
-      - build-and-test-osx
-      - build-and-test-ubuntu
-      - build-and-test-windows
-    runs-on: ubuntu-latest
-    steps:
-    - name: Coveralls Finished
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.github_token }}
-        parallel-finished: true
+  finish:
+      needs:
+        - build-and-test-osx
+        - build-and-test-ubuntu
+        - build-and-test-windows
+      runs-on: ubuntu-latest
+      steps:
+      - name: Coveralls Finished
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.github_token }}
+          parallel-finished: true
