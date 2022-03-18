@@ -13,5 +13,5 @@ echo "--> Releasing version ${VERSION}"
 
 echo "--> Releasing artifacts"
 echo "    Publishing jest-pact@${VERSION}..."
-npm publish --access public --tag latest
+npm publish --access public --tag latest --dry-run
 echo "    done!"
