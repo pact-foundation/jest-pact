@@ -6,6 +6,7 @@ pact/logs
 pact/log
 pact/pacts
 scripts
+.github
 
 #Files
 .gitignore
