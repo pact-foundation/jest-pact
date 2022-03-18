@@ -1,9 +1,27 @@
 name: Build and test
 
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+    branches: [master]
 
 jobs:
+  pre_job:
+    # continue-on-error: true # Uncomment once integration is finished
+    runs-on: ubuntu-latest
+    # Map a step output to a job output
+    outputs:
+      should_skip: ${{ steps.skip_check.outputs.should_skip }}
+    steps:
+      - id: skip_check
+        uses: fkirc/skip-duplicate-actions@master
+        with:
+          concurrent_skipping: 'never'
+          skip_after_successful_duplicate: 'true'
+
   build-and-test-osx:
+    needs: pre_job
+    if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
     runs-on: macos-latest
     strategy:
       matrix:
@@ -26,6 +44,8 @@ jobs:
           parallel: true
 
   build-and-test-ubuntu:
+    needs: pre_job
+    if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -50,6 +70,8 @@ jobs:
           parallel: true
 
   build-and-test-windows:
+    needs: pre_job
+    if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
     runs-on: windows-latest
     strategy:
       matrix:
