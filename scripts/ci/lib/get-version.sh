@@ -4,5 +4,5 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")"; pwd)" # Figure out where the 
 
 require_binary grep
 
-VERSION="$(grep '\"version\"' package.json | grep -E -o "([0-9\.]+(-[a-z\.0-9]+)?)")"
+VERSION="$(jq -r .version package.json)"
 echo "$VERSION"
