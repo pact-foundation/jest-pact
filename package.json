@@ -7,7 +7,7 @@
     "lint": "tslint --project . --fix",
     "build": "rimraf dist && tsc --project tsconfig.dist.json",
     "test": "jest --coverage --runInBand --verbose",
-    "test:ci": "jest --coverage --coverageReporters=text-lcov",
+    "test:ci": "jest --coverage --coverageReporters=lcov",
     "dist:ci": "npm run lint && npm run test:ci && npm run build",
     "dist:local": "npm run lint && npm run test && npm run build",
     "deploy:prepare": "./scripts/create_npmrc_file.sh",
