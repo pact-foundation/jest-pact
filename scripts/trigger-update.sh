@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/bash -eu
+set -eu # Have to set explicitly as github's windows runners don't respect the `eu` in the shebang
 
 # Script to trigger release of gem via the pact-foundation/release-gem action
 # Requires a Github API token with repo scope stored in the
