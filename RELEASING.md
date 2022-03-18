@@ -25,7 +25,7 @@ Log in to npm.
 
 Run the following commands:
 
-    $ yarn run dist:local
+    $ yarn run dist
     $ npm prune --production
     $ tar -czvf jestpact.tar.gz package.json index.d.ts index.js LICENSE README.md
     $ yarn run release:dryrun

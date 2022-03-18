@@ -15,7 +15,7 @@ merge, but you'll lose attribution for your change. -->
 
 ### Checklist
 
-- [ ] `npm run dist:local` all pass on my machine
+- [ ] `npm run dist` all pass on my machine
 - [ ] I have followed the commit message guidelines, with messages suitable for appearing in the changelog
 
 ### Description
