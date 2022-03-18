@@ -6,10 +6,8 @@
   "scripts": {
     "lint": "tslint --project . --fix",
     "build": "rimraf dist && tsc --project tsconfig.dist.json",
-    "test": "jest --coverage --runInBand --verbose",
-    "test:ci": "jest --coverage --coverageReporters=lcov",
-    "dist:ci": "npm run lint && npm run test:ci && npm run build",
-    "dist:local": "npm run lint && npm run test && npm run build",
+    "test": "jest --coverage --runInBand --verbose --coverageReporters=lcov",
+    "dist": "npm run lint && npm run test && npm run build",
     "deploy:prepare": "./scripts/create_npmrc_file.sh",
     "format:base": "prettier \"src/**/*.{ts,js}\"",
     "format:fix": "npm run format:base -- --write",
