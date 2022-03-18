@@ -1,4 +1,6 @@
 #!/bin/bash -eu
+set -eu # Have to set explicitly as github's windows runners don't respect the `eu` in the shebang
+
 if [ -z "${LIB_ROBUST_BASH_SH:-}" ]; then
   LIB_ROBUST_BASH_SH=included
   
