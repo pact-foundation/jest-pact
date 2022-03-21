@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.9.3](https://github.com/pact-foundation/jest-pact/compare/v0.9.2...v0.9.3) (2022-03-21)
+
+
+### Features
+
+* Release GH actions by removing dryRun flag ([3778ee3](https://github.com/pact-foundation/jest-pact/commit/3778ee32caac1d774bb796ea64742fc049368ec6))
+
 ### [0.9.2](https://github.com/pact-foundation/jest-pact/compare/v0.9.1...v0.9.2) (2022-03-21)
 
 
