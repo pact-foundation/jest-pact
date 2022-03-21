@@ -14,7 +14,6 @@
     "format:check": "npm run format:base -- --check",
     "release": "standard-version",
     "release:dryrun": "npm run test && npm publish --dry-run",
-    "release:publish": "npm run test && npm publish",
     "release:trigger": "./scripts/trigger-release.sh"
   },
   "repository": {
