@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.9.2](https://github.com/pact-foundation/jest-pact/compare/v0.9.1...v0.9.2) (2022-03-21)
+
+
+### Bug Fixes
+
+* Add GH actions for release pipeline ([af82206](https://github.com/pact-foundation/jest-pact/commit/af822069941c9cf33fd3dc2f9fac794342d43900))
+
 ### [0.9.1](https://github.com/pact-foundation/jest-pact/compare/v0.9.0...v0.9.1) (2021-06-16)
 
 
