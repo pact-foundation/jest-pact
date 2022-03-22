@@ -1,4 +1,4 @@
-import { V3MockServer } from '@pact-foundation/pact/v3/pact';
+import { V3MockServer } from '@pact-foundation/pact/v3';
 import * as supertest from 'supertest';
 import { pactWith } from './index';
 
@@ -17,14 +17,14 @@ pactWith({ consumer: 'MyConsumer', provider: 'pactWith v3' }, (interaction) => {
         })
         .willRespondWith({
           status: 200,
-        }),
+        })
     );
 
     execute('A pact test that returns 200', (mock) =>
       getClient(mock)
         .get('/v2/pet/1845563262948980200')
         .set('api_key', '[]')
-        .expect(200),
+        .expect(200)
     );
   });
 
@@ -40,14 +40,14 @@ pactWith({ consumer: 'MyConsumer', provider: 'pactWith v3' }, (interaction) => {
         })
         .willRespondWith({
           status: 404,
-        }),
+        })
     );
 
     execute('A pact test that returns 404', (mock) =>
       getClient(mock)
         .get('/v2/pet/1845563262948980200')
         .set('api_key', '[]')
-        .expect(404),
+        .expect(404)
     );
   });
 });

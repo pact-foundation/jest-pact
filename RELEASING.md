@@ -33,14 +33,3 @@ The script will:
 
 Should you need to modify the script locally, you will find it uses some
 dependencies in `scripts/ci/lib`.
-
-## Kicking off a release
-
-    $ yarn run dist:local
-    $ npm prune --production
-    $ tar -czvf jestpact.tar.gz package.json index.d.ts index.js v3/index.js v3/index.d.ts LICENSE README.md
-    $ yarn run release:dryrun
-    $ yarn run release:publish
-
-This should have published the latest version, check to see that at npmjs.com/package/jest-pact.
-We now need to create a GitHub release, upload zipped distribution (jestpact.tar.gz) to [GitHub Releases](https://github.com/pact-foundation/jest-pact/releases).

@@ -3,6 +3,7 @@ import {
   MessageConsumerPact,
   synchronousBodyHandler,
 } from '@pact-foundation/pact';
+import { AnyJson } from '@pact-foundation/pact/src/common/jsonTypes';
 import { messagePactWith } from '../index';
 
 interface Dog {
@@ -21,21 +22,31 @@ const { like, term } = Matchers;
 const arbitraryPact = (provider: MessageConsumerPact) => {
   describe('receive dog event', () => {
     it('accepts a valid dog', () => {
-      return provider
-        .given('some state')
-        .expectsToReceive('a request for a dog')
-        .withContent({
-          id: like(1),
-          name: like('rover'),
-          type: term({
-            generate: 'bulldog',
-            matcher: '^(bulldog|sheepdog)$',
-          }),
-        })
-        .withMetadata({
-          'content-type': 'application/json',
-        })
-        .verify(synchronousBodyHandler(dogApiHandler));
+      return (
+        provider
+          .given('some state')
+          .expectsToReceive('a request for a dog')
+          .withContent({
+            id: like(1),
+            name: like('rover'),
+            type: term({
+              generate: 'bulldog',
+              matcher: '^(bulldog|sheepdog)$',
+            }),
+          })
+          .withMetadata({
+            'content-type': 'application/json',
+          })
+          // Argument of type '(dog: Dog) => void' is not assignable to parameter of type '(body: AnyJson) => void'.
+          // Types of parameters 'dog' and 'body' are incompatible.
+          // Type 'AnyJson' is not assignable to type 'Dog'.
+          // Type 'null' is not assignable to type 'Dog'.
+          .verify(
+            synchronousBodyHandler(
+              (dogApiHandler as unknown) as (body: AnyJson) => void
+            )
+          )
+      );
     });
   });
 };
