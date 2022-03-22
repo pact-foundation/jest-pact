@@ -1,0 +1,89 @@
+name: Build and test
+
+on:
+  push:
+  pull_request:
+    branches: [master]
+
+jobs:
+  build-and-test-osx:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: scripts/ci/build-and-test.sh
+        env:
+          NODE_VERSION: ${{ matrix.node-version }}
+      - name: Coveralls Parallel
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.github_token }}
+          flag-name: run-${{ matrix.node-version }}-macos
+          parallel: true
+
+  build-and-test-ubuntu:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set MSVS version
+        run: npm config set msvs_version 2017
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: scripts/ci/build-and-test.sh
+        env:
+          NODE_VERSION: ${{ matrix.node-version }}
+      - name: Coveralls Parallel
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.github_token }}
+          flag-name: run-${{ matrix.node-version }}-ubuntu
+          parallel: true
+
+  build-and-test-windows:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: bash scripts/ci/build-and-test.sh
+        shell: bash
+        env:
+          NODE_VERSION: ${{ matrix.node-version }}
+      - name: Coveralls Parallel
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.github_token }}
+          flag-name: run-${{ matrix.node-version }}-windows
+          parallel: true
+
+  finish:
+      needs:
+        - build-and-test-osx
+        - build-and-test-ubuntu
+        - build-and-test-windows
+      runs-on: ubuntu-latest
+      steps:
+      - name: Coveralls Finished
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.github_token }}
+          parallel-finished: true

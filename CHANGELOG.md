@@ -2,6 +2,48 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.9.3](https://github.com/pact-foundation/jest-pact/compare/v0.9.2...v0.9.3) (2022-03-21)
+
+
+### Features
+
+* Release GH actions by removing dryRun flag ([3778ee3](https://github.com/pact-foundation/jest-pact/commit/3778ee32caac1d774bb796ea64742fc049368ec6))
+
+### [0.9.2](https://github.com/pact-foundation/jest-pact/compare/v0.9.1...v0.9.2) (2022-03-21)
+
+
+### Bug Fixes
+
+* Add GH actions for release pipeline ([af82206](https://github.com/pact-foundation/jest-pact/commit/af822069941c9cf33fd3dc2f9fac794342d43900))
+
+### [0.9.1](https://github.com/pact-foundation/jest-pact/compare/v0.9.0...v0.9.1) (2021-06-16)
+
+
+### Features
+
+* Mark jest-pact as compatible with jest 27 (and )move jest types to dev dependencies) ([df15f75](https://github.com/pact-foundation/jest-pact/commit/df15f75b3df4f201aed850feda348005d10a61ce))
+
+## [0.9.0](https://github.com/pact-foundation/jest-pact/compare/v0.8.3...v0.9.0) (2021-05-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* Increased peerdeps for @pact-foundation/pact to 9.12.2 and above
+
+### Bug Fixes
+
+* Fix compile error when used with @pact-foundation/pact version 9.15.0 and above ([b89a114](https://github.com/pact-foundation/jest-pact/commit/b89a114921c126aa291a722d017ec4c44a834550))
+
+### [0.8.3](https://github.com/pact-foundation/jest-pact/compare/v0.8.2...v0.8.3) (2021-02-23)
+
+### [0.8.2](https://github.com/pact-foundation/jest-pact/compare/v0.8.1...v0.8.2) (2021-02-23)
+
+
+### Features
+
+* **dsl:** Add pactWith.only and pactWith.skip, which behave like their describe counterparts ([540dc3c](https://github.com/pact-foundation/jest-pact/commit/540dc3c692bcb25d1175f73c4d5da1babb001087))
+* **messagePact:** Add messagePactWith so that the default options are available for message pact users too ([a8c1943](https://github.com/pact-foundation/jest-pact/commit/a8c19435546f374130eda3c431254911a7142e37))
+
 ### [0.8.1](https://github.com/pact-foundation/jest-pact/compare/v0.8.0...v0.8.1) (2020-08-18)
 
 

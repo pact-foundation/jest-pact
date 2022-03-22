@@ -1,29 +1,40 @@
 # Releasing
 
-## Publishing via Travis (recommended)
+We've moved to GitHub Actions for releases.
 
 - Update the version number in each `package.json` file to latest version
 - Commit
 
-        $ yarn run release
-        $ # review workspace and commits - if all looks good...
-        $ git push --follow-tags
+Releases trigger when the repository recieves the custom repository_dispatch event
+`release-triggered`.
 
-Travis CI will do the rest.
+This triggers the `publish.yml` workflow, which in turn
+triggers the `release.sh` script in `scripts/ci`.
+The workflow will also create a github release with an appropriate changelog.
 
-## How to re-tag if a publish fails
+Having the release triggered by a custom event is useful for automating
+releases in the future (eg for version bumps in pact dependencies).
 
-Delete broken tag:
+### Release.sh
 
-    $ git tag -d "X.Y.Z" && git push origin :refs/tags/X.Y.Z
+This script is not intended to be run locally. Note that it modifies your git
+settings.
 
-Now you can re-tag and push as above.
+The script will:
 
-## Publishing manually
+- Modify git authorship settings
+- Confirm that there would be changes in the changelog after release
+- Run Lint
+- Run Build
+- Run Test
+- Commit an appropriate version bump, changelog and tag
+- Package and publish to npm
+- Push the new commit and tag back to the main branch.
 
-Log in to npm.
+Should you need to modify the script locally, you will find it uses some
+dependencies in `scripts/ci/lib`.
 
-Run the following commands:
+## Kicking off a release
 
     $ yarn run dist:local
     $ npm prune --production
