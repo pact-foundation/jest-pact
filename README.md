@@ -20,7 +20,7 @@
 
 ## `Jest-Pact` Roadmap
 
-- [ ] Ensure that jest-pact plays well with jest's default of watch-mode
+- [ ] Ensure that jest-pact plays well with jest's default of watch-mode (This has been mothballed, please see this [draft pr](https://github.com/pact-foundation/jest-pact/pull/53) for details. Contributions welcome!
 - [ ] Ensure that pact failures print nice diffs (at the moment you have to go digging in the log files)
 - [ ] Add a setup hook for clearing out log and pact files
 
