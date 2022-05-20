@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.9.4](https://github.com/pact-foundation/jest-pact/compare/v0.9.3...v0.9.4) (2022-05-20)
+
+
+### Bug Fixes
+
+* Add Jest@28 to the peer dependencies (and fix a few other issues) ([#211](https://github.com/pact-foundation/jest-pact/issues/211)) ([0bd968e](https://github.com/pact-foundation/jest-pact/commit/0bd968e16f4256a291304ff4341e2e529e0ca83d))
+
 ### [0.9.3](https://github.com/pact-foundation/jest-pact/compare/v0.9.2...v0.9.3) (2022-03-21)
 
 
