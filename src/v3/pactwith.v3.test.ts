@@ -1,4 +1,4 @@
-import { V3MockServer } from '@pact-foundation/pact/v3/pact';
+import { V3MockServer } from '@pact-foundation/pact';
 import * as supertest from 'supertest';
 import { pactWith } from './index';
 
