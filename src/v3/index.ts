@@ -1,4 +1,4 @@
-import * as pactV3 from '@pact-foundation/pact/v3';
+import * as pactV3 from '@pact-foundation/pact';
 import * as path from 'path';
 
 export type JestPactOptionsV3 = Omit<pactV3.PactV3Options, 'dir'> & {
