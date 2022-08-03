@@ -1,8 +1,8 @@
 import { Pact } from '@pact-foundation/pact';
-import { fpactWith } from '../index';
+import { pactWith } from '../index';
 
-describe('fpactwith', () => {
-  fpactWith(
+describe('pactwith.only', () => {
+  pactWith.only(
     { consumer: 'MyConsumer', provider: 'NoProvider' },
     (provider: Pact) => {
       it('should only run this test', () => {});

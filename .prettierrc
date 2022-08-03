@@ -1,6 +1,1 @@
-{
-  "trailingComma": "all",
-  "tabWidth": 2,
-  "semi": true,
-  "singleQuote": true
-}
+"@pact-foundation/pact-js-prettier-config"

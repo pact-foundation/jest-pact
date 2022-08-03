@@ -1,8 +1,8 @@
 import { Pact } from '@pact-foundation/pact';
-import { xpactWith } from '../index';
+import { pactWith } from '../index';
 
-describe('xpactwith', () => {
-  xpactWith(
+describe('pactwith.skip', () => {
+  pactWith.skip(
     { consumer: 'MyConsumer', provider: 'NoOtherProvider' },
     (provider: Pact) => {
       test('the test that should be skipped', () => {

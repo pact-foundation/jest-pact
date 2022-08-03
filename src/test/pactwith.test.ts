@@ -34,16 +34,16 @@ pactWith(
     describe('provider object', () => {
       test('should show the specified port in the URL', () => {
         expect(provider.mockService.baseUrl).toMatch(
-          new RegExp(`${pactPort}$`),
+          new RegExp(`${pactPort}$`)
         );
       });
       test('should return the port on getProviderBaseUrl', () => {
         expect(getProviderBaseUrl(provider)).toEqual(
-          `http://127.0.0.1:${pactPort}`,
+          `http://127.0.0.1:${pactPort}`
         );
       });
     });
-  },
+  }
 );
 
 pactWith(
@@ -66,11 +66,11 @@ pactWith(
 
       test('should return the host on getProviderBaseUrl', () => {
         expect(getProviderBaseUrl(provider)).toMatch(
-          new RegExp('^http://127.0.0.1:\\d{4,5}$'),
+          new RegExp('^http://127.0.0.1:\\d{4,5}$')
         );
       });
     });
-  },
+  }
 );
 
 describe('custom log locations', () => {
@@ -96,7 +96,7 @@ describe('custom log locations', () => {
         },
         (provider: Pact) => {
           arbitraryPact(provider);
-        },
+        }
       );
     });
     describe('with logFileName', () => {
@@ -109,7 +109,7 @@ describe('custom log locations', () => {
         },
         (provider: Pact) => {
           arbitraryPact(provider);
-        },
+        }
       );
     });
   });
@@ -122,7 +122,7 @@ describe('custom log locations', () => {
       },
       (provider: Pact) => {
         arbitraryPact(provider);
-      },
+      }
     );
   });
 });

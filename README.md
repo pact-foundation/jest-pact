@@ -14,23 +14,20 @@
 
 - [x] instantiates the PactOptions for you
 - [x] Setups Pact mock service before and after hooks so you don’t have to
-- [x] Assign random ports and pass port back to user so we can run in parallel without port clashes
-- [x] Set Jasmine's timeout to 30 seconds preventing brittle tests in slow environments
+- [x] Set Jest timeout to 30 seconds preventing brittle tests in slow environments like Docker
+- [x] Sensible defaults for the pact options that make sense with Jest
+- [x] Supports both the main release of pact-js (9.x.x) and the beta 10.x.x for Pact spec V3
 
 ## `Jest-Pact` Roadmap
 
-- [ ] user configurable paths for log/pact output dirs
-- [ ] integration with Jest's API to make setup and teardown of pact tests very simple
-- [ ] Ensure that jest-pact plays well with jest's default of watch-mode
+- [ ] Ensure that jest-pact plays well with jest's default of watch-mode (This has been mothballed, please see this [draft pr](https://github.com/pact-foundation/jest-pact/pull/53) for details. Contributions welcome!
 - [ ] Ensure that pact failures print nice diffs (at the moment you have to go digging in the log files)
+- [ ] Add a setup hook for clearing out log and pact files
 
 ## Adapter Installation
 
-```sh
-npm i jest-pact --save-dev
-
-OR
-
+```
+npm install --save-dev jest-pact
 yarn add jest-pact --dev
 ```
 
@@ -38,7 +35,7 @@ If you have more than one file with pact tests for the same consumer/provider
 pair, you will also need to add `--runInBand` to your `jest` or `react-scripts test` command in your package.json. This avoids race conditions with the mock
 server writing to the pact file.
 
-## Usage
+## Usage - Pact-JS V2
 
 Say that your API layer looks something like this:
 
@@ -105,31 +102,25 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
     // in the network response, but (as illustrated
     // here) not always.
     it('returns server health', () => // implicit return again
-      client.health().then(health => {
+      client.getHealth().then(health => {
         expect(health).toEqual('up');
       }));
   });
 ```
 
-## Pact-JS V3
+## Usage - Pact-JS V3
 
-In this branch, we also include a wrapper for the beta version of Pact-JS V3.
+We also include a wrapper for Pact-JS V3.
 
 **Note: The API is NOT finalised. Feedback welcome**
 
 If you have thoughts or feedback about the DSL, please let us know via slack or open issue.
 
-Currently, only a default for the pact directory is provided by the jest-pact wrapper in the V3 branch.
-
-Firstly, you'll need to install the latest version of @pact-foundation/pact@10.0.0-beta.XX. Then:
-
-```
-npm i -D jest-pact@0.9.0-beta.v3
-```
+Currently, only a default for the pact directory is provided by the jest-pact wrapper `jest-pact/v3`.
 
 ```js
 import { pactWith } from 'jest-pact/v3';
-import { MatchersV3 } from '@pact-foundation/pact/v3';
+import { MatchersV3 } from '@pact-foundation/pact';
 import api from 'yourCode';
 
 pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, (interaction) => {
@@ -147,7 +138,7 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, (interaction) => {
           body: {
             status: MatchersV3.like('up'),
           },
-        }),
+        })
     );
 
     execute('some api call', (mockserver) =>
@@ -155,7 +146,7 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, (interaction) => {
         .health()
         .then((health) => {
           expect(health).toEqual('up');
-        }),
+        })
     );
   });
 });
@@ -209,7 +200,7 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
     );
 
     it('returns server health', () =>
-      client.health().then(health => {
+      client.getHealth().then(health => {
         expect(health).toEqual('up');
       }));
   });
@@ -227,14 +218,18 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
 - Not running jest with `--runInBand`. If you have multiple test files that
   write to the same contract, you will need this to avoid intermittent failures
   when writing the contract file.
+- It's a good idea to specify a different log file for each invocation of `pactWith`,
+  otherwise the logs will get overwritten when other specs start. If you provide an
+  explicit port, then the default mockserver log filename includes the port number.
 
 # API Documentation
 
-Jest-Pact has three functions:
+Jest-Pact has two primary functions:
 
-- `pactWith(JestPactOptions, (providerMock) => { /* tests go here */ })`: a wrapper that sets up a pact mock provider
-- `xpactWith(JestPactOptions, (providerMock) => { /* tests go here */ })`: Like `xdescribe` in Jest, this skips the pact tests described within.
-- `fpactWith(JestPactOptions, (providerMock) => { /* tests go here */ })`: Like `fdescribe` in Jest, this sets this test suite to only run this test.
+- `pactWith(JestPactOptions, (providerMock) => { /* tests go here */ })`: a wrapper that sets up a pact mock provider, applies sensible default options, and applies the setup and verification hooks so you don't have to
+- `messagePactWith(JestMessageConsumerOptions, (messagePact) => { /* tests go here */ })`: a wrapper that sets up a message pact instance and applies sensible default options
+
+Additionally, `pactWith.only / fpactWith`, `pactWith.skip / xpactWith`, `messagePactWith.only / fmessagePactWith` and `messagePactWith.skip / xmessagePactWith` behave as you would expect from Jest.
 
 There are two types exported:
 
@@ -247,24 +242,31 @@ You can use all the usual `PactOptions` from pact-js, plus a timeout for
 telling jest to wait a bit longer for pact to start and run.
 
 ```ts
-pactWith(JestPactOptions, provider => {
-    // regular pact tests go here
-}
+pactWith(JestPactOptions, (provider) => {
+  // regular http pact tests go here
+});
+messagePactWith(JestMessageConsumerOptions, (messagePact) => {
+  // regular message pact tests go here
+});
 
-interface JestPactOptions = PactOptions & {
+interface ExtraOptions {
   timeout?: number; // Timeout for pact service start/teardown, expressed in milliseconds
-                    // Default is 30000 milliseconds (30 seconds).
+  // Default is 30000 milliseconds (30 seconds).
   logDir?: string; // path for the log file
   logFileName?: string; // filename for the log file
 }
+
+type JestPactOptions = PactOptions & ExtraOptions;
+
+type JestMessageConsumerOptions = MessageConsumerOptions & ExtraOptions;
 ```
 
 ### Defaults
 
 Jest-Pact sets some helpful default PactOptions for you. You can override any of these by explicitly setting corresponding option. Here are the defaults:
 
-- `log` is set so that log files are written to /pact/logs, and named `<consumer>-<provider>-mockserver-interaction.log`
-- `dir` is set so that pact files are written to /pact/pacts
+- `log` is set so that log files are written to `/pact/logs`, and named `<consumer>-<provider>-mockserver-interaction.log`. If you provided an explicit `port`, then the log file name is `<consumer>-<provider>-mockserver-interaction-port-<portNumber>.log`
+- `dir` is set so that pact files are written to `/pact/pacts`
 - `logLevel` is set to warn
 - `timeout` is 30,000 milliseconds (30 seconds)
 - `pactfileWriteMode` is set to "update"
@@ -318,4 +320,4 @@ Log files will be output in `pact/logs`
 
 - [Pact Foundation](https://github.com/pact-foundation)
 - [Pact JS](https://github.com/pact-foundation/pact-js)
-- [Initial Proposal](https://github.com/pact-foundation/pact-js/issues/215#issuecomment-437237669) by [TimothyJones](https://github.com/TimothyJones)
+- [Initial Proposal](https://github.com/pact-foundation/pact-js/issues/215#issuecomment-437237669)

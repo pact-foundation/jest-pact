@@ -18,7 +18,6 @@ install: yarn install --ignore-engines
 script: ./scripts/build.sh
 before_deploy:
   - npm prune --production
-  - tar -czvf jestpact.tar.gz package.json index.d.ts index.js LICENSE README.md
   - npm run deploy:prepare
 deploy:
   - provider: releases
