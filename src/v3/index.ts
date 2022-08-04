@@ -18,11 +18,11 @@ type JestPactExecuteTestFn = (description: string, fn: ExecuteTestFn) => void;
 export type JestProvidedPactFnV3 = (D: DescibeArg) => void;
 export type JestDescribePactFnV3 = (
   description: string,
-  fn: JestProvidedPactFnV3,
+  fn: JestProvidedPactFnV3
 ) => void;
 
 export type JestProvidedDescribeFnV3 = (
-  pactDescribe: JestDescribePactFnV3,
+  pactDescribe: JestDescribePactFnV3
 ) => void;
 
 const applyDefaults = (options: JestPactOptionsV3): pactV3.PactV3Options => ({
@@ -33,7 +33,7 @@ const applyDefaults = (options: JestPactOptionsV3): pactV3.PactV3Options => ({
 const setupProvider = (options: pactV3.PactV3Options) => {
   const pactDescribe: JestDescribePactFnV3 = (
     describeDescription: string,
-    fn: JestProvidedPactFnV3,
+    fn: JestProvidedPactFnV3
   ) => {
     describe(describeDescription, () => {
       const provider = new pactV3.PactV3(options);
@@ -48,7 +48,7 @@ const setupProvider = (options: pactV3.PactV3Options) => {
 
 const jestPactWrapper = (
   options: JestPactOptionsV3,
-  tests: JestProvidedDescribeFnV3,
+  tests: JestProvidedDescribeFnV3
 ): void => {
   const pactTestTimeout = options.timeout || 30000;
 
@@ -84,15 +84,15 @@ const describeString = (options: JestPactOptionsV3) =>
 
 export const pactWith = (
   options: JestPactOptionsV3,
-  tests: JestProvidedDescribeFnV3,
+  tests: JestProvidedDescribeFnV3
 ) => describe(describeString(options), () => jestPactWrapper(options, tests));
 
 export const xpactWith = (
   options: JestPactOptionsV3,
-  tests: JestProvidedDescribeFnV3,
+  tests: JestProvidedDescribeFnV3
 ) => xdescribe(describeString(options), () => jestPactWrapper(options, tests));
 
 export const fpactWith = (
   options: JestPactOptionsV3,
-  tests: JestProvidedDescribeFnV3,
+  tests: JestProvidedDescribeFnV3
 ) => fdescribe(describeString(options), () => jestPactWrapper(options, tests));

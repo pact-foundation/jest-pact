@@ -1,11 +1,18 @@
 import { Pact } from '@pact-foundation/pact';
 import { fpactWith } from '../index';
+import { getClient, postValidRequest } from './pactwith.test';
 
 describe('fpactwith', () => {
   fpactWith(
     { consumer: 'MyConsumer', provider: 'NoProvider' },
     (provider: Pact) => {
-      it('should only run this test', () => {});
+      beforeEach(() => provider.addInteraction(postValidRequest));
+
+      it('should only run this test', () =>
+        getClient(provider)
+          .get('/v2/pet/1845563262948980200')
+          .set('api_key', '[]')
+          .expect(200));
     }
   );
 

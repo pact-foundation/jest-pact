@@ -2,10 +2,11 @@ import { InteractionObject, Pact } from '@pact-foundation/pact';
 import * as supertest from 'supertest';
 import { getProviderBaseUrl, pactWith } from '../index';
 
-const getClient = (provider: Pact) => supertest(provider.mockService.baseUrl);
+export const getClient = (provider: Pact) =>
+  supertest(provider.mockService.baseUrl);
 const pactPort: number = 5001;
 
-const postValidRequest: InteractionObject = {
+export const postValidRequest: InteractionObject = {
   state: 'A pet 1845563262948980200 exists',
   uponReceiving: 'A get request to get a pet 1845563262948980200',
   willRespondWith: {
@@ -32,15 +33,25 @@ pactWith(
     });
 
     describe('provider object', () => {
+      beforeEach(() => provider.addInteraction(postValidRequest));
+
       test('should show the specified port in the URL', () => {
         expect(provider.mockService.baseUrl).toMatch(
           new RegExp(`${pactPort}$`)
         );
+        return getClient(provider)
+          .get('/v2/pet/1845563262948980200')
+          .set('api_key', '[]')
+          .expect(200);
       });
       test('should return the port on getProviderBaseUrl', () => {
         expect(getProviderBaseUrl(provider)).toEqual(
           `http://127.0.0.1:${pactPort}`
         );
+        return getClient(provider)
+          .get('/v2/pet/1845563262948980200')
+          .set('api_key', '[]')
+          .expect(200);
       });
     });
   }
@@ -60,14 +71,24 @@ pactWith(
     });
 
     describe('provider object', () => {
+      beforeEach(() => provider.addInteraction(postValidRequest));
+
       test('should show the randomly assigned port in the URL', () => {
         expect(provider.mockService.baseUrl).toMatch(new RegExp(`\\d{4,5}$`));
+        return getClient(provider)
+          .get('/v2/pet/1845563262948980200')
+          .set('api_key', '[]')
+          .expect(200);
       });
 
       test('should return the host on getProviderBaseUrl', () => {
         expect(getProviderBaseUrl(provider)).toMatch(
           new RegExp('^http://127.0.0.1:\\d{4,5}$')
         );
+        return getClient(provider)
+          .get('/v2/pet/1845563262948980200')
+          .set('api_key', '[]')
+          .expect(200);
       });
     });
   }

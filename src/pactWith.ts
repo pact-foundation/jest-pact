@@ -15,7 +15,7 @@ const setupProvider = (options: JestPactOptions): Pact => {
   //   Error in native callback
   //   at Object.mockServerMismatches (node_modules/@pact-foundation/pact-core/src/consumer/index.ts:94:13)
   //   at Object.<anonymous> (src/index.ts:37:28)
-  // afterEach(() => pactMock.verify());
+  afterEach(() => pactMock.verify());
 
   return pactMock;
 };
