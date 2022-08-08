@@ -44,10 +44,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Fix node-gyp
-        run: |-
-          npm install --global node-gyp@latest
-          npm prefix -g | % {npm config set node_gyp "$_\node_modules\node-gyp\bin\node-gyp.js"}
       - run: scripts/ci/build-and-test.sh
         env:
           NODE_VERSION: ${{ matrix.node-version }}
@@ -71,6 +67,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Fix node-gyp
+        run: |-
+          npm install --global node-gyp@latest
+          npm prefix -g | % {npm config set node_gyp "$_\node_modules\node-gyp\bin\node-gyp.js"}
+        shell: pwsh
       - run: bash scripts/ci/build-and-test.sh
         shell: bash
         env:
