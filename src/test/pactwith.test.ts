@@ -40,7 +40,7 @@ pactWith(
           new RegExp(`${pactPort}$`)
         );
         return getClient(provider)
-          .get('/v2/pet/1845563262948980201')
+          .get('/v2/pet/1845563262948980200')
           .set('api_key', '[]')
           .expect(200);
       });
