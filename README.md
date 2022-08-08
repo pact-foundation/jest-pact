@@ -27,20 +27,15 @@
 ## Adapter Installation
 
 ```
-# For pact @ 9.x
 npm install --save-dev jest-pact
 yarn add jest-pact --dev
-
-# For pact @ 10.0.0-beta.x
-npm install --save-dev jest-pact@beta
-yarn add jest-pact@beta --dev
 ```
 
 If you have more than one file with pact tests for the same consumer/provider
 pair, you will also need to add `--runInBand` to your `jest` or `react-scripts test` command in your package.json. This avoids race conditions with the mock
 server writing to the pact file.
 
-## Usage
+## Usage - Pact-JS V2
 
 Say that your API layer looks something like this:
 
@@ -113,9 +108,49 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
   });
 ```
 
-## V3 Pact spec with 10.0.0-beta.x
+## Usage - Pact-JS V3
 
-See [the usage instructions here](https://github.com/pact-foundation/jest-pact/blob/pact-js-v3/README.md)
+We also include a wrapper for Pact-JS V3.
+
+**Note: The API is NOT finalised. Feedback welcome**
+
+If you have thoughts or feedback about the DSL, please let us know via slack or open issue.
+
+Currently, only a default for the pact directory is provided by the jest-pact wrapper `jest-pact/v3`.
+
+```js
+import { pactWith } from 'jest-pact/v3';
+import { MatchersV3 } from '@pact-foundation/pact';
+import api from 'yourCode';
+
+pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, (interaction) => {
+  interaction('A request for API health', ({ provider, execute }) => {
+    beforeEach(() =>
+      provider
+        .given('Server is healthy')
+        .uponReceiving('A request for API health')
+        .withRequest({
+          method: 'GET',
+          path: '/health',
+        })
+        .willRespondWith({
+          status: 200,
+          body: {
+            status: MatchersV3.like('up'),
+          },
+        })
+    );
+
+    execute('some api call', (mockserver) =>
+      api(mockserver.url)
+        .health()
+        .then((health) => {
+          expect(health).toEqual('up');
+        })
+    );
+  });
+});
+```
 
 # Best practices
 

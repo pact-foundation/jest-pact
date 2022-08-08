@@ -3,6 +3,7 @@ import {
   MessageConsumerPact,
   synchronousBodyHandler,
 } from '@pact-foundation/pact';
+import { AnyJson } from '@pact-foundation/pact/src/common/jsonTypes';
 import { messagePactWith } from '../index';
 
 interface Dog {
@@ -35,7 +36,11 @@ const arbitraryPact = (provider: MessageConsumerPact) => {
         .withMetadata({
           'content-type': 'application/json',
         })
-        .verify(synchronousBodyHandler(dogApiHandler));
+        .verify(
+          synchronousBodyHandler(
+            (dogApiHandler as unknown) as (body: AnyJson | Buffer) => void
+          )
+        );
     });
   });
 };

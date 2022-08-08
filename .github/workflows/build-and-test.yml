@@ -10,12 +10,13 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [14.x, 16.x, 18.x]
+      fail-fast: false
 
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
       - run: scripts/ci/build-and-test.sh
@@ -32,14 +33,15 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [14.x, 16.x, 18.x]
+      fail-fast: false
 
     steps:
       - uses: actions/checkout@v2
-      - name: Set MSVS version
-        run: npm config set msvs_version 2017
+      # - name: Set MSVS version
+      #   run: npm config set msvs_version 2017
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
       - run: scripts/ci/build-and-test.sh
@@ -56,14 +58,20 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [14.x, 16.x, 18.x]
+      fail-fast: false
 
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Fix node-gyp
+        run: |-
+          npm install --global node-gyp@latest
+          npm prefix -g | % {npm config set node_gyp "$_\node_modules\node-gyp\bin\node-gyp.js"}
+        shell: pwsh
       - run: bash scripts/ci/build-and-test.sh
         shell: bash
         env:
