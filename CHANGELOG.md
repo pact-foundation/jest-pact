@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.10.1](https://github.com/pact-foundation/jest-pact/compare/v0.9.4...v0.10.1) (2022-08-08)
+
+
+### Features
+
+* **v3:** Add draft withPact interface for V3 ([8ba6e66](https://github.com/pact-foundation/jest-pact/commit/8ba6e6643821bac85c03d317ccf7d205bfa4649c))
+
 ### [0.9.4](https://github.com/pact-foundation/jest-pact/compare/v0.9.3...v0.9.4) (2022-05-20)
 
 
