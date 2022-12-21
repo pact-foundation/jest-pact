@@ -116,11 +116,11 @@ We also include a wrapper for Pact-JS V3.
 
 If you have thoughts or feedback about the DSL, please let us know via slack or open issue.
 
-Currently, only a default for the pact directory is provided by the jest-pact wrapper `jest-pact/v3`.
+Currently, only a default for the pact directory is provided by the jest-pact wrapper `jest-pact/dist/v3`.
 
 ```js
-import { pactWith } from 'jest-pact/v3';
-import { MatchersV3 } from '@pact-foundation/pact';
+import { pactWith } from 'jest-pact/dist/v3';
+import { MatchersV3 as Matchers } from '@pact-foundation/pact';
 import api from 'yourCode';
 
 pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, (interaction) => {
@@ -136,7 +136,7 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, (interaction) => {
         .willRespondWith({
           status: 200,
           body: {
-            status: MatchersV3.like('up'),
+            status: Matchers.like('up'),
           },
         })
     );
