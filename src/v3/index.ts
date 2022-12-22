@@ -85,14 +85,17 @@ const describeString = (options: JestPactOptionsV3) =>
 export const pactWith = (
   options: JestPactOptionsV3,
   tests: JestProvidedDescribeFnV3
-) => describe(describeString(options), () => jestPactWrapper(options, tests));
+): void =>
+  describe(describeString(options), () => jestPactWrapper(options, tests));
 
 export const xpactWith = (
   options: JestPactOptionsV3,
   tests: JestProvidedDescribeFnV3
-) => xdescribe(describeString(options), () => jestPactWrapper(options, tests));
+): void =>
+  xdescribe(describeString(options), () => jestPactWrapper(options, tests));
 
 export const fpactWith = (
   options: JestPactOptionsV3,
   tests: JestProvidedDescribeFnV3
-) => fdescribe(describeString(options), () => jestPactWrapper(options, tests));
+): void =>
+  fdescribe(describeString(options), () => jestPactWrapper(options, tests));

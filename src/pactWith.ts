@@ -17,7 +17,7 @@ const setupProvider = (options: JestPactOptions): Pact => {
 };
 
 // This should be moved to pact-js, probably
-export const getProviderBaseUrl = (provider: Pact) =>
+export const getProviderBaseUrl = (provider: Pact): string =>
   provider.mockService
     ? provider.mockService.baseUrl
     : `http://${provider.opts.host}:${provider.opts.port}`;

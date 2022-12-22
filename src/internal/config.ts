@@ -1,5 +1,4 @@
-import { PactfileWriteMode } from '@pact-foundation/pact';
-import { LogLevel } from '@pact-foundation/pact';
+import { PactfileWriteMode, LogLevel } from '@pact-foundation/pact';
 import * as path from 'path';
 import { JestMessageConsumerOptions, JestPactOptions } from '../types';
 

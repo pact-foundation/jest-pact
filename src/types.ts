@@ -1,5 +1,9 @@
-import { MessageConsumerPact, Pact } from '@pact-foundation/pact';
-import { MessageConsumerOptions, PactOptions } from '@pact-foundation/pact';
+import {
+  MessageConsumerPact,
+  Pact,
+  MessageConsumerOptions,
+  PactOptions,
+} from '@pact-foundation/pact';
 import { WrapperWithOnlyAndSkip } from './internal/types';
 
 interface ExtraOptions {

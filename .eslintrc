@@ -1,0 +1,65 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "import", "jest"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "airbnb-base",
+    "airbnb-typescript/base",
+    "prettier"
+  ],
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "project": ["tsconfig.json"]
+      }
+    }
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "project": ["tsconfig.json"]
+  },
+  "rules": {
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-shadow": "error",
+    "@typescript-eslint/explicit-module-boundary-types": "error",
+    "@typescript-eslint/no-empty-function": [
+      "error",
+      { "allow": ["constructors"] }
+    ],
+    "import/prefer-default-export": "off",
+    "no-underscore-dangle": "off",
+    "class-methods-use-this": "off"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.spec.ts", "**/*.test.ts"],
+      "env": {
+        "jest": true
+      },
+      "extends": ["plugin:jest/recommended"],
+      "rules": {
+        "@typescript-eslint/ban-ts-comment": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/no-unused-expressions": "off",
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          { "varsIgnorePattern": "unused", "argsIgnorePattern": "^_" }
+        ],
+        "@typescript-eslint/no-var-requires": "off",
+        "global-require": "off",
+        "jest/expect-expect": "off",
+        "import/no-dynamic-require": "off",
+        "no-console": "off",
+        "no-new": "off"
+      }
+    }
+  ],
+  "globals": {
+    "NodeJS": true
+  }
+}
