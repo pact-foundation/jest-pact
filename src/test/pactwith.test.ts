@@ -1,5 +1,5 @@
 import { InteractionObject, Pact } from '@pact-foundation/pact';
-import * as supertest from 'supertest';
+import supertest from 'supertest';
 import { getProviderBaseUrl, pactWith } from '../index';
 
 const getClient = (provider: Pact) => supertest(provider.mockService.baseUrl);

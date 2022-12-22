@@ -1,5 +1,5 @@
 import { V3MockServer } from '@pact-foundation/pact';
-import * as supertest from 'supertest';
+import supertest from 'supertest';
 import { pactWith } from './index';
 
 const getClient = (mock: V3MockServer) => supertest(mock.url);
