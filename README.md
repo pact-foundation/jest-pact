@@ -120,7 +120,7 @@ Currently, only a default for the pact directory is provided by the jest-pact wr
 
 ```js
 import { pactWith } from 'jest-pact/dist/v3';
-import { MatchersV3 as Matchers } from '@pact-foundation/pact';
+import { MatchersV3 } from '@pact-foundation/pact';
 import api from 'yourCode';
 
 pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, (interaction) => {
@@ -136,7 +136,7 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, (interaction) => {
         .willRespondWith({
           status: 200,
           body: {
-            status: Matchers.like('up'),
+            status: MatchersV3.like('up'),
           },
         })
     );
