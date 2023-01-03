@@ -73,7 +73,7 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
     // down the provider for you.
     beforeEach(() => // note the implicit return.
                      // addInteraction returns a promise.
-                     // If you don't want to implict return,
+                     // If you don't want to implicitly return,
                      // you will need to `await` the result
       provider.addInteraction({
         state: "Server is healthy",
@@ -96,7 +96,7 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
     //
     // Although Pact will ensure that the provider
     // returned the expected object, you need to test that
-    // your code recieves the right object.
+    // your code receives the right object.
     //
     // This is often the same as the object that was
     // in the network response, but (as illustrated
@@ -112,7 +112,7 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
 
 We also include a wrapper for Pact-JS V3.
 
-**Note: The API is NOT finalised. Feedback welcome**
+**Note: The API is NOT finalized. Feedback welcome**
 
 If you have thoughts or feedback about the DSL, please let us know via slack or open issue.
 
@@ -274,11 +274,11 @@ Jest-Pact sets some helpful default PactOptions for you. You can override any of
 Most of the time you won't need to change these.
 
 A common use case for `log` is to change only the filename or the path for
-logging. To help with this, Jest-Pact provides convienience options `logDir`
+logging. To help with this, Jest-Pact provides convenience options `logDir`
 and `logFileName`. These allow you to set the path or the filename
 independently. In case you're wondering, if you specify `log`, `logDir` and
-`logFileName`, the convienience options are ignored and `log` takes
-precidence.
+`logFileName`, the convenience options are ignored and `log` takes
+precedence.
 
 ### Jest Watch Mode
 
