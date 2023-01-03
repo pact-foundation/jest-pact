@@ -112,7 +112,7 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
 
 We also include a wrapper for Pact-JS V3.
 
-**Note: The API is NOT finalized. Feedback welcome**
+**Note: The API is NOT finalised. Feedback welcome**
 
 If you have thoughts or feedback about the DSL, please let us know via slack or open issue.
 
