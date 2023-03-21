@@ -1,8 +1,8 @@
 import { V3MockServer } from '@pact-foundation/pact';
-import * as supertest from 'supertest';
+import { agent } from 'supertest';
 import { pactWith } from './index';
 
-const getClient = (mock: V3MockServer) => supertest(mock.url);
+const getClient = (mock: V3MockServer) => agent(mock.url);
 
 pactWith({ consumer: 'MyConsumer', provider: 'pactWith v3' }, (interaction) => {
   interaction('pact integration', ({ provider, execute }) => {
