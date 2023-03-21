@@ -1,9 +1,9 @@
 import { InteractionObject, Pact } from '@pact-foundation/pact';
-import * as supertest from 'supertest';
+import { agent } from 'supertest';
 import { getProviderBaseUrl, pactWith } from '../index';
 
 export const getClient = (provider: Pact) =>
-  supertest(provider.mockService.baseUrl);
+  agent(provider.mockService.baseUrl);
 const pactPort: number = 5001;
 
 export const postValidRequest: InteractionObject = {
