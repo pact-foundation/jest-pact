@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.10.3](https://github.com/pact-foundation/jest-pact/compare/v0.10.2...v0.10.3) (2023-03-21)
+
+
+### Features
+
+* Bump Pact version ([8da6073](https://github.com/pact-foundation/jest-pact/commit/8da607379f2514900af8278431508806c86b8a50))
+
 ### [0.10.2](https://github.com/pact-foundation/jest-pact/compare/v0.10.1...v0.10.2) (2022-12-05)
 
 
