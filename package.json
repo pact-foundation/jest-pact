@@ -37,7 +37,7 @@
   },
   "homepage": "https://github.com/pact-foundation/jest-pact/#readme",
   "devDependencies": {
-    "@commitlint/cli": "^10.0.0",
+    "@commitlint/cli": "^17.5.0",
     "@commitlint/config-conventional": "^10.0.0",
     "@pact-foundation/pact": "^11.0.2",
     "@pact-foundation/pact-js-prettier-config": "^1.0.0",
