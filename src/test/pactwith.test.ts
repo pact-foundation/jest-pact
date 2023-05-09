@@ -1,9 +1,11 @@
 import { InteractionObject, Pact } from '@pact-foundation/pact';
-import supertest from 'supertest';
+import { agent } from 'supertest';
 import { getProviderBaseUrl, pactWith } from '../index';
 
-const getClient = (provider: Pact) => supertest(provider.mockService.baseUrl);
-const pactPort = 5001;
+export const getClient = (provider: Pact) =>
+  agent(provider.mockService.baseUrl);
+const pactPort: number = 5001;
+
 
 const postValidRequest: InteractionObject = {
   state: 'A pet 1845563262948980200 exists',
