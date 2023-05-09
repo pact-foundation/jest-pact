@@ -21,8 +21,8 @@ const { like, term } = Matchers;
 
 const arbitraryPact = (provider: MessageConsumerPact) => {
   describe('receive dog event', () => {
-    it('accepts a valid dog', () => {
-      return provider
+    it('accepts a valid dog', () =>
+      provider
         .given('some state')
         .expectsToReceive('a request for a dog')
         .withContent({
@@ -40,8 +40,7 @@ const arbitraryPact = (provider: MessageConsumerPact) => {
           synchronousBodyHandler(
             (dogApiHandler as unknown) as (body: AnyJson | Buffer) => void
           )
-        );
-    });
+        ));
   });
 };
 

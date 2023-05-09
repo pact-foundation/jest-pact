@@ -1,6 +1,21 @@
-import { Pact } from '@pact-foundation/pact';
+import { InteractionObject, Pact } from '@pact-foundation/pact';
+import supertest = require('supertest');
 import { fpactWith } from '../index';
-import { getClient, postValidRequest } from './pactwith.test';
+
+const getClient = (provider: Pact) => supertest(provider.mockService.baseUrl);
+
+const postValidRequest: InteractionObject = {
+  state: 'A pet 1845563262948980200 exists',
+  uponReceiving: 'A get request to get a pet 1845563262948980200',
+  willRespondWith: {
+    status: 200,
+  },
+  withRequest: {
+    method: 'GET',
+    path: '/v2/pet/1845563262948980200',
+    headers: { api_key: '[]' },
+  },
+};
 
 describe('fpactwith', () => {
   fpactWith(

@@ -2,11 +2,11 @@ import { InteractionObject, Pact } from '@pact-foundation/pact';
 import { agent } from 'supertest';
 import { getProviderBaseUrl, pactWith } from '../index';
 
-export const getClient = (provider: Pact) =>
+const getClient = (provider: Pact) =>
   agent(provider.mockService.baseUrl);
-const pactPort: number = 5001;
+const pactPort = 5001;
 
-export const postValidRequest: InteractionObject = {
+const postValidRequest: InteractionObject = {
   state: 'A pet 1845563262948980200 exists',
   uponReceiving: 'A get request to get a pet 1845563262948980200',
   willRespondWith: {
@@ -60,7 +60,7 @@ pactWith(
 pactWith(
   { consumer: 'MyConsumer', provider: 'pactWith2' },
   (provider: Pact) => {
-    describe('pact integration', () => {
+    describe('pact integration 2', () => {
       beforeEach(() => provider.addInteraction(postValidRequest));
 
       test('should be ok if i dont provide a port', () =>
@@ -70,11 +70,11 @@ pactWith(
           .expect(200));
     });
 
-    describe('provider object', () => {
+    describe('provider object 2', () => {
       beforeEach(() => provider.addInteraction(postValidRequest));
 
       test('should show the randomly assigned port in the URL', () => {
-        expect(provider.mockService.baseUrl).toMatch(new RegExp(`\\d{4,5}$`));
+        expect(provider.mockService.baseUrl).toMatch(/\d{4,5}$/);
         return getClient(provider)
           .get('/v2/pet/1845563262948980200')
           .set('api_key', '[]')
@@ -83,7 +83,7 @@ pactWith(
 
       test('should return the host on getProviderBaseUrl', () => {
         expect(getProviderBaseUrl(provider)).toMatch(
-          new RegExp('^http://127.0.0.1:\\d{4,5}$')
+          /^http:\/\/127.0.0.1:\d{4,5}$/
         );
         return getClient(provider)
           .get('/v2/pet/1845563262948980200')
