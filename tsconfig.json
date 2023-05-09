@@ -20,7 +20,6 @@
     "strictNullChecks": true,
     "stripInternal": true,
     "suppressImplicitAnyIndexErrors": true
-    "esModuleInterop": true
   },
   "exclude": ["./node_modules/*"],
   "include": ["./src/**/*.ts"]
