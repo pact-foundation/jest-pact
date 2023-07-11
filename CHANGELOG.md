@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.11.0](https://github.com/pact-foundation/jest-pact/compare/v0.10.3...v0.11.0) (2023-07-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* require at least node 16
+
+### Features
+
+* Bump pact to 12.0.0 ([165f3ae](https://github.com/pact-foundation/jest-pact/commit/165f3ae8f331ae4d78c30a25ec213452b6986480))
+
+
+### Bug Fixes
+
+* require at least node 16 ([5c9d7eb](https://github.com/pact-foundation/jest-pact/commit/5c9d7eb972ff3ac25b8160b0888b9b79830aee6b))
+
 ### [0.10.3](https://github.com/pact-foundation/jest-pact/compare/v0.10.2...v0.10.3) (2023-03-21)
 
 
