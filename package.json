@@ -45,7 +45,7 @@
     "@commitlint/config-conventional": "^10.0.0",
     "@pact-foundation/pact": "^12.0.0",
     "@pact-foundation/pact-js-prettier-config": "^1.0.0",
-    "@tsconfig/node14": "^1.0.3",
+    "@tsconfig/node14": "^14.1.0",
     "@types/jest": "^29.2.3",
     "@types/supertest": "2.0.8",
     "@typescript-eslint/eslint-plugin": "^5.47.0",
