@@ -7,10 +7,11 @@ on:
 
 jobs:
   build-and-test-osx:
-    runs-on: macos-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         node-version: [16.x, 18.x, 20.x]
+        os: [macos-12, macos-latest]
       fail-fast: false
 
     steps:
