@@ -106,6 +106,7 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
         expect(health).toEqual('up');
       }));
   });
+});
 ```
 
 ## Usage - Pact-JS V3
