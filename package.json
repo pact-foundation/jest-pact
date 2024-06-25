@@ -64,7 +64,7 @@
     "jest-junit": "16.0.0",
     "lint-staged": "13.2.3",
     "prettier": "3.3.1",
-    "rimraf": "5.0.5",
+    "rimraf": "5.0.7",
     "standard-version": "^9.0.0",
     "supertest": "7.0.0",
     "ts-jest": "^29.0.3",
