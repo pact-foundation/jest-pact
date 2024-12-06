@@ -10,14 +10,14 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node-version: [16.x, 18.x, 20.x]
-        os: [macos-12, macos-latest]
+        node-version: [18.x, 20.x, 22.x]
+        os: [macos-13, macos-latest]
       fail-fast: false
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
       - run: scripts/ci/build-and-test.sh
@@ -27,22 +27,20 @@ jobs:
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.github_token }}
-          flag-name: run-${{ matrix.node-version }}-macos
+          flag-name: run-${{ matrix.node-version }}-${{ runner.os }}
           parallel: true
 
   build-and-test-ubuntu:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x, 18.x, 20.x]
+        node-version: [18.x, 20.x, 22.x]
       fail-fast: false
 
     steps:
-      - uses: actions/checkout@v3
-      # - name: Set MSVS version
-      #   run: npm config set msvs_version 2017
+      - uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
       - run: scripts/ci/build-and-test.sh
@@ -59,20 +57,15 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        node-version: [16.x, 18.x, 20.x]
+        node-version: [18.x, 20.x, 22.x]
       fail-fast: false
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Fix node-gyp
-        run: |-
-          npm install --global node-gyp@latest
-          npm prefix -g | % {npm config set node_gyp "$_\node_modules\node-gyp\bin\node-gyp.js"}
-        shell: pwsh
       - run: bash scripts/ci/build-and-test.sh
         shell: bash
         env:
