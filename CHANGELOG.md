@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.11.2](https://github.com/pact-foundation/jest-pact/compare/v0.11.1...v0.11.2) (2025-02-17)
+
+
+### Bug Fixes
+
+* **deps:** add pact-js v14 to peer deps ([#343](https://github.com/pact-foundation/jest-pact/issues/343)) ([33480d0](https://github.com/pact-foundation/jest-pact/commit/33480d0ad1783264c26e28e591544d8b8677862f))
+
 ### [0.11.1](https://github.com/pact-foundation/jest-pact/compare/v0.11.0...v0.11.1) (2024-06-19)
 
 
