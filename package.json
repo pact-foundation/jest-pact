@@ -43,7 +43,7 @@
   "devDependencies": {
     "@commitlint/cli": "^19.0.0",
     "@commitlint/config-conventional": "^19.2.2",
-    "@pact-foundation/pact": "^13.0.0",
+    "@pact-foundation/pact": "^14.0.0",
     "@pact-foundation/pact-js-prettier-config": "^1.0.0",
     "@tsconfig/node14": "^14.0.0",
     "@types/jest": "^29.2.3",
