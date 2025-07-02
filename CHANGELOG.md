@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.11.4](https://github.com/pact-foundation/jest-pact/compare/v0.11.3...v0.11.4) (2025-07-02)
+
+
+### Dependencies
+
+* **deps:** update dependency eslint-import-resolver-typescript to v4 ([ba3a054](https://github.com/pact-foundation/jest-pact/commit/ba3a054cb7ecac2c5f576d39b796fc5a144272b4))
+* **deps:** update dependency lint-staged to v15.5.1 ([#379](https://github.com/pact-foundation/jest-pact/issues/379)) ([1906334](https://github.com/pact-foundation/jest-pact/commit/190633407a718e6552d2aee323018344a155c80e))
+* **deps:** update dependency lint-staged to v15.5.2 ([#391](https://github.com/pact-foundation/jest-pact/issues/391)) ([d1252b7](https://github.com/pact-foundation/jest-pact/commit/d1252b7db1256046001edc57f99ae464e9c45242))
+* **deps:** update dependency lint-staged to v16 ([a3fc404](https://github.com/pact-foundation/jest-pact/commit/a3fc404a0a0f5bced3887417ba80e88011efcdb0))
+* **deps:** update dependency prettier to v3.6.0 ([#400](https://github.com/pact-foundation/jest-pact/issues/400)) ([d12f17c](https://github.com/pact-foundation/jest-pact/commit/d12f17cf121a59e8cbe7e8a2b720bc1cd16ef2c4))
+* **deps:** update dependency prettier to v3.6.1 ([#401](https://github.com/pact-foundation/jest-pact/issues/401)) ([c6c61ab](https://github.com/pact-foundation/jest-pact/commit/c6c61ab966db2b55bb8e3667fb913d62e5b58d73))
+* **deps:** update dependency prettier to v3.6.2 ([#402](https://github.com/pact-foundation/jest-pact/issues/402)) ([1860327](https://github.com/pact-foundation/jest-pact/commit/1860327845023c53cf0253cef4781212011ae97c))
+* **deps:** update dependency supertest to v7.1.1 ([#393](https://github.com/pact-foundation/jest-pact/issues/393)) ([feb6fdb](https://github.com/pact-foundation/jest-pact/commit/feb6fdb5ea2457455255705042b9808d3eaeeeab))
+* **deps:** update dependency typescript to v5.8.3 ([#374](https://github.com/pact-foundation/jest-pact/issues/374)) ([70587e8](https://github.com/pact-foundation/jest-pact/commit/70587e863dc377d2ba0a36b8017814db6aa9c45e))
+* **deps:** update jest monorepo to v30 ([d21a2cd](https://github.com/pact-foundation/jest-pact/commit/d21a2cdef8891cdb864f28698ad5ded450631830))
+
 ### [0.11.3](https://github.com/pact-foundation/jest-pact/compare/v0.11.2...v0.11.3) (2025-03-24)
 
 
