@@ -69,7 +69,7 @@
     "supertest": "7.1.4",
     "ts-jest": "^29.0.3",
     "ts-node": "10.9.2",
-    "typescript": "5.9.2"
+    "typescript": "5.9.3"
   },
   "peerDependencies": {
     "@pact-foundation/pact": "^v10.0.0-beta.61 || ^10.0.2 || ^11.0.2 || ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0",
