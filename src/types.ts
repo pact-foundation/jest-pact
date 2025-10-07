@@ -1,8 +1,8 @@
 import {
   MessageConsumerPact,
-  Pact,
+  PactV2,
   MessageConsumerOptions,
-  PactOptions,
+  PactV2Options,
 } from '@pact-foundation/pact';
 import { WrapperWithOnlyAndSkip } from './internal/types';
 
@@ -12,11 +12,11 @@ interface ExtraOptions {
   logFileName?: string;
 }
 
-export type JestPactOptions = PactOptions & ExtraOptions;
+export type JestPactOptions = PactV2Options & ExtraOptions;
 
 export type JestMessageConsumerOptions = MessageConsumerOptions & ExtraOptions;
 
-export type JestProvidedPactFn = (provider: Pact) => void;
+export type JestProvidedPactFn = (provider: PactV2) => void;
 
 export type JestProvidedMessagePactFn = (
   messagePact: MessageConsumerPact

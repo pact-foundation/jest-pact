@@ -1,4 +1,4 @@
-import { Pact } from '@pact-foundation/pact';
+import { PactV2 } from '@pact-foundation/pact';
 import { applyPactOptionDefaults } from './internal/config';
 import { WrapperFn } from './internal/types';
 import { withTimeout } from './internal/withTimeout';
@@ -6,8 +6,8 @@ import { withTimeout } from './internal/withTimeout';
 import { extendPactWith } from './internal/scaffold';
 import { JestPactOptions, JestProvidedPactFn } from './types';
 
-const setupProvider = (options: JestPactOptions): Pact => {
-  const pactMock: Pact = new Pact(options);
+const setupProvider = (options: JestPactOptions): PactV2 => {
+  const pactMock: PactV2 = new PactV2(options);
 
   beforeAll(() => pactMock.setup());
   afterAll(() => pactMock.finalize());
@@ -17,7 +17,7 @@ const setupProvider = (options: JestPactOptions): Pact => {
 };
 
 // This should be moved to pact-js, probably
-export const getProviderBaseUrl = (provider: Pact): string =>
+export const getProviderBaseUrl = (provider: PactV2): string =>
   provider.mockService
     ? provider.mockService.baseUrl
     : `http://${provider.opts.host}:${provider.opts.port}`;

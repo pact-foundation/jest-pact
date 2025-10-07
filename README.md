@@ -12,7 +12,7 @@
 
 ### Features
 
-- [x] instantiates the PactOptions for you
+- [x] instantiates the PactV2Options/PactV3Options for you
 - [x] Setups Pact mock service before and after hooks so you don’t have to
 - [x] Set Jest timeout to 30 seconds preventing brittle tests in slow environments like Docker
 - [x] Sensible defaults for the pact options that make sense with Jest
@@ -20,6 +20,9 @@
 
 ## `Jest-Pact` Roadmap
 
+- [ ] Add PactV4 interface with `JestProvidedPactFnV4`
+- [ ] BREAKING CHANGE: make `JestProvidedPactFn` default to `JestProvidedPactFnV4`
+- [ ] BREAKING CHANGE: rename `JestProvidedPactFn` to `JestProvidedPactFnV2`
 - [ ] Ensure that jest-pact plays well with jest's default of watch-mode (This has been mothballed, please see this [draft pr](https://github.com/pact-foundation/jest-pact/pull/53) for details. Contributions welcome!
 - [ ] Ensure that pact failures print nice diffs (at the moment you have to go digging in the log files)
 - [ ] Add a setup hook for clearing out log and pact files
@@ -232,14 +235,16 @@ Jest-Pact has two primary functions:
 
 Additionally, `pactWith.only / fpactWith`, `pactWith.skip / xpactWith`, `messagePactWith.only / fmessagePactWith` and `messagePactWith.skip / xmessagePactWith` behave as you would expect from Jest.
 
-There are two types exported:
+There are two types exported (depending on whether you are using the V2 or V3 Pact interface):
 
-- `JestProvidedPactFn`: This is the type of the second argument to `pactWith`, ie: `(provider: Pact) => void`
-- `JestPactOptions`: An extended version of `PactOptions` that has some additional convienience options (see below).
+- `JestProvidedPactFn`: This is the type of the second argument to `pactWith`, ie: `(provider: PactV2) => void`
+- `JestPactOptions`: An extended version of `PactV2Options` that has some additional convenience options (see below).
+- `JestProvidedPactFnV3`: This is the type of the second argument to `pactWith`, ie: `(provider: PactV3) => void`
+- `JestPactOptionsV3`: An extended version of `PactV3Options` that has some additional convenience options (see below).
 
 ## Configuration
 
-You can use all the usual `PactOptions` from pact-js, plus a timeout for
+You can use all the usual `PactV2Options`/`PactV3Options` from pact-js, plus a timeout for
 telling jest to wait a bit longer for pact to start and run.
 
 ```ts
@@ -257,14 +262,14 @@ interface ExtraOptions {
   logFileName?: string; // filename for the log file
 }
 
-type JestPactOptions = PactOptions & ExtraOptions;
+type JestPactOptions = PactV2Options & ExtraOptions;
 
 type JestMessageConsumerOptions = MessageConsumerOptions & ExtraOptions;
 ```
 
 ### Defaults
 
-Jest-Pact sets some helpful default PactOptions for you. You can override any of these by explicitly setting corresponding option. Here are the defaults:
+Jest-Pact sets some helpful default `PactV2Options`/`PactV3Options` for you. You can override any of these by explicitly setting corresponding option. Here are the defaults:
 
 - `log` is set so that log files are written to `/pact/logs`, and named `<consumer>-<provider>-mockserver-interaction.log`. If you provided an explicit `port`, then the log file name is `<consumer>-<provider>-mockserver-interaction-port-<portNumber>.log`
 - `dir` is set so that pact files are written to `/pact/pacts`

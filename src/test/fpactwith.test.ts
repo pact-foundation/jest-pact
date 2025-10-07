@@ -1,8 +1,8 @@
-import { InteractionObject, Pact } from '@pact-foundation/pact';
+import { InteractionObject, PactV2 } from '@pact-foundation/pact';
 import supertest = require('supertest');
 import { fpactWith } from '../index';
 
-const getClient = (provider: Pact) => supertest(provider.mockService.baseUrl);
+const getClient = (provider: PactV2) => supertest(provider.mockService.baseUrl);
 
 const postValidRequest: InteractionObject = {
   state: 'A pet 1845563262948980200 exists',
@@ -20,7 +20,7 @@ const postValidRequest: InteractionObject = {
 describe('fpactwith', () => {
   fpactWith(
     { consumer: 'MyConsumer', provider: 'NoProvider' },
-    (provider: Pact) => {
+    (provider: PactV2) => {
       beforeEach(() => provider.addInteraction(postValidRequest));
 
       it('should only run this test', () =>
