@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.13.0](https://github.com/pact-foundation/jest-pact/compare/v0.11.4...v0.13.0) (2025-10-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* change Pact to PactV2 / PactOptions to PactV2Options
+
+### Features
+
+* change Pact to PactV2 / PactOptions to PactV2Options ([384d427](https://github.com/pact-foundation/jest-pact/commit/384d427ce7536f81dae025517d00addab28f0dff))
+
+
+### Dependencies
+
+* **deps:** update actions/checkout action to v5 ([#412](https://github.com/pact-foundation/jest-pact/issues/412)) ([29280ac](https://github.com/pact-foundation/jest-pact/commit/29280ac991a4a4ab1e6c19f341f2e7119be1b2bd))
+* **deps:** update actions/setup-node action to v5 ([#414](https://github.com/pact-foundation/jest-pact/issues/414)) ([7f54a56](https://github.com/pact-foundation/jest-pact/commit/7f54a56d039b3a7863811e84d767c87c068b235c))
+* **deps:** update dependency cross-env to v10 ([#407](https://github.com/pact-foundation/jest-pact/issues/407)) ([a517f0e](https://github.com/pact-foundation/jest-pact/commit/a517f0e4103b0aa5f39bf3e7ecb9a1b535eb6f8a))
+* **deps:** update dependency cross-env to v10.1.0 ([#428](https://github.com/pact-foundation/jest-pact/issues/428)) ([9d849b5](https://github.com/pact-foundation/jest-pact/commit/9d849b56d4e4414098ed85ea3b15a663a58a03cf))
+* **deps:** update dependency lint-staged to v16.1.4 ([#409](https://github.com/pact-foundation/jest-pact/issues/409)) ([76dd03b](https://github.com/pact-foundation/jest-pact/commit/76dd03b0c13c38a56f9595f363b8ab02e053709e))
+* **deps:** update dependency lint-staged to v16.1.5 ([#410](https://github.com/pact-foundation/jest-pact/issues/410)) ([549015f](https://github.com/pact-foundation/jest-pact/commit/549015f9972bbac902f6d1848c0d85b39dd91c41))
+* **deps:** update dependency lint-staged to v16.1.6 ([#413](https://github.com/pact-foundation/jest-pact/issues/413)) ([3259bca](https://github.com/pact-foundation/jest-pact/commit/3259bca6a9f252e0077f09d5145783bfca5cfe1c))
+* **deps:** update dependency lint-staged to v16.2.0 ([#419](https://github.com/pact-foundation/jest-pact/issues/419)) ([c65d962](https://github.com/pact-foundation/jest-pact/commit/c65d962f9fc4e7127012146b8f9095cdc88571a7))
+* **deps:** update dependency lint-staged to v16.2.1 ([#425](https://github.com/pact-foundation/jest-pact/issues/425)) ([489838f](https://github.com/pact-foundation/jest-pact/commit/489838faa48fe2215bf58a7545c511f6b61525d3))
+* **deps:** update dependency lint-staged to v16.2.2 ([#426](https://github.com/pact-foundation/jest-pact/issues/426)) ([5f121f5](https://github.com/pact-foundation/jest-pact/commit/5f121f5dca6feebdd81bbe10d33cb7204ed1a381))
+* **deps:** update dependency lint-staged to v16.2.3 ([#427](https://github.com/pact-foundation/jest-pact/issues/427)) ([78e415a](https://github.com/pact-foundation/jest-pact/commit/78e415a5377ec1f213729defc619323411c9df1c))
+* **deps:** update dependency node to v22 ([#411](https://github.com/pact-foundation/jest-pact/issues/411)) ([a26212a](https://github.com/pact-foundation/jest-pact/commit/a26212aff249671be23b373ed1f2bb3ee1e29e7d))
+* **deps:** update dependency supertest to v7.1.3 ([#405](https://github.com/pact-foundation/jest-pact/issues/405)) ([86522d2](https://github.com/pact-foundation/jest-pact/commit/86522d2bb1deb20865892493f32e4b18b9319487))
+* **deps:** update dependency supertest to v7.1.4 ([#406](https://github.com/pact-foundation/jest-pact/issues/406)) ([de29ed5](https://github.com/pact-foundation/jest-pact/commit/de29ed5f63f5704362c5957f747daf2f1ba2bc0c))
+* **deps:** update dependency typescript to v5.9.2 ([#408](https://github.com/pact-foundation/jest-pact/issues/408)) ([a5d079f](https://github.com/pact-foundation/jest-pact/commit/a5d079fb6cf14c20f6aba2a0ff359758e5b48437))
+* **deps:** update dependency typescript to v5.9.3 ([#432](https://github.com/pact-foundation/jest-pact/issues/432)) ([3330552](https://github.com/pact-foundation/jest-pact/commit/33305528b5d0987f84bacc9df6d604d975efdcdb))
+
 ### [0.11.4](https://github.com/pact-foundation/jest-pact/compare/v0.11.3...v0.11.4) (2025-07-02)
 
 
