@@ -1,7 +1,7 @@
-import { MessageConsumerOptions, PactOptions } from '@pact-foundation/pact';
+import { MessageConsumerOptions, PactV2Options } from '@pact-foundation/pact';
 import { ConsumerOptions, WrapperFn, WrapperWithOnlyAndSkip } from './types';
 
-const describeString = (options: PactOptions | MessageConsumerOptions) =>
+const describeString = (options: PactV2Options | MessageConsumerOptions) =>
   `Pact between ${options.consumer} and ${options.provider}`;
 
 const describePactWith = <

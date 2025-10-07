@@ -1,5 +1,5 @@
 import {
-  Matchers,
+  MatchersV2,
   MessageConsumerPact,
   synchronousBodyHandler,
 } from '@pact-foundation/pact';
@@ -17,7 +17,7 @@ function dogApiHandler(dog: Dog): void {
     throw new Error('missing fields');
   }
 }
-const { like, term } = Matchers;
+const { like, term } = MatchersV2;
 
 const arbitraryPact = (provider: MessageConsumerPact) => {
   describe('receive dog event', () => {

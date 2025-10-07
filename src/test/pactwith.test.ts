@@ -1,8 +1,8 @@
-import { InteractionObject, Pact } from '@pact-foundation/pact';
+import { InteractionObject, PactV2 } from '@pact-foundation/pact';
 import { agent } from 'supertest';
 import { getProviderBaseUrl, pactWith } from '../index';
 
-const getClient = (provider: Pact) =>
+const getClient = (provider: PactV2) =>
   agent(provider.mockService.baseUrl);
 const pactPort = 5001;
 
@@ -21,7 +21,7 @@ const postValidRequest: InteractionObject = {
 
 pactWith(
   { consumer: 'MyConsumer', provider: 'pactWith', port: pactPort },
-  (provider: Pact) => {
+  (provider: PactV2) => {
     describe('pact integration', () => {
       beforeEach(() => provider.addInteraction(postValidRequest));
 
@@ -59,7 +59,7 @@ pactWith(
 
 pactWith(
   { consumer: 'MyConsumer', provider: 'pactWith2' },
-  (provider: Pact) => {
+  (provider: PactV2) => {
     describe('pact integration 2', () => {
       beforeEach(() => provider.addInteraction(postValidRequest));
 
@@ -95,7 +95,7 @@ pactWith(
 );
 
 describe('custom log locations', () => {
-  const arbitraryPact = (provider: Pact) => {
+  const arbitraryPact = (provider: PactV2) => {
     describe('pact test', () => {
       beforeEach(() => provider.addInteraction(postValidRequest));
 
@@ -115,7 +115,7 @@ describe('custom log locations', () => {
           provider: 'pactWith2',
           logDir: 'pact/log/custom',
         },
-        (provider: Pact) => {
+        (provider: PactV2) => {
           arbitraryPact(provider);
         }
       );
@@ -128,7 +128,7 @@ describe('custom log locations', () => {
           logDir: 'pact/log/custom',
           logFileName: 'someLog.txt',
         },
-        (provider: Pact) => {
+        (provider: PactV2) => {
           arbitraryPact(provider);
         }
       );
@@ -141,7 +141,7 @@ describe('custom log locations', () => {
         provider: 'pactWith2',
         logFileName: 'someOtherLog.txt',
       },
-      (provider: Pact) => {
+      (provider: PactV2) => {
         arbitraryPact(provider);
       }
     );
