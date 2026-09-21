@@ -39,7 +39,9 @@ skipped and the GitHub release is still created.
    the branch if the generated result needs changing. The next push to
    `master` force-pushes the branch and discards edits, so make them
    when you are ready to merge.
-3. Mark the pull request ready for review and merge it.
+3. Mark the pull request ready for review. The test workflow skips
+   drafts, so this is the run that checks what will be merged.
+4. Merge it once the tests pass.
 
 ## Running the script locally
 

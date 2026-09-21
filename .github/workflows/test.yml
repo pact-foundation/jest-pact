@@ -7,6 +7,13 @@ on:
   pull_request:
     branches:
       - master
+    # ready_for_review is listed so the release PR, which is a draft until a
+    # maintainer readies it, gets a run before it is merged
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
   workflow_dispatch:
 
 concurrency:
@@ -45,6 +52,10 @@ jobs:
 
   lint:
     name: Lint
+    # Drafts are skipped to save the matrix on the bot-maintained release PR,
+    # which is force-pushed on every push to master; the completion check
+    # goes red on the skipped jobs, which is accepted for a draft
+    if: github.event_name != 'pull_request' || !github.event.pull_request.draft
     runs-on: ubuntu-latest
 
     steps:
@@ -61,6 +72,7 @@ jobs:
 
   format:
     name: Format
+    if: github.event_name != 'pull_request' || !github.event.pull_request.draft
     runs-on: ubuntu-latest
 
     steps:
@@ -80,6 +92,7 @@ jobs:
       Test
       on ${{ matrix.os }}
       with Node ${{ matrix.node-version }}
+    if: github.event_name != 'pull_request' || !github.event.pull_request.draft
 
     runs-on: ${{ matrix.os }}
 

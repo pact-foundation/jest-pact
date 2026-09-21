@@ -16,8 +16,9 @@
 #   creates the GitHub release with that version's changelog entry.
 #
 # The `closed` pull_request type is listed so that Stage 2 fires on merge;
-# the `tag` job checks `merged == true` itself. The test workflow already
-# runs the full build on the release PR, so there is no separate verify job.
+# the `tag` job checks `merged == true` itself. The test workflow runs the
+# full build on the release PR once it is marked ready for review, so there
+# is no separate verify job.
 name: Release
 
 on:
