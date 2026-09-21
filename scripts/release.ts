@@ -19,10 +19,10 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
 
-export const PACKAGE_NAME = 'jest-pact';
-export const RELEASE_BRANCH = 'release/jest-pact';
-export const BASE_BRANCH = 'master';
-export const TAG_PREFIX = 'v';
+const PACKAGE_NAME = 'jest-pact';
+const RELEASE_BRANCH = 'release/jest-pact';
+const BASE_BRANCH = 'master';
+const TAG_PREFIX = 'v';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CHANGELOG_PATH = path.join(ROOT, 'CHANGELOG.md');
@@ -33,21 +33,18 @@ const USAGE = `Usage:
   node scripts/release.ts tag [--dry-run] [--debug]
   node scripts/release.ts changelog <version>`;
 
-export interface PullRequest {
+interface PullRequest {
   number: number;
   headRefName: string;
 }
 
 // MARK: Pure helpers
 
-export function stripTagPrefix(
-  tag: string,
-  prefix: string = TAG_PREFIX,
-): string {
+function stripTagPrefix(tag: string, prefix: string = TAG_PREFIX): string {
   return tag.startsWith(prefix) ? tag.slice(prefix.length) : tag;
 }
 
-export function tagName(version: string): string {
+function tagName(version: string): string {
   return `${TAG_PREFIX}${version}`;
 }
 
@@ -59,7 +56,7 @@ export function tagName(version: string): string {
  * is excluded from bumping (dependency updates, for example), so equality
  * with the version already in package.json counts as "nothing to do".
  */
-export function nextVersion(
+function nextVersion(
   bumpedTag: string | null,
   currentVersion: string,
 ): string | null {
@@ -72,7 +69,7 @@ export function nextVersion(
 }
 
 /** Parse `gh pr list --json number,headRefName --jq first` output. */
-export function parseExistingPr(ghOutput: string): PullRequest | null {
+function parseExistingPr(ghOutput: string): PullRequest | null {
   const text = ghOutput.trim();
   if (!text || text === 'null') {
     return null;
@@ -86,10 +83,7 @@ export function parseExistingPr(ghOutput: string): PullRequest | null {
  * `## ` heading. Both cliff's `## [0.14.0] _date_` and standard-version's
  * `## [0.14.0](compare-url) (date)` headings contain `[version]`.
  */
-export function extractChangelogSection(
-  changelog: string,
-  version: string,
-): string {
+function extractChangelogSection(changelog: string, version: string): string {
   const marker = `[${version}]`;
   const section: string[] = [];
   let found = false;
@@ -109,7 +103,7 @@ export function extractChangelogSection(
 }
 
 /** The GitHub release body for a version. */
-export function releaseNotes(changelog: string, version: string): string {
+function releaseNotes(changelog: string, version: string): string {
   const section = extractChangelogSection(changelog, version);
   if (section) {
     return `${section}\n`;
@@ -411,9 +405,4 @@ function main(argv: string[]): void {
   }
 }
 
-if (
-  process.argv[1] &&
-  path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)
-) {
-  main(process.argv.slice(2));
-}
+main(process.argv.slice(2));
