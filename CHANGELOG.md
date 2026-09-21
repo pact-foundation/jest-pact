@@ -6,6 +6,58 @@ All notable changes to this project will be documented in this file.
 <!-- markdownlint-disable emph-style -->
 <!-- markdownlint-disable strong-style -->
 
+## [0.14.0] _2026-09-21_
+
+### 🚀 Features
+
+-   Declare types, exports and files in package.json
+-   Add scripts/release.ts
+
+### 🐛 Bug Fixes
+
+-   Run the test suite under Jest 30 with pact-js 16
+-   Fail loudly on git-cliff/gh infra errors in release.ts
+-   Skip prepare while a release is in flight
+
+### 📚 Documentation
+
+-   Update README, CONTRIBUTING and RELEASING for the new toolchain
+-   Normalise changelog heading levels
+-   Rewrite RELEASING.md for the PR-based flow
+-   Describe version bumps, setup prerequisites and Node floor
+-   Describe the prepare no-op while a release is in flight
+
+### 🧪 Testing
+
+-   Drop the release script unit tests
+
+### 🛠️ Miscellaneous Tasks
+
+-   Require Node 22 or later
+-   Replace ESLint and Prettier with Biome
+-   Base tsconfig on @tsconfig/node22
+-   Verify package entry points with arethetypeswrong
+-   Replace standard-version, husky, lint-staged and commitlint
+-   Adopt the Renovate best-practices preset
+-   Rebase Renovate branches only on conflict
+-   Add git-cliff configuration
+-   _(ci)_ Release through a git-cliff release PR
+-   _(ci)_ Skip the test jobs on draft pull requests
+-   Let breaking changes bump the major version
+-   _(ci)_ Drop the release-pr environment
+
+### 🛠️ Other
+
+-   Test on Node 22 and 24 behind a single completion check
+-   Run lint and format as their own jobs
+-   Default the test workflow token to read-only
+-   Publish to npm with trusted publishing
+-   Upload coverage and test results to Codecov
+
+### Contributors
+
+-   @JP-Ellis
+
 ## [0.13.0](https://github.com/pact-foundation/jest-pact/compare/v0.11.4...v0.13.0) (2025-10-07)
 
 
