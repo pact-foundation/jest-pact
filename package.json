@@ -22,7 +22,7 @@
     "url": "git+https://github.com/pact-foundation/jest-pact.git"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "author": "YOU54F",
   "contributors": [
