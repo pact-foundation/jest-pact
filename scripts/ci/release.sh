@@ -37,7 +37,8 @@ RELEASE_NOTES="${RELEASE_NOTES//$'\n'/'%0A'}"
 RELEASE_NOTES="${RELEASE_NOTES//$'\r'/'%0D'}"
 echo "::set-output name=notes::$RELEASE_NOTES"
 
-"$SCRIPT_DIR"/build-and-test.sh
+npm install
+npm run dist
 npm run release
 
 # Emit version to next step
