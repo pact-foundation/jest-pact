@@ -8,12 +8,10 @@ require_binary npm
 
 VERSION="$("$SCRIPT_DIR/get-version.sh")"
 
-echo "--> Preparing npmrc file"
-"$SCRIPT_DIR"/create_npmrc_file.sh
-
 echo "--> Releasing version ${VERSION}"
 
 echo "--> Releasing artifacts"
 echo "    Publishing jest-pact@${VERSION}..."
-npm publish --tag latest
+# Authentication comes from the workflow's OIDC token (npm trusted publishing)
+npm publish --tag latest --provenance
 echo "    done!"
