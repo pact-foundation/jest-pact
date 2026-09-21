@@ -3,5 +3,6 @@
   "extends": ["config:best-practices", ":pinOnlyDevDependencies"],
   "prHourlyLimit": 0,
   "prConcurrentLimit": 0,
-  "automerge": true
+  "automerge": true,
+  "rebaseWhen": "conflicted"
 }
