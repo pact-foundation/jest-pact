@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 // Release orchestration for jest-pact.
 //
 //   node scripts/release.ts prepare [--dry-run] [--debug]

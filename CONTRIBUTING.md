@@ -21,14 +21,16 @@ Hey, that's awesome you want to help! If you have an idea that you think would b
 commit message conventions. Please ensure you follow the guidelines, as they
 help us automate our release process.
 
-The release process reads these commits. `feat` bumps the minor version
-and `fix` the patch version; `feat!` or a `BREAKING CHANGE:` footer also
-bumps the minor version while the package is on 0.x. The changelog lists
-`feat`, `fix`, `refactor`, `perf`, `style`, `docs`, `test`, `revert` and
-`chore` commits under their own headings, and hides dependency updates
-(`chore(deps)`, `fix(deps)`). A commit that should not appear in the
-changelog belongs under a hidden scope or in a squash with one that
-should.
+The release process reads these commits. `feat` bumps the minor
+version; a breaking change (`feat!`, or any type with a `!` or a
+`BREAKING CHANGE:` footer) also bumps the minor version while the
+package is on 0.x. Every other listed type — `fix`, `refactor`,
+`perf`, `style`, `docs`, `test`, `revert`, `chore` — bumps the patch
+version, since git-cliff bumps the patch for any conventional commit
+it does not skip. Only the hidden scopes bump nothing: a commit that
+should not appear in the changelog uses the `deps` scope
+(`chore(deps)`, `fix(deps)`) or is squashed into one that should
+appear.
 
 You can take a look at the git history (`git log`) to get the gist of it.
 If you have questions, feel free to reach out in `#pact-js` in our [slack
