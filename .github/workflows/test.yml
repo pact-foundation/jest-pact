@@ -18,7 +18,7 @@ permissions:
   contents: read
 
 env:
-  # The oldest supported version; the lint and format jobs use it
+  # The oldest supported version; the lint, format and Codecov steps use it
   STABLE_NODE_VERSION: 22
 
 jobs:
@@ -107,3 +107,19 @@ jobs:
       - run: npm install
       - run: npm run dist
         shell: bash
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@e79a6962e0d4c0c17b229090214935d2e33f8354 # v6.0.1
+        if: matrix.node-version == env.STABLE_NODE_VERSION && matrix.os == 'ubuntu-latest'
+        with:
+          report_type: coverage
+          files: coverage/lcov.info
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Upload test results
+        uses: codecov/codecov-action@e79a6962e0d4c0c17b229090214935d2e33f8354 # v6.0.1
+        if: always() && matrix.node-version == env.STABLE_NODE_VERSION && matrix.os == 'ubuntu-latest'
+        with:
+          report_type: test_results
+          files: coverage/junit.xml
+          token: ${{ secrets.CODECOV_TOKEN }}

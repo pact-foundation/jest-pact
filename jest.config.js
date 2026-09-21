@@ -26,6 +26,9 @@ module.exports = {
   ],
   testMatch: ['**/*.test.(ts)'],
   testEnvironment: 'node',
-  reporters: ['default', ['jest-junit', { output: './coverage/junit/unit' }]],
+  reporters: [
+    'default',
+    ['jest-junit', { outputDirectory: 'coverage', outputName: 'junit.xml' }],
+  ],
   watchPathIgnorePatterns: ['pact/logs/*', 'pact/pacts/*'],
 };
