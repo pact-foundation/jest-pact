@@ -32,7 +32,7 @@
   },
   "scripts": {
     "lint:biome": "biome lint",
-    "lint:tsc": "tsc --noEmit",
+    "lint:tsc": "tsc --noEmit && tsc -p tsconfig.scripts.json",
     "lint": "npm run lint:biome && npm run lint:tsc",
     "lint:fix": "biome lint --write",
     "format": "biome format",
@@ -42,7 +42,8 @@
     "build": "rimraf dist && tsc --project tsconfig.dist.json",
     "check:package": "attw --pack .",
     "test": "jest --coverage --runInBand --verbose --coverageReporters=lcov",
-    "dist": "npm run check && npm run test && npm run build && npm run check:package",
+    "test:scripts": "node --test scripts/release.test.ts",
+    "dist": "npm run check && npm run test && npm run test:scripts && npm run build && npm run check:package",
     "release": "commit-and-tag-version",
     "release:dryrun": "npm run test && npm publish --dry-run",
     "release:trigger": "./scripts/trigger-release.sh"
