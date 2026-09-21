@@ -58,22 +58,16 @@ branch. Revert with `git checkout -- package.json CHANGELOG.md`.
 `node scripts/release.ts tag --dry-run` prints the tag that would be
 pushed. `--debug` on either command prints every git and gh invocation.
 
-## One-time setup
+## What the workflow depends on
 
-- Grant the pact-foundation bot GitHub App access to this repository,
-  with the Contents (write) and Pull requests (write) permissions the
-  flow needs. The workflow reads `vars.PACT_FOUNDATION_BOT_APP_ID` and
+- The pact-foundation bot GitHub App, installed on this repository with
+  the Contents (write) and Pull requests (write) permissions, through the
+  organisation-wide `vars.PACT_FOUNDATION_BOT_APP_ID` and
   `secrets.PACT_FOUNDATION_BOT_PRIVATE_KEY`.
-- Create the environments `release-pr` (used by the prepare and tag
-  jobs) and `npm` (used by the publish job).
-- On npmjs.com, under the package's *Publishing access* settings, list a
-  trusted publisher for `jest-pact`: repository `pact-foundation/jest-pact`,
-  workflow `release.yml`. If the form's optional environment field is
-  filled in, it must say `npm`. The publish step requests an OIDC token
-  from GitHub and npm verifies it against that entry; no npm token is
-  stored. This must be in place before the first release PR is merged:
-  otherwise `tag` succeeds and `publish` fails at `npm publish`, leaving
-  a tag with nothing on the registry.
+- The `npm` environment, which the publish job runs in.
+- The npm trusted publisher for `jest-pact`, bound to the workflow file
+  `release.yml` and the environment `npm`. Renaming either breaks
+  `npm publish`; no npm token is stored.
 
 ## If a stage fails
 
