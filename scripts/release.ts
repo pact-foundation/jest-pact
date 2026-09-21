@@ -6,9 +6,11 @@
 //   node scripts/release.ts changelog <version>
 //
 // `prepare` computes the next version with git-cliff, writes package.json and
-// CHANGELOG.md, and creates or updates the draft release PR. `tag` reads the
-// version from package.json and pushes the matching tag. `changelog` prints
-// the release notes for a version, for the GitHub release body.
+// CHANGELOG.md, and creates or updates the draft release PR. It skips when
+// the version in package.json has no tag yet, since that means a release is
+// already in flight. `tag` reads the version from package.json and pushes
+// the matching tag. `changelog` prints the release notes for a version, for
+// the GitHub release body.
 //
 // Runs under Node's type stripping; only node:* modules are used.
 
@@ -174,6 +176,11 @@ function writeVersion(version: string): void {
   exec('npm', ['version', version, '--no-git-tag-version']);
 }
 
+/** Whether `version` has a matching tag (`git tag --list` against `TAG_PREFIX + version`). */
+function isTagged(version: string): boolean {
+  return capture('git', ['tag', '--list', tagName(version)]).trim() !== '';
+}
+
 function computeNextVersion(): string | null {
   // `capture`, not `tryCapture`: git-cliff exits 0 in every legitimate
   // "nothing to bump" case (it prints the current tag), so a non-zero exit
@@ -290,6 +297,14 @@ function ensureGithubToken(): void {
 // MARK: Commands
 
 function prepare(dryRun: boolean): void {
+  const currentVersion = readVersion();
+  if (!isTagged(currentVersion)) {
+    info(
+      `Version ${currentVersion} in package.json has no tag yet; a release is in flight. Nothing to do.`,
+    );
+    return;
+  }
+
   const version = computeNextVersion();
   if (version === null) {
     info(`No version bump needed for ${PACKAGE_NAME}. Nothing to do.`);
@@ -341,7 +356,7 @@ function tag(dryRun: boolean): void {
   const name = tagName(version);
 
   exec('git', ['fetch', '--tags', 'origin']);
-  if (capture('git', ['tag', '--list', name]).trim()) {
+  if (isTagged(version)) {
     info(`Tag '${name}' already exists. Nothing to do.`);
     return;
   }
