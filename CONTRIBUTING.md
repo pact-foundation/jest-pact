@@ -21,13 +21,14 @@ Hey, that's awesome you want to help! If you have an idea that you think would b
 commit message conventions. Please ensure you follow the guidelines, as they
 help us automate our release process.
 
-Should your change include something that should be listed in the release
-notes, please use `feat` or `fix` commits with a good commit message. Your
-commit message will automatically be included in the release notes.
-
-If you are committing something that shouldn't be listed in the release
-notes, please use a different type (even if it is technically a fix). We
-usually use one of `chore`, `style`, `refactor`, or `test` as appropriate.
+The release process reads these commits. `feat` bumps the minor version
+and `fix` the patch version; `feat!` or a `BREAKING CHANGE:` footer also
+bumps the minor version while the package is on 0.x. The changelog lists
+`feat`, `fix`, `refactor`, `perf`, `style`, `docs`, `test`, `revert` and
+`chore` commits under their own headings, and hides dependency updates
+(`chore(deps)`, `fix(deps)`). A commit that should not appear in the
+changelog belongs under a hidden scope or in a squash with one that
+should.
 
 You can take a look at the git history (`git log`) to get the gist of it.
 If you have questions, feel free to reach out in `#pact-js` in our [slack
