@@ -1,4 +1,4 @@
-import { PactV2 } from '@pact-foundation/pact';
+import type { PactV2 } from '@pact-foundation/pact';
 import { xpactWith } from '../index';
 
 describe('xpactwith', () => {
@@ -8,7 +8,7 @@ describe('xpactwith', () => {
       test('the test that should be skipped', () => {
         throw new Error('tests inside xpactWith should not run');
       });
-    }
+    },
   );
   test('this test should run', () => {});
 });

@@ -1,5 +1,7 @@
-import { InteractionObject, PactV2 } from '@pact-foundation/pact';
+import type { InteractionObject, PactV2 } from '@pact-foundation/pact';
+
 import supertest = require('supertest');
+
 import { fpactWith } from '../index';
 
 const getClient = (provider: PactV2) => supertest(provider.mockService.baseUrl);
@@ -28,7 +30,7 @@ describe('fpactwith', () => {
           .get('/v2/pet/1845563262948980200')
           .set('api_key', '[]')
           .expect(200));
-    }
+    },
   );
 
   test('the test that should be skipped', () => {

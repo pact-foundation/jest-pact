@@ -1,9 +1,8 @@
-import { InteractionObject, PactV2 } from '@pact-foundation/pact';
+import type { InteractionObject, PactV2 } from '@pact-foundation/pact';
 import { agent } from 'supertest';
 import { getProviderBaseUrl, pactWith } from '../index';
 
-const getClient = (provider: PactV2) =>
-  agent(provider.mockService.baseUrl);
+const getClient = (provider: PactV2) => agent(provider.mockService.baseUrl);
 const pactPort = 5001;
 
 const postValidRequest: InteractionObject = {
@@ -37,7 +36,7 @@ pactWith(
 
       test('should show the specified port in the URL', () => {
         expect(provider.mockService.baseUrl).toMatch(
-          new RegExp(`${pactPort}$`)
+          new RegExp(`${pactPort}$`),
         );
         return getClient(provider)
           .get('/v2/pet/1845563262948980200')
@@ -46,7 +45,7 @@ pactWith(
       });
       test('should return the port on getProviderBaseUrl', () => {
         expect(getProviderBaseUrl(provider)).toEqual(
-          `http://127.0.0.1:${pactPort}`
+          `http://127.0.0.1:${pactPort}`,
         );
         return getClient(provider)
           .get('/v2/pet/1845563262948980200')
@@ -54,7 +53,7 @@ pactWith(
           .expect(200);
       });
     });
-  }
+  },
 );
 
 pactWith(
@@ -83,7 +82,7 @@ pactWith(
 
       test('should return the host on getProviderBaseUrl', () => {
         expect(getProviderBaseUrl(provider)).toMatch(
-          /^http:\/\/127.0.0.1:\d{4,5}$/
+          /^http:\/\/127.0.0.1:\d{4,5}$/,
         );
         return getClient(provider)
           .get('/v2/pet/1845563262948980200')
@@ -91,7 +90,7 @@ pactWith(
           .expect(200);
       });
     });
-  }
+  },
 );
 
 describe('custom log locations', () => {
@@ -117,7 +116,7 @@ describe('custom log locations', () => {
         },
         (provider: PactV2) => {
           arbitraryPact(provider);
-        }
+        },
       );
     });
     describe('with logFileName', () => {
@@ -130,7 +129,7 @@ describe('custom log locations', () => {
         },
         (provider: PactV2) => {
           arbitraryPact(provider);
-        }
+        },
       );
     });
   });
@@ -143,7 +142,7 @@ describe('custom log locations', () => {
       },
       (provider: PactV2) => {
         arbitraryPact(provider);
-      }
+      },
     );
   });
 });

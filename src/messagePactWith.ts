@@ -1,19 +1,21 @@
 import { MessageConsumerPact } from '@pact-foundation/pact';
 
 import { applyMessagePactOptionDefaults } from './internal/config';
-import { WrapperFn } from './internal/types';
-import { withTimeout } from './internal/withTimeout';
-
 import { extendPactWith } from './internal/scaffold';
-import { JestMessageConsumerOptions, JestProvidedMessagePactFn } from './types';
+import type { WrapperFn } from './internal/types';
+import { withTimeout } from './internal/withTimeout';
+import type {
+  JestMessageConsumerOptions,
+  JestProvidedMessagePactFn,
+} from './types';
 
 const setupMessageProvider = (
-  options: JestMessageConsumerOptions
+  options: JestMessageConsumerOptions,
 ): MessageConsumerPact => new MessageConsumerPact(options);
 
 const jestMessagePactWrapper = (
   options: JestMessageConsumerOptions,
-  tests: JestProvidedMessagePactFn
+  tests: JestProvidedMessagePactFn,
 ): void => {
   withTimeout(options, () => {
     tests(setupMessageProvider(applyMessagePactOptionDefaults(options)));

@@ -1,10 +1,10 @@
-import {
+import type {
+  MessageConsumerOptions,
   MessageConsumerPact,
   PactV2,
-  MessageConsumerOptions,
   PactV2Options,
 } from '@pact-foundation/pact';
-import { WrapperWithOnlyAndSkip } from './internal/types';
+import type { WrapperWithOnlyAndSkip } from './internal/types';
 
 interface ExtraOptions {
   timeout?: number;
@@ -19,7 +19,7 @@ export type JestMessageConsumerOptions = MessageConsumerOptions & ExtraOptions;
 export type JestProvidedPactFn = (provider: PactV2) => void;
 
 export type JestProvidedMessagePactFn = (
-  messagePact: MessageConsumerPact
+  messagePact: MessageConsumerPact,
 ) => void;
 
 export type PactWith = WrapperWithOnlyAndSkip<

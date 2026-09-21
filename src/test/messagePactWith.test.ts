@@ -1,9 +1,9 @@
 import {
   MatchersV2,
-  MessageConsumerPact,
+  type MessageConsumerPact,
   synchronousBodyHandler,
 } from '@pact-foundation/pact';
-import { AnyJson } from '@pact-foundation/pact/src/common/jsonTypes';
+import type { AnyJson } from '@pact-foundation/pact/src/common/jsonTypes';
 import { messagePactWith } from '../index';
 
 interface Dog {
@@ -38,8 +38,8 @@ const arbitraryPact = (provider: MessageConsumerPact) => {
         })
         .verify(
           synchronousBodyHandler(
-            (dogApiHandler as unknown) as (body: AnyJson | Buffer) => void
-          )
+            dogApiHandler as unknown as (body: AnyJson | Buffer) => void,
+          ),
         ));
   });
 };
@@ -55,7 +55,7 @@ describe('custom log locations', () => {
         },
         (provider: MessageConsumerPact) => {
           arbitraryPact(provider);
-        }
+        },
       );
     });
     describe('with logFileName', () => {
@@ -68,7 +68,7 @@ describe('custom log locations', () => {
         },
         (provider: MessageConsumerPact) => {
           arbitraryPact(provider);
-        }
+        },
       );
     });
   });
@@ -81,7 +81,7 @@ describe('custom log locations', () => {
       },
       (provider: MessageConsumerPact) => {
         arbitraryPact(provider);
-      }
+      },
     );
   });
 });

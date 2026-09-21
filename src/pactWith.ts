@@ -1,10 +1,9 @@
 import { PactV2 } from '@pact-foundation/pact';
 import { applyPactOptionDefaults } from './internal/config';
-import { WrapperFn } from './internal/types';
-import { withTimeout } from './internal/withTimeout';
-
 import { extendPactWith } from './internal/scaffold';
-import { JestPactOptions, JestProvidedPactFn } from './types';
+import type { WrapperFn } from './internal/types';
+import { withTimeout } from './internal/withTimeout';
+import type { JestPactOptions, JestProvidedPactFn } from './types';
 
 const setupProvider = (options: JestPactOptions): PactV2 => {
   const pactMock: PactV2 = new PactV2(options);
@@ -24,7 +23,7 @@ export const getProviderBaseUrl = (provider: PactV2): string =>
 
 const pactWithWrapper = (
   options: JestPactOptions,
-  tests: JestProvidedPactFn
+  tests: JestProvidedPactFn,
 ): void => {
   withTimeout(options, () => {
     tests(setupProvider(applyPactOptionDefaults(options)));
