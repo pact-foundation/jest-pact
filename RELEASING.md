@@ -1,94 +1,84 @@
 # Releasing
 
-We've moved to GitHub Actions for releases.
+Releases are cut from a pull request that a bot keeps up to date. Merging
+the pull request tags the release; the tag publishes it.
 
 ## How a release works
 
-Releases trigger when the repository recieves the custom repository_dispatch event
-`release-triggered`.
+`.github/workflows/release.yml` runs three stages.
 
-This triggers the `publish.yml` workflow, which in turn
-triggers the `release.sh` script in `scripts/ci`.
-The workflow will also create a github release with an appropriate changelog.
+### 1. Prepare (every push to `master`)
 
-Having the release triggered by a custom event is useful for automating
-releases in the future (eg for version bumps in pact dependencies).
+`node scripts/release.ts prepare` asks git-cliff for the next version
+implied by the conventional commits since the last tag, writes it to
+`package.json`, prepends the changelog entry to `CHANGELOG.md`, and
+force-pushes both to the branch `release/jest-pact`. It then opens a
+draft pull request titled `chore(release): jest-pact vX.Y.Z`, or updates
+the open one's title and body. Commits that never appear in the
+changelog (`chore(deps)` and friends) do not trigger a bump; the job
+logs "Nothing to do" and exits.
 
-### Release.sh
+### 2. Tag (release pull request merged)
 
-This script is not intended to be run locally. Note that it modifies your git
-settings.
+`node scripts/release.ts tag` reads `version` from `package.json` on
+`master` and pushes the tag `vX.Y.Z`. It exits cleanly if the tag exists,
+so the job can be re-run.
 
-The script will:
+### 3. Publish (tag `v*` pushed)
 
-- Modify git authorship settings
-- Confirm that there would be changes in the changelog after release
-- Run `npm run dist` (check, test, build)
-- Commit an appropriate version bump, changelog and tag with `commit-and-tag-version`
-- Publish to npm with provenance, authenticating through npm trusted publishing
-- Push the new commit and tag back to the main branch.
+The job runs `npm run dist` (check, test, build, package check),
+publishes to npm with provenance through trusted publishing, and creates
+the GitHub release with the changelog entry for that version as its
+body. If the version is already on the registry the publish step is
+skipped and the GitHub release is still created.
 
-### npm trusted publishing
+## Cutting a release
 
-The workflow has no npm token. npm must list a trusted publisher for
-`jest-pact`: repository `pact-foundation/jest-pact`, workflow `publish.yml`.
-Configure it under the package's *Publishing access* settings on npmjs.com.
-The publish step requests an OIDC token from GitHub and npm verifies it
-against that entry.
+1. Open the draft pull request on `release/jest-pact`.
+2. Review `CHANGELOG.md` and the version in `package.json`. Edit them on
+   the branch if the generated result needs changing. The next push to
+   `master` force-pushes the branch and discards edits, so make them
+   when you are ready to merge.
+3. Mark the pull request ready for review and merge it.
 
-Should you need to modify the script locally, you will find it uses some
-dependencies in `scripts/ci/lib`.
+## Running the script locally
 
-## Kicking off a release
+`git-cliff`, `typos` and `gh` (logged in) must be on your `PATH`.
 
-You must be able to create a github access token with `repo` scope to the
-jest-pact repository.
-
-- Set an environment variable `GITHUB_ACCESS_TOKEN_FOR_PF_RELEASES` to this token.
-- Make sure master contains the code you want to release
-- Run `scripts/trigger-release.sh`
-
-Then wait for github to do its magic. It will release the current head of master.
-
-Note that the release script refuses to publish anything that wouldn't
-produce a changelog. Please make sure your commits follow the guidelines in
-`CONTRIBUTING.md`
-
-## If the release fails
-
-The publish is the second to last step, so if the release fails, you don't
-need to do any rollbacks.
-
-However, there is a potential for the push to fail _after_ a publish if there
-are new commits to master since the release started. This is unlikely with
-the current commit frequency, but could still happen. Check the logs to
-determine if npm has a version that doesn't exist in the master branch.
-
-If this has happened, you will need to manually put the release commit in.
-
-```
-# First delete the new tag
-#   somehow this ends up in the repository
-#   even though the push fails.
-
-git checkout master
-git pull --tags
-git tag -d <broken-version>
-git push -delete origin <broken-version>
-
-
-# If there are changes that introduce features, then you'll have to branch and probably rebase
-
-# Now create a new commit + tag for the version:
-npm run release
-
-# Push that tag + commit
-git push origin master --follow-tags
-
+```sh
+node scripts/release.ts prepare --dry-run
 ```
 
-- Don't forget to create a new release in github.
+This writes `package.json` and `CHANGELOG.md` so you can inspect the
+result, prints the pull request body, and stops before touching any
+branch. Revert with `git checkout -- package.json CHANGELOG.md`.
 
-Depending on the nature of the new commits to master after the release, you
-may need to rebase them on top of the tagged release commit and force push (only do this
-if the released version would be different to the version tagged by `npm run release`)
+`node scripts/release.ts tag --dry-run` prints the tag that would be
+pushed. `--debug` on either command prints every git and gh invocation.
+
+## One-time setup
+
+- Grant the pact-foundation bot GitHub App access to this repository.
+  The workflow reads `vars.PACT_FOUNDATION_BOT_APP_ID` and
+  `secrets.PACT_FOUNDATION_BOT_PRIVATE_KEY`.
+- Create the environments `release-pr` (used by the prepare and tag
+  jobs) and `npm` (used by the publish job).
+- On npmjs.com, under the package's *Publishing access* settings, list a
+  trusted publisher for `jest-pact`: repository `pact-foundation/jest-pact`,
+  workflow `release.yml`. The publish step requests an OIDC token from
+  GitHub and npm verifies it against that entry; no npm token is stored.
+
+## If a stage fails
+
+- **Prepare** failed: fix the cause and push to `master` again, or re-run
+  the job.
+- **Tag** failed: re-run the job. It creates the tag only if it is
+  missing.
+- **Publish** failed before `npm publish`: re-run the job.
+- **Publish** failed after `npm publish`: re-run the job. The publish
+  step sees the version on the registry and skips it; the GitHub release
+  step runs again.
+- The tag points at the wrong commit: delete the tag locally and on
+  `origin`, fix `master`, and re-run the tag job from the merged pull
+  request's workflow run, or push the tag by hand with
+  `node scripts/release.ts tag`.
