@@ -16,7 +16,10 @@ force-pushes both to the branch `release/jest-pact`. It then opens a
 draft pull request titled `chore(release): jest-pact vX.Y.Z`, or updates
 the open one's title and body. Commits that never appear in the
 changelog (`chore(deps)` and friends) do not trigger a bump; the job
-logs "Nothing to do" and exits.
+logs "Nothing to do" and exits. It also exits that way when the version
+in `package.json` has no tag yet, which is the state on the push that
+merges a release pull request: the tag stage is still running, and the
+next push starts from the new tag.
 
 ### 2. Tag (release pull request merged)
 
