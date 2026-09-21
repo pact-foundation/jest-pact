@@ -100,13 +100,6 @@ topo_order = false
 # sort the commits inside sections by oldest/newest order
 sort_commits = "oldest"
 
-[bump]
-# The package is 0.x: a feat bumps the minor, a breaking change stays on
-# the minor as well (0.13.0 was cut that way). Flip breaking_always_bump_major
-# to true once the package reaches 1.0.
-features_always_bump_minor = true
-breaking_always_bump_major = false
-
 [remote.github]
 owner = "pact-foundation"
 repo = "jest-pact"
