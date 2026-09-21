@@ -23,6 +23,13 @@
     "dist",
     "CHANGELOG.md"
   ],
+  "typesVersions": {
+    "*": {
+      "v3": [
+        "dist/v3/index.d.ts"
+      ]
+    }
+  },
   "scripts": {
     "lint:biome": "biome lint",
     "lint:tsc": "tsc --noEmit",
@@ -33,8 +40,9 @@
     "check": "biome check && npm run lint:tsc",
     "check:fix": "biome check --write",
     "build": "rimraf dist && tsc --project tsconfig.dist.json",
+    "check:package": "attw --pack .",
     "test": "jest --coverage --runInBand --verbose --coverageReporters=lcov",
-    "dist": "npm run check && npm run test && npm run build",
+    "dist": "npm run check && npm run test && npm run build && npm run check:package",
     "deploy:prepare": "./scripts/create_npmrc_file.sh",
     "release": "standard-version",
     "release:dryrun": "npm run test && npm publish --dry-run",
@@ -64,6 +72,7 @@
   },
   "homepage": "https://github.com/pact-foundation/jest-pact/#readme",
   "devDependencies": {
+    "@arethetypeswrong/cli": "0.18.5",
     "@biomejs/biome": "2.5.14",
     "@commitlint/cli": "^19.0.0",
     "@commitlint/config-conventional": "^20.0.0",
