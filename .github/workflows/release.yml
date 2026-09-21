@@ -69,8 +69,6 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
 
     runs-on: ubuntu-latest
-    environment:
-      name: release-pr
 
     steps:
       - name: Generate GitHub App token
@@ -119,8 +117,6 @@ jobs:
       && github.event.pull_request.head.ref == 'release/jest-pact'
 
     runs-on: ubuntu-latest
-    environment:
-      name: release-pr
 
     steps:
       - name: Generate GitHub App token
