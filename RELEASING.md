@@ -23,12 +23,18 @@ The script will:
 
 - Modify git authorship settings
 - Confirm that there would be changes in the changelog after release
-- Run Lint
-- Run Build
-- Run Test
-- Commit an appropriate version bump, changelog and tag
-- Package and publish to npm
+- Run `npm run dist` (check, test, build)
+- Commit an appropriate version bump, changelog and tag with `commit-and-tag-version`
+- Publish to npm with provenance, authenticating through npm trusted publishing
 - Push the new commit and tag back to the main branch.
+
+### npm trusted publishing
+
+The workflow has no npm token. npm must list a trusted publisher for
+`jest-pact`: repository `pact-foundation/jest-pact`, workflow `publish.yml`.
+Configure it under the package's *Publishing access* settings on npmjs.com.
+The publish step requests an OIDC token from GitHub and npm verifies it
+against that entry.
 
 Should you need to modify the script locally, you will find it uses some
 dependencies in `scripts/ci/lib`.

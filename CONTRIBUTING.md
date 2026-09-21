@@ -33,20 +33,14 @@ You can take a look at the git history (`git log`) to get the gist of it.
 If you have questions, feel free to reach out in `#pact-js` in our [slack
 community](https://pact-foundation.slack.com/).
 
-If you'd like to get some CLI assistance, getting setup is easy:
-
-```shell
-npm install commitizen -g
-npm i -g cz-conventional-changelog
-```
-
-`git cz` to commit and commitizen will guide you.
-
 ## Code style and formatting
 
-We use [Prettier](https://prettier.io/) for formatting, and for linting we use [TSLint](https://palantir.github.io/tslint/) (for TypeScript).
+We use [Biome](https://biomejs.dev/) for formatting and linting, with the
+recommended rule set and single quotes. `npm run check:fix` applies the
+formatter and safe fixes; `npm run check` is what CI runs. Most editors have
+a Biome extension that formats on save.
 
-Please update your editor to enable Prettier, and things should be easy 👌. If not, our lint step will catch it.
+Type errors are caught by `tsc --noEmit`, which `npm run lint` includes.
 
 ## Pull requests
 
