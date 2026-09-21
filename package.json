@@ -42,8 +42,7 @@
     "build": "rimraf dist && tsc --project tsconfig.dist.json",
     "check:package": "attw --pack .",
     "test": "jest --coverage --runInBand --verbose --coverageReporters=lcov",
-    "test:scripts": "node --test scripts/release.test.ts",
-    "dist": "npm run check && npm run test && npm run test:scripts && npm run build && npm run check:package"
+    "dist": "npm run check && npm run test && npm run build && npm run check:package"
   },
   "repository": {
     "type": "git",

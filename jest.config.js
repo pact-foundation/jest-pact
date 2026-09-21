@@ -24,7 +24,7 @@ module.exports = {
   transformIgnorePatterns: [
     '/node_modules/(?!(?:.*/)?(https-proxy-agent|agent-base|proxy-agent-negotiate)/)',
   ],
-  testMatch: ['<rootDir>/src/**/*.test.ts'],
+  testMatch: ['**/*.test.(ts)'],
   testEnvironment: 'node',
   reporters: [
     'default',
