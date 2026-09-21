@@ -154,8 +154,8 @@ function tryCapture(command: string, args: string[]): string | null {
     encoding: 'utf8',
     stdio: ['ignore', 'pipe', 'pipe'],
   });
-  if (result.status !== 0) {
-    debug(`exit ${result.status}: ${result.stderr.trim()}`);
+  if (result.error || result.status !== 0) {
+    debug(`exit ${result.status}: ${(result.stderr ?? '').trim()}`);
     return null;
   }
   return result.stdout;
@@ -175,8 +175,12 @@ function writeVersion(version: string): void {
 }
 
 function computeNextVersion(): string | null {
+  // `capture`, not `tryCapture`: git-cliff exits 0 in every legitimate
+  // "nothing to bump" case (it prints the current tag), so a non-zero exit
+  // here means a broken toolchain (missing git-cliff, invalid cliff.toml, no
+  // tags) and must fail loudly rather than read as "nothing to release".
   return nextVersion(
-    tryCapture('git', ['cliff', '--bumped-version']),
+    capture('git', ['cliff', '--bumped-version']),
     readVersion(),
   );
 }
