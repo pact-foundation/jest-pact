@@ -1,29 +1,34 @@
-import { MessageConsumerOptions, PactV2Options } from '@pact-foundation/pact';
-import { ConsumerOptions, WrapperFn, WrapperWithOnlyAndSkip } from './types';
+import type {
+  MessageConsumerOptions,
+  PactV2Options,
+} from '@pact-foundation/pact';
+import type {
+  ConsumerOptions,
+  WrapperFn,
+  WrapperWithOnlyAndSkip,
+} from './types';
 
 const describeString = (options: PactV2Options | MessageConsumerOptions) =>
   `Pact between ${options.consumer} and ${options.provider}`;
 
-const describePactWith = <
-  O extends ConsumerOptions,
-  P,
-  W extends WrapperFn<O, P>
->(
-  describeFn: jest.Describe,
-  wrapper: W
-) => (options: O, tests: P) =>
-  describeFn(describeString(options), () => wrapper(options, tests));
+const describePactWith =
+  <O extends ConsumerOptions, P, W extends WrapperFn<O, P>>(
+    describeFn: jest.Describe,
+    wrapper: W,
+  ) =>
+  (options: O, tests: P) =>
+    describeFn(describeString(options), () => wrapper(options, tests));
 
 export const extendPactWith = <
   O extends ConsumerOptions,
   P,
-  W extends WrapperFn<O, P>
+  W extends WrapperFn<O, P>,
 >(
-  wrapper: W
+  wrapper: W,
 ): WrapperWithOnlyAndSkip<O, P> => {
   const ret = describePactWith<O, P, W>(
     describe,
-    wrapper
+    wrapper,
   ) as WrapperWithOnlyAndSkip<O, P>;
   ret.only = describePactWith<O, P, W>(describe.only, wrapper);
   ret.skip = describePactWith<O, P, W>(describe.skip, wrapper);
