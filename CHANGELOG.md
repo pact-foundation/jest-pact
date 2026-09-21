@@ -1,6 +1,10 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file.
+
+<!-- markdownlint-disable no-duplicate-heading -->
+<!-- markdownlint-disable emph-style -->
+<!-- markdownlint-disable strong-style -->
 
 ## [0.13.0](https://github.com/pact-foundation/jest-pact/compare/v0.11.4...v0.13.0) (2025-10-07)
 
@@ -33,7 +37,7 @@ All notable changes to this project will be documented in this file. See [standa
 * **deps:** update dependency typescript to v5.9.2 ([#408](https://github.com/pact-foundation/jest-pact/issues/408)) ([a5d079f](https://github.com/pact-foundation/jest-pact/commit/a5d079fb6cf14c20f6aba2a0ff359758e5b48437))
 * **deps:** update dependency typescript to v5.9.3 ([#432](https://github.com/pact-foundation/jest-pact/issues/432)) ([3330552](https://github.com/pact-foundation/jest-pact/commit/33305528b5d0987f84bacc9df6d604d975efdcdb))
 
-### [0.11.4](https://github.com/pact-foundation/jest-pact/compare/v0.11.3...v0.11.4) (2025-07-02)
+## [0.11.4](https://github.com/pact-foundation/jest-pact/compare/v0.11.3...v0.11.4) (2025-07-02)
 
 
 ### Dependencies
@@ -49,21 +53,21 @@ All notable changes to this project will be documented in this file. See [standa
 * **deps:** update dependency typescript to v5.8.3 ([#374](https://github.com/pact-foundation/jest-pact/issues/374)) ([70587e8](https://github.com/pact-foundation/jest-pact/commit/70587e863dc377d2ba0a36b8017814db6aa9c45e))
 * **deps:** update jest monorepo to v30 ([d21a2cd](https://github.com/pact-foundation/jest-pact/commit/d21a2cdef8891cdb864f28698ad5ded450631830))
 
-### [0.11.3](https://github.com/pact-foundation/jest-pact/compare/v0.11.2...v0.11.3) (2025-03-24)
+## [0.11.3](https://github.com/pact-foundation/jest-pact/compare/v0.11.2...v0.11.3) (2025-03-24)
 
 
 ### Bug Fixes
 
 * **peer-deps:** update pact-js to allow 15.x ([561c02c](https://github.com/pact-foundation/jest-pact/commit/561c02ccdbb7544a849f5b766dc72d06cd9e99ba))
 
-### [0.11.2](https://github.com/pact-foundation/jest-pact/compare/v0.11.1...v0.11.2) (2025-02-17)
+## [0.11.2](https://github.com/pact-foundation/jest-pact/compare/v0.11.1...v0.11.2) (2025-02-17)
 
 
 ### Bug Fixes
 
 * **deps:** add pact-js v14 to peer deps ([#343](https://github.com/pact-foundation/jest-pact/issues/343)) ([33480d0](https://github.com/pact-foundation/jest-pact/commit/33480d0ad1783264c26e28e591544d8b8677862f))
 
-### [0.11.1](https://github.com/pact-foundation/jest-pact/compare/v0.11.0...v0.11.1) (2024-06-19)
+## [0.11.1](https://github.com/pact-foundation/jest-pact/compare/v0.11.0...v0.11.1) (2024-06-19)
 
 
 ### Bug Fixes
@@ -86,49 +90,49 @@ All notable changes to this project will be documented in this file. See [standa
 
 * require at least node 16 ([5c9d7eb](https://github.com/pact-foundation/jest-pact/commit/5c9d7eb972ff3ac25b8160b0888b9b79830aee6b))
 
-### [0.10.3](https://github.com/pact-foundation/jest-pact/compare/v0.10.2...v0.10.3) (2023-03-21)
+## [0.10.3](https://github.com/pact-foundation/jest-pact/compare/v0.10.2...v0.10.3) (2023-03-21)
 
 
 ### Features
 
 * Bump Pact version ([8da6073](https://github.com/pact-foundation/jest-pact/commit/8da607379f2514900af8278431508806c86b8a50))
 
-### [0.10.2](https://github.com/pact-foundation/jest-pact/compare/v0.10.1...v0.10.2) (2022-12-05)
+## [0.10.2](https://github.com/pact-foundation/jest-pact/compare/v0.10.1...v0.10.2) (2022-12-05)
 
 
 ### Features
 
 * **jest:** Add jest 29 support ([017abf3](https://github.com/pact-foundation/jest-pact/commit/017abf3205d204a65a9f5a5ef60d5586872dd197))
 
-### [0.10.1](https://github.com/pact-foundation/jest-pact/compare/v0.9.4...v0.10.1) (2022-08-08)
+## [0.10.1](https://github.com/pact-foundation/jest-pact/compare/v0.9.4...v0.10.1) (2022-08-08)
 
 
 ### Features
 
 * **v3:** Add draft withPact interface for V3 ([8ba6e66](https://github.com/pact-foundation/jest-pact/commit/8ba6e6643821bac85c03d317ccf7d205bfa4649c))
 
-### [0.9.4](https://github.com/pact-foundation/jest-pact/compare/v0.9.3...v0.9.4) (2022-05-20)
+## [0.9.4](https://github.com/pact-foundation/jest-pact/compare/v0.9.3...v0.9.4) (2022-05-20)
 
 
 ### Bug Fixes
 
 * Add Jest@28 to the peer dependencies (and fix a few other issues) ([#211](https://github.com/pact-foundation/jest-pact/issues/211)) ([0bd968e](https://github.com/pact-foundation/jest-pact/commit/0bd968e16f4256a291304ff4341e2e529e0ca83d))
 
-### [0.9.3](https://github.com/pact-foundation/jest-pact/compare/v0.9.2...v0.9.3) (2022-03-21)
+## [0.9.3](https://github.com/pact-foundation/jest-pact/compare/v0.9.2...v0.9.3) (2022-03-21)
 
 
 ### Features
 
 * Release GH actions by removing dryRun flag ([3778ee3](https://github.com/pact-foundation/jest-pact/commit/3778ee32caac1d774bb796ea64742fc049368ec6))
 
-### [0.9.2](https://github.com/pact-foundation/jest-pact/compare/v0.9.1...v0.9.2) (2022-03-21)
+## [0.9.2](https://github.com/pact-foundation/jest-pact/compare/v0.9.1...v0.9.2) (2022-03-21)
 
 
 ### Bug Fixes
 
 * Add GH actions for release pipeline ([af82206](https://github.com/pact-foundation/jest-pact/commit/af822069941c9cf33fd3dc2f9fac794342d43900))
 
-### [0.9.1](https://github.com/pact-foundation/jest-pact/compare/v0.9.0...v0.9.1) (2021-06-16)
+## [0.9.1](https://github.com/pact-foundation/jest-pact/compare/v0.9.0...v0.9.1) (2021-06-16)
 
 
 ### Features
@@ -146,9 +150,9 @@ All notable changes to this project will be documented in this file. See [standa
 
 * Fix compile error when used with @pact-foundation/pact version 9.15.0 and above ([b89a114](https://github.com/pact-foundation/jest-pact/commit/b89a114921c126aa291a722d017ec4c44a834550))
 
-### [0.8.3](https://github.com/pact-foundation/jest-pact/compare/v0.8.2...v0.8.3) (2021-02-23)
+## [0.8.3](https://github.com/pact-foundation/jest-pact/compare/v0.8.2...v0.8.3) (2021-02-23)
 
-### [0.8.2](https://github.com/pact-foundation/jest-pact/compare/v0.8.1...v0.8.2) (2021-02-23)
+## [0.8.2](https://github.com/pact-foundation/jest-pact/compare/v0.8.1...v0.8.2) (2021-02-23)
 
 
 ### Features
@@ -156,7 +160,7 @@ All notable changes to this project will be documented in this file. See [standa
 * **dsl:** Add pactWith.only and pactWith.skip, which behave like their describe counterparts ([540dc3c](https://github.com/pact-foundation/jest-pact/commit/540dc3c692bcb25d1175f73c4d5da1babb001087))
 * **messagePact:** Add messagePactWith so that the default options are available for message pact users too ([a8c1943](https://github.com/pact-foundation/jest-pact/commit/a8c19435546f374130eda3c431254911a7142e37))
 
-### [0.8.1](https://github.com/pact-foundation/jest-pact/compare/v0.8.0...v0.8.1) (2020-08-18)
+## [0.8.1](https://github.com/pact-foundation/jest-pact/compare/v0.8.0...v0.8.1) (2020-08-18)
 
 
 ### Bug Fixes
@@ -191,14 +195,14 @@ All notable changes to this project will be documented in this file. See [standa
 
 * **logs:** Add port number to log file names (mitigates [#193](https://github.com/pact-foundation/jest-pact/issues/193)) ([e8af055](https://github.com/pact-foundation/jest-pact/commit/e8af0551c08c13d09fc96a5fc6360cc45235b483))
 
-### [0.5.4](https://github.com/pact-foundation/jest-pact/compare/v0.5.3...v0.5.4) (2020-05-13)
+## [0.5.4](https://github.com/pact-foundation/jest-pact/compare/v0.5.3...v0.5.4) (2020-05-13)
 
 
 ### Bug Fixes
 
 * **defaults:** Set LogLevel to warn by default (previously was error) ([83a29eb](https://github.com/pact-foundation/jest-pact/commit/83a29eb224dce0c427c881b7b48cd5bdc1af6037))
 
-### [0.5.3](https://github.com/pact-foundation/jest-pact/compare/v0.5.2...v0.5.3) (2020-05-05)
+## [0.5.3](https://github.com/pact-foundation/jest-pact/compare/v0.5.2...v0.5.3) (2020-05-05)
 
 
 ### Bug Fixes
@@ -208,11 +212,11 @@ All notable changes to this project will be documented in this file. See [standa
 * **options:** fix a bug where 'dir' wouldn't take absolute paths ([1cec75d](https://github.com/pact-foundation/jest-pact/commit/1cec75d4673a250a3c96ba0385262ebfecaf7e11))
 * **options:** remove PactOptions redefinition, introduce JestPactOptions ([b622f01](https://github.com/pact-foundation/jest-pact/commit/b622f0171799745d6aeaf4a3924367f413b3b334))
 
-### [0.5.2](https://github.com/YOU54F/jest-pact/compare/v0.5.1...v0.5.2) (2020-02-18)
+## [0.5.2](https://github.com/YOU54F/jest-pact/compare/v0.5.1...v0.5.2) (2020-02-18)
 
-### [0.5.1](https://github.com/YOU54F/jest-pact/compare/v0.4.6...v0.5.1) (2020-02-12)
+## [0.5.1](https://github.com/YOU54F/jest-pact/compare/v0.4.6...v0.5.1) (2020-02-12)
 
-### [0.4.6](https://github.com/YOU54F/jest-pact/compare/v0.4.5...v0.4.6) (2020-02-12)
+## [0.4.6](https://github.com/YOU54F/jest-pact/compare/v0.4.5...v0.4.6) (2020-02-12)
 
 
 ### Bug Fixes
@@ -232,7 +236,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 * **timeout:** prevent brittle tests by increasing Jasmine timeouts ([51d23cf](https://github.com/YOU54F/jest-pact/commit/51d23cf))
 
-### [0.4.5](https://github.com/YOU54F/jest-pact/compare/v0.4.4...v0.4.5) (2019-10-17)
+## [0.4.5](https://github.com/YOU54F/jest-pact/compare/v0.4.4...v0.4.5) (2019-10-17)
 
 
 ### Bug Fixes
@@ -241,7 +245,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 
 
-### [0.4.4](https://github.com/YOU54F/jest-pact/compare/v0.4.3...v0.4.4) (2019-08-07)
+## [0.4.4](https://github.com/YOU54F/jest-pact/compare/v0.4.3...v0.4.4) (2019-08-07)
 
 
 ### Bug Fixes
@@ -250,7 +254,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 
 
-### [0.4.3](https://github.com/YOU54F/jest-pact/compare/v0.4.2...v0.4.3) (2019-07-08)
+## [0.4.3](https://github.com/YOU54F/jest-pact/compare/v0.4.2...v0.4.3) (2019-07-08)
 
 
 ### Bug Fixes
@@ -259,7 +263,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 
 
-### [0.4.2](https://github.com/YOU54F/jest-pact/compare/v0.3.0...v0.4.2) (2019-06-14)
+## [0.4.2](https://github.com/YOU54F/jest-pact/compare/v0.3.0...v0.4.2) (2019-06-14)
 
 
 ### Bug Fixes
@@ -268,7 +272,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 
 
-### [0.4.1](https://github.com/YOU54F/jest-pact/compare/v0.4.0...v0.4.1) (2019-06-12)
+## [0.4.1](https://github.com/YOU54F/jest-pact/compare/v0.4.0...v0.4.1) (2019-06-12)
 
 
 ### Bug Fixes
@@ -316,8 +320,8 @@ All notable changes to this project will be documented in this file. See [standa
 
 
 
-### 0.0.10 (2019-05-02)
+## 0.0.10 (2019-05-02)
 
 
 
-### 0.0.9 (2019-05-01)
+## 0.0.9 (2019-05-01)
