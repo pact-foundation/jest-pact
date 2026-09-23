@@ -6,6 +6,16 @@ All notable changes to this project will be documented in this file.
 <!-- markdownlint-disable emph-style -->
 <!-- markdownlint-disable strong-style -->
 
+## [0.14.1] _2026-09-23_
+
+### 🛠️ Miscellaneous Tasks
+
+-   _(ci)_ Standardize renovate config
+
+### Contributors
+
+-   @JP-Ellis
+
 ## [0.14.0] _2026-09-21_
 
 ### 🚀 Features
