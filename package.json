@@ -69,7 +69,7 @@
   "homepage": "https://github.com/pact-foundation/jest-pact/#readme",
   "devDependencies": {
     "@arethetypeswrong/cli": "0.18.5",
-    "@biomejs/biome": "2.5.14",
+    "@biomejs/biome": "2.5.15",
     "@pact-foundation/pact": "17.1.4",
     "@tsconfig/node22": "22.0.6",
     "@types/jest": "30.0.0",
