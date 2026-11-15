@@ -71,7 +71,7 @@
     "@arethetypeswrong/cli": "0.18.5",
     "@biomejs/biome": "2.5.15",
     "@pact-foundation/pact": "17.1.4",
-    "@tsconfig/node22": "22.0.6",
+    "@tsconfig/node22": "22.0.7",
     "@types/jest": "30.0.0",
     "@types/supertest": "7.2.1",
     "jest": "30.5.2",
